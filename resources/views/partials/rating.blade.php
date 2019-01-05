@@ -12,7 +12,7 @@
                 {!! Form::open(['url' => route('pengaduan.nilai', $object->id),
                     'method' => 'post',  'class'=>'form-horizontal']) !!}
                   
-                  {!! Form::radio('rating', '1') !!}
+                  {!! Form::radio('name', 'value') !!}
             </div>
         </div>
       </div>

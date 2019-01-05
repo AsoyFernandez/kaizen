@@ -19,8 +19,17 @@
             <div class="row">
               Status :  @if (!isset($object->penanganans->pengajuans))
                           Belum ditangani
-                        @else
-                          <a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal-petugas' }}" class="btn btn-primary btn-xs">Sedang ditangani</a>
+                        @elseif(isset($object->penanganans->pengajuans))
+                            @foreach($object->penanganans->pengajuans as $key)
+                              @foreach ($key->status as $element)
+
+                                @if ($key == [])
+                                Sedang Ditangani
+                                @elseif (isset($key->status))
+                                Sudah Selesai
+                              @endif
+                              @endforeach
+                            @endforeach
                         @endif
             </div>
             <div class="row">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Perusahaan;
 use Session;
+use Auth;
 class PerusahaanController extends Controller
 {
     /**
@@ -14,6 +15,8 @@ class PerusahaanController extends Controller
      */
     public function index()
     {
+        
+            
         $perusahaan = Perusahaan::paginate(10);
         return view('perusahaan.index')->with(compact('perusahaan'));
     }

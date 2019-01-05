@@ -7,12 +7,12 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Daftar Pengajuan</li>
+                <li class="breadcrumb-item active" aria-current="page">Beri Nilai</li>
             </ol>
         </nav>
         <div class="box box-default">
             <div class="box-header with-border">
-                <h2 class="panel-title">{{ __('Pengajuan') }}</h2>
+                <h2 class="panel-title">{{ __('Penilaian') }}</h2>
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fa fa-minus"></i></button>
@@ -22,7 +22,6 @@
                     </div>
 
                     <div class="box-body">
-
                         <div class="table-responsive">
                          <table id="example" class="table table-condensed table-striped">
                             <thead>
@@ -32,35 +31,25 @@
                                     <td>Deskripsi</td>
                                     <td>Action</td>
                                 </tr>
+
                             </thead>
                             <tbody>
-                                @forelse ($pengajuan as $log)
                                 <tr>
-                                    <td>{{ $log->penanganans->users->name }}</td>
-                                    <td>{{ $log->penanganans->duplikats->pengaduans->first()->tempats->nama }}</td>
-                                    <td>{{ $log->penanganans->duplikats->nama }}</td>
+                                    @forelse ($status as $log)
+                                    <td>{{ $log->pengajuans->penanganans->users->name }}</td>
+                                    <td>{{ $log->pengajuans->penanganans->duplikats->pengaduans->first()->tempats->nama }}</td>
+                                    <td>{{ $log->pengajuans->deskripsi }}</td>
+                                    @if (App\Penilaian::where('status_id',$log->id)->first() != null)
+                                        <td><a data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}" class="btn btn-xs btn-primary">Lihat</a></td>
+                                        @include('partials.pimpinan_lihatnilai', ['object' => $log])
 
-                                    @if (isset($log->status) && $log->status->status == 0)
-                                        <td><a class="btn btn-primary disabled">Ditolak</a></td>
+                                        @else
+                                    <td><a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}" class="btn btn-xs btn-primary">Nilai</a></td>
                                     @endif
-
-                                    @if (isset($log->status) && $log->status->status == 1)
-                                        <td><a class="btn btn-primary disabled">Diterima</a></td>
-                                        
-                                    @endif
-
-                                    @if (!isset($log->status))
-                                        <td><a data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}" class="btn btn-xs btn-primary">Tolak</a>
-                                     <a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}" class="btn btn-xs btn-primary">Terima</a>
-                                @include('partials.pengawas_terima', ['object' => $log])</td>
-                                    @include('partials.pengawas_tolak', ['object' => $log])
-                                    @endif
+                                    @empty
+                                    @endforelse
                                 </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="2">Tidak ada data</td>
-                                </tr>
-                                @endforelse
+                                @include('partials.pimpinan_nilai', ['object' => $log])
                             </tbody>
                         </table>
                     </div>

@@ -80,5 +80,6 @@ Route::group(['middleware' => 'auth'], function () {
 			'as' => 'pengajuan.terima',
 			'uses' => 'PengajuanController@terima'
 		]);
+	Route::resource('penilaian', 'PenilaianController');
 
 });

@@ -8,6 +8,8 @@ use App\User;
 use App\Role;
 use DB;
 use Session;
+use Illuminate\Support\Facades\Hash;
+
 class MembersController extends Controller
 {
     /**
@@ -61,7 +63,7 @@ class MembersController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password'=> $request->password,
+            'password'=> Hash::make($request->password),
             'hp'=> $request->hp,
             'jabatan'=> $request->jabatan,
         ]) ;

@@ -15,6 +15,6 @@ class Pengajuan extends Model
 
 	public function status()
 	{
-		return $this->hasMany('App\Status');
+		return $this->hasOne('App\Status');
 	}
 }

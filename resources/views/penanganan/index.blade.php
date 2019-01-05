@@ -36,14 +36,29 @@
                             <tbody>
                                 @forelse ($penanganan as $log)
                                 @if ($log->users->id == Auth::id())
-                                    <tr>
+                                <tr>
                                     <td>{{ $log->users['name'] }}</td>
                                     <td>{{ $log->duplikats->pengaduans->first()->users->name }}</td>
                                     <td>{{ $log->duplikats->pengaduans->first()->tempats->nama }}</td>
-                                    @if (!isset($log->pengajuans))
-                                        <td><a href="" class="btn btn-xs btn-info">Di ajukan</a></td>
-                                    @else
-                                    <td><a class="btn btn-primary" href="{{ route('penanganan.post_id', $log->id) }}">Ajukan</a></td>
+
+                                    @if(App\Pengajuan::where('penanganan_id',$log->id)->first() == null)
+                                        <td>
+                                            <a class="btn btn-primary" href="{{ route('penanganan.post_id', $log->id) }}">Ajukan</a>
+                                        </td>
+                                    @endif
+
+                                    @if(App\Pengajuan::where('penanganan_id',$log->id)->first() != null && !isset($log->pengajuans->first()->status))
+                                        <td>
+                                            <a class="btn btn-primary disabled">Menunggu konfirmasi</a>
+                                        </td> 
+                                    @endif
+                                    
+                                    @if(isset($log->pengajuans->first()->status) && $log->pengajuans->last()->status->status == 0)
+                                        <td><a class="btn btn-primary" href="{{ route('penanganan.post_id', $log->id) }}">Ajukan Lagi</a></td>
+                                    @endif
+
+                                    @if(isset($log->pengajuans->first()->status) && $log->pengajuans->last()->status->status == 1)
+                                        <td><a class="btn btn-primary disabled">Diterima</a></td>
                                     @endif
                                 </tr>    
                                 @endif

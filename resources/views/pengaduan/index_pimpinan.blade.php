@@ -55,22 +55,17 @@
                                      @if (!isset($log->penanganans))
                                      <td><a class="btn btn-xs btn-primary">Belum Ditangani</a></td>
                                     <td></td>
-
                                     @elseif(isset($log->penanganans))
-                                     <td><a class="btn btn-xs btn-primary">Sedang Ditangani</a></td>
+                                                <td><a class="btn btn-xs btn-primary">Sedang Ditangani</a></td>
                                     <td></td>
-                                    @else
-                                    <td>Sudah Selesai</td>
-
-                                    @foreach ($log->penanganans->pengajuans as $element)
-                                        @foreach ($element->status as $key)
-                                            @if(isset($key))
-                                                <td><a class="btn btn-xs btn-primary">Sudah Disetujui</a></td>
-                                    <td></td>
-                                            @endif
+                                    @elseif(isset($log->penanganans) && isset($log->penanganans->pengajuans))
+                                        @foreach ($log->penanganans->pengajuans as $element)   
+                                            @foreach ($element->status as $key) 
+                                                <td>Sudah Disetujui</td>
+                                                <td></td>
+                                                
+                                            @endforeach
                                         @endforeach
-                                    @endforeach
-
                                     @endif
                                     </tr>
                                      

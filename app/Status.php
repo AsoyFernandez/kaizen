@@ -13,4 +13,8 @@ class Status extends Model
 		return $this->belongsTo('App\Pengajuan', 'pengajuan_id');
 	}
 
+	public function penilaian()
+    {
+        return $this->hasOne('App\Penilaian');
+    }    
 }
