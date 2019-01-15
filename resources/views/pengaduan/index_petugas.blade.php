@@ -27,6 +27,7 @@
                 <div class="box-body">
                  <p>
                      @include('partials.open')
+                     
                  </p> 
                    <div class="table-responsive">
                         <table id="example" class="display responsive nowrap compact">
@@ -36,23 +37,35 @@
                                     <td>Pelapor</td>
                                     <td>Nama Ruangan</td>
                                     <td>Deskripsi</td>
+                                    <td>Tanggal</td>
                                     <td>Action</td>
                                 </tr>
                             </thead>
                             <tbody>
                               @forelse ($duplikats as $log)
                                  @if (!isset($log->penanganans))
+                                 @php
+                                     $user = Auth::user();
+                                 @endphp
+                                 @foreach ($user->tempats as $key)
+                                     @if ($key->id == $log->pengaduans->first()->tempats->id)
+                                         {{-- expr --}}
                                  <tr>
+                                    
                                      <td>{{ $log->pengaduans->first()->users->name }} <a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}""><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></a></td>
                                      @include('partials.pengaduan_users', ['object' => $log])
 
                                      <td>{{ $log->pengaduans->first()->tempats->nama }}</td>
-                                      
-                                     <td><a data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}">{{ $log->nama }}</a></td>
+
+                                     <td><a data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}">{{ $log->deskripsi }}</a></td>
                                      @include('partials.deskripsi_duplikat', ['object' => $log])
 
-                                     <td><a class="btn btn-primary btn-xs" href="{{ route('pengaduan.tangani', $log->id) }}">Tangani</a></td>
+                                     <td>{{ $log->pengaduans->first()->created_at->format('d/m/Y H:i') }}</td>
+                                    
+                                     <td><a class="btn btn-primary btn-xs" href="{{ route('pengaduan.tanganin', $log->id) }}">Tangani</a></td>
                                      </tr> 
+                                     @endif
+                                 @endforeach
                                  @endif
                                  @empty
                                   <tr>
@@ -60,6 +73,13 @@
                                   </tr>
                               @endforelse
                             </tbody>
+                            <tfoot>
+                                <td>Pelapor</td>
+                                    <td>Nama Ruangan</td>
+                                    <td>Deskripsi</td>
+                                    <td>Tanggal</td>
+                                    <td>Action</td>
+                            </tfoot>
                         </table>
                     </div>
 

@@ -13,9 +13,9 @@ class CreateDuplikatPengaduanPivotTable extends Migration
     public function up()
     {
         Schema::create('duplikat_pengaduan', function (Blueprint $table) {
-            $table->integer('duplikat_id')->unsigned()->index();
+            $table->smallInteger('duplikat_id')->unsigned()->index();
             $table->foreign('duplikat_id')->references('id')->on('duplikats')->onDelete('cascade');
-            $table->integer('pengaduan_id')->unsigned()->index();
+            $table->smallInteger('pengaduan_id')->unsigned()->index();
             $table->foreign('pengaduan_id')->references('id')->on('pengaduans')->onDelete('cascade');
             $table->primary(['duplikat_id', 'pengaduan_id']);
         });

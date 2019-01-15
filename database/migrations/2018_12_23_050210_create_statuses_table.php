@@ -14,8 +14,8 @@ class CreateStatusesTable extends Migration
     public function up()
     {
         Schema::create('statuses', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('pengajuan_id')->unsigned();
+            $table->smallIncrements('id');
+            $table->smallInteger('pengajuan_id')->unsigned();
             $table->boolean('status')->default(false);
             $table->text('keterangan');
             $table->timestamps();

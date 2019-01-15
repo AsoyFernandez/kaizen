@@ -65,6 +65,7 @@ class UsersSeeder extends Seeder
 
         $user = new User();
         $user->name = 'Admin Larapus';
+        $user->username = 'admin';
         $user->email = 'admin@gmail.com';
         $user->password = bcrypt('rahasia');
         $user->jabatan = 'Staff';
@@ -73,6 +74,7 @@ class UsersSeeder extends Seeder
 
         $user2 = new User();
         $user2->name = 'Esa';
+        $user2->username = 'esa';
         $user2->email = 'esa@gmail.com';
         $user2->password = bcrypt('rahasia');
         $user2->jabatan = 'Manager' ;
@@ -85,6 +87,7 @@ class UsersSeeder extends Seeder
 
         $user3 = new User();
         $user3->name = 'Rizki';
+        $user3->username = 'rizki';
         $user3->email = 'rizki@gmail.com';
         $user3->password = bcrypt('rahasia');
         $user3->jabatan = 'Karyawan' ;

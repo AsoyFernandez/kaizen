@@ -30,7 +30,6 @@
 
 <link href="{{ asset('css/selectize.css') }}" rel="stylesheet">
 <link href="{{ asset('css/selectize.bootstrap3.css') }}" rel="stylesheet">
-<link href="{{ asset('css/starability-all.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/star-rating.css') }}" media="all" rel="stylesheet" type="text/css" />
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">

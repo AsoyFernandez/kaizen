@@ -22,16 +22,16 @@
                         <div class="form-group{{ $errors->has('ada') ? ' has-error' : '' }} row">
                         {!! Form::label('ada', 'Pilih', ['class'=>'col-sm-4 control-label']) !!}
                         <div class="col-md-6"> 
-                            {!! Form::select('duplicate_id', [''=>'']+App\Duplikat::pluck('nama','id')->all(), null, ['class'=>'form-control col-form-label js-selectize','placeholder' => 'Pilih Pengaduan']) !!}
+                            {!! Form::select('duplicate_id', [''=>'']+App\Duplikat::pluck('deskripsi','id')->all(), null, ['class'=>'form-control col-form-label js-selectize','placeholder' => 'Pilih Pengaduan']) !!}
                             {!! $errors->first('ada', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
                     @else
-                        <div class="form-group{{ $errors->has('nama') ? ' has-error' : '' }} row">
-                        {!! Form::label('nama', 'Deskripsi', ['class'=>'col-sm-4 control-label']) !!}
+                        <div class="form-group{{ $errors->has('deskripsi') ? ' has-error' : '' }} row">
+                        {!! Form::label('deskripsi', 'Deskripsi', ['class'=>'col-sm-4 control-label']) !!}
                         <div class="col-md-6">
-                            {!! Form::text('nama',null, ['class'=>'form-control']) !!}
-                            {!! $errors->first('nama', '<p class="help-block">:message</p>') !!}
+                            {!! Form::textarea('deskripsi',null, ['class'=>'form-control', 'rows'=>'3']) !!}
+                            {!! $errors->first('deskripsi', '<p class="help-block">:message</p>') !!}
                         </div>
                     @endif
                         @foreach($pengaduan as $log)

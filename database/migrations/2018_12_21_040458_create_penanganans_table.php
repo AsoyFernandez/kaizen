@@ -14,9 +14,10 @@ class CreatePenanganansTable extends Migration
     public function up()
     {
         Schema::create('penanganans', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('duplikat_id')->unsigned();
+            $table->smallIncrements('id');
+            $table->tinyInteger('user_id')->unsigned();
+            $table->smallInteger('duplikat_id')->unsigned();
+            $table->string('lampiran', 36);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')

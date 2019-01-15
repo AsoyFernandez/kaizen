@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKategorisTable extends Migration
+class CreateCobasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateKategorisTable extends Migration
      */
     public function up()
     {
-        Schema::create('kategoris', function (Blueprint $table) {
-            $table->tinyIncrements('id');
-            $table->string('nama', 8);
+        Schema::create('cobas', function (Blueprint $table) {
+            $table->tinyIncrements('id', 2)->change();
             $table->timestamps();
-        });
-
-        Schema::table('pengaduans', function (Blueprint $table) {
-            $table->foreign('kategori_id')->references('id')->on('kategoris');
         });
     }
 
@@ -31,6 +26,6 @@ class CreateKategorisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategoris');
+        Schema::dropIfExists('cobas');
     }
 }

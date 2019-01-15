@@ -42,6 +42,8 @@
 	</div>
 </div>
 
+
+
 <div class="form-group row mb-0">
 	<div class="col-md-6 col-md-offset-4">
 	{!! Form::submit('Simpan', ['class'=>'btn btn-primary']) !!}

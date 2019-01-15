@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Penanganan extends Model
 {
-    protected $fillable = ['user_id', 'duplikat_id'];
+    protected $fillable = ['user_id', 'duplikat_id', 'lampiran'];
  
     public function users()
 	{

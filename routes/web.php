@@ -30,8 +30,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('member', 'MembersController');
 	Route::resource('pengaduan', 'PengaduanController');
 	Route::get('/pengaduans/{pengaduans}/tangani',[
-			'as' => 'pengaduan.tangani',
-			'uses' => 'PengaduanController@tangani'
+			'as' => 'pengaduan.tanganin',
+			'uses' => 'PengaduanController@tanganin'
 		]);
 	Route::post('/pengaduans/gabungkan',[
 			'as' => 'pengaduan.gabungkan',
@@ -52,7 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 			'uses' => 'PengaduanController@deskripsi'
 		]);
 
-	Route::get('/pengaduans/{pengaduans}/tangani',[
+	Route::post('/pengaduans/{pengaduans}/tangani',[
 			'as' => 'pengaduan.tangani',
 			'uses' => 'PengaduanController@tangani'
 		]);
@@ -64,6 +64,11 @@ Route::group(['middleware' => 'auth'], function () {
 	
 
 	Route::resource('penanganan', 'PenangananController');
+
+	Route::get('/lampiran/{id}/unduh',[
+			'as' => 'lampiran.unduh',
+			'uses' => 'PenangananController@unduh'
+		]);
 
 	Route::get('/penanganan/{id}/post_id',[
 			'as' => 'penanganan.post_id',

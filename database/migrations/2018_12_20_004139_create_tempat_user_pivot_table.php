@@ -13,9 +13,9 @@ class CreateTempatUserPivotTable extends Migration
     public function up()
     {
         Schema::create('tempat_user', function (Blueprint $table) {
-            $table->integer('tempat_id')->unsigned()->index();
+            $table->tinyInteger('tempat_id')->unsigned()->index();
             $table->foreign('tempat_id')->references('id')->on('tempats')->onDelete('cascade');
-            $table->integer('user_id')->unsigned()->index();
+            $table->tinyInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->primary(['tempat_id', 'user_id']);
         });

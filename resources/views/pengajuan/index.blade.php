@@ -30,6 +30,7 @@
                                     <td>Petugas</td>
                                     <td>Nama Ruangan</td>
                                     <td>Deskripsi</td>
+                                    <td>Tanggal</td>
                                     <td>Action</td>
                                 </tr>
                             </thead>
@@ -38,7 +39,9 @@
                                 <tr>
                                     <td>{{ $log->penanganans->users->name }}</td>
                                     <td>{{ $log->penanganans->duplikats->pengaduans->first()->tempats->nama }}</td>
-                                    <td>{{ $log->penanganans->duplikats->nama }}</td>
+                                    <td>{{ $log->penanganans->duplikats->deskripsi }}</td>
+            
+                                    <td>{{ $log->created_at->format('d/m/Y H:i') }}</td>
 
                                     @if (isset($log->status) && $log->status->status == 0)
                                         <td><a class="btn btn-primary disabled">Ditolak</a></td>
@@ -50,10 +53,12 @@
                                     @endif
 
                                     @if (!isset($log->status))
-                                        <td><a data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}" class="btn btn-xs btn-primary">Tolak</a>
-                                     <a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}" class="btn btn-xs btn-primary">Terima</a>
-                                @include('partials.pengawas_terima', ['object' => $log])</td>
+
                                     @include('partials.pengawas_tolak', ['object' => $log])
+                                        <td><a data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}" class="btn btn-xs btn-primary">Tolak</a>
+                                     <a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}" class="btn btn-xs btn-primary">Terima</a></td>
+                                     
+                                @include('partials.pengawas_terima', ['object' => $log])
                                     @endif
                                 </tr>
                                 @empty

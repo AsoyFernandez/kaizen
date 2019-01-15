@@ -54,4 +54,5 @@
 <script src="{{ asset('js/selectize.min.js') }}" defer></script>
 <script src="{{ asset('js/custom.js') }}" defer></script>
 <script src="{{ asset('js/push.js') }}" defer></script>
-<script src="{{ asset('js/star-rating.js') }}" defer></script>
+<script src="{{ asset('js/bootstrap-rating-input.js') }}" defer></script>
+

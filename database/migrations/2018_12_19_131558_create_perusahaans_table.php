@@ -14,12 +14,12 @@ class CreatePerusahaansTable extends Migration
     public function up()
     {
         Schema::create('perusahaans', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nama');
-            $table->string('provinsi');
-            $table->string('kota');
-            $table->string('kecamatan');
-            $table->string('detail');
+            $table->tinyIncrements('id');
+            $table->string('nama', 50);
+            $table->string('provinsi', 30);
+            $table->string('kota', 30);
+            $table->string('kecamatan', 30);
+            $table->text('detail');
             $table->timestamps();
         });
     }

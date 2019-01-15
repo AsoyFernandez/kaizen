@@ -8,7 +8,7 @@
         <li class="treeview">
             <a href="#"><i class='fa fa-link'></i> <span>{{ trans('Perusahaan') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
             <ul class="treeview-menu">
-                <li><a href="{{ route('perusahaan.index') }}">{{ trans('Data Perusahaan') }}</a></li>
+                <li><a href="{{ route('perusahaan.index') }}">{{ trans('Data Alamat') }}</a></li>
                 <li><a href="{{ route('area.index') }}">{{ trans('Data Area') }}</a></li>
                 <li><a href="{{ route('lokasi.index') }}">{{ trans('Data Lokasi') }}</a></li>
             </ul>

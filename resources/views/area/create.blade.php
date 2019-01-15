@@ -7,7 +7,7 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('areas.index') }}">Area</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('area.index') }}">Area</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Tambah Area</li>
 
               </ol>
@@ -16,7 +16,7 @@
                 <div class="panel-heading">
                     <h2 class="panel-title">{{ __('Tambah Area') }}</h2></div>
                     <div class="panel-body">
-                        {!! Form::open(['url' => route('areas.store'),
+                        {!! Form::open(['url' => route('area.store'),
                         'method' => 'post',  'class'=>'form-horizontal']) !!}
                             @include('area._form')                 
                         {!! Form::close() !!}

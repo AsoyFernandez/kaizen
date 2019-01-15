@@ -44,12 +44,13 @@
                                         @include('partials.pimpinan_lihatnilai', ['object' => $log])
 
                                         @else
-                                    <td><a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}" class="btn btn-xs btn-primary">Nilai</a></td>
+                                    <td><a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}" class="btn btn-xs btn-primary">Nilai</a> <a href="" class="btn btn-xs btn-primary">Buka Kembali</a></td>
+                                    
                                     @endif
+                                @include('partials.pimpinan_nilai', ['object' => $log])
                                     @empty
                                     @endforelse
                                 </tr>
-                                @include('partials.pimpinan_nilai', ['object' => $log])
                             </tbody>
                         </table>
                     </div>

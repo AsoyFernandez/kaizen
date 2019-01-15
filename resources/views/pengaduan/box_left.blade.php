@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-md-12">
     <div class="box box-solid box-default">
         <div class="box-header with-border">
 
@@ -19,10 +19,12 @@
                 <table class="display responsive nowrap compact example">
                     <thead>
                         <tr>
-                            
+                            <td>Kode</td>
                             <td>Pelapor</td>
                             <td>Nama Ruangan</td>
+                            <td>Kategori</td>
                             <td>Deskripsi</td>
+                            <td>Tanggal</td>
                             <td></td>
                             <td>Action</td>
                         </tr>
@@ -30,15 +32,19 @@
                     <tbody>
                         @forelse ($pengaduan as $log)
                             @if ($log->duplikats->count() == 0)
-                            <tr>    
+                            <tr>
+                                <td>PE{{ $log->id }}</td>    
                                 <td><a href="{{ route('pengaduan.show', $log->id) }}">
                                     {{ $log->users['name'] }}
                                     
                                     </a>
                                 </td>
                                 <td>{{ $log->tempats->nama }}</td>
-                                
+                                <td>{{ $log->kategoris->nama }}</td>
                                 <td><a  data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}">{{ str_limit($log->deskripsi, $limit = 15, '...') }}</a></td>
+                                
+                                <td>{{ $log->created_at->format('d/m/Y H:i') }}</td>
+                                
                                 <td>
                                 
                                 <input type="checkbox" id="duplikat" name="duplikat[]" value="{{ $log->id }}">
@@ -46,6 +52,7 @@
                                 </td>
 
                                 @include('partials.close')
+                                
                                 @if(!isset( $log->penanganans ))
                                 <td>
                                 @include('pengaduan.action')</td>

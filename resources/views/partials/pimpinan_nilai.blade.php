@@ -10,26 +10,13 @@
               {!! Form::open(['url' => route('penilaian.store'), 'method' => 'post', 'files'=>'true',  'class'=>'form-horizontal']) !!}
 
                 <input type="hidden" id="status_id" name="status_id" value="{{ $object->id }}">
+
                 <div class="form-group{{ $errors->has('nilai') ? ' has-error' : '' }} row">
                   <div class="col-md-12 col-md-offset-2">
                   {!! Form::label('nilai', 'Nilai', ['class'=>'col-sm-2 control-label']) !!}   
                     <div class="col-md-6"> 
-                      <fieldset class="starability-basic">     
-                        <input type="radio" id="rate1" name="nilai" value="1" />
-                        <label for="rate1" title="Terrible">1 stars</label>
-
-                        <input type="radio" id="rate2" name="nilai" value="2" />
-                        <label for="rate2" title="Not good">2 stars</label>
-
-                        <input type="radio" id="rate3" name="nilai" value="3" />
-                        <label for="rate3" title="Average">3 stars</label>
-
-                        <input type="radio" id="rate4" name="nilai" value="4" />
-                        <label for="rate4" title="Very good">4 stars</label>
-
-                        <input type="radio" id="rate5" name="nilai" value="5" />
-                        <label for="rate5" title="Amazing">5 star</label>
-                      </fieldset>
+                        <input type="number" name="nilai" id="Demo" class="rating" data-clearable="remove"/>
+                        {!! $errors->first('nilai', '<p class="help-block">:message</p>') !!}
                     </div>
                   </div>
               </div>
@@ -51,3 +38,21 @@
     </div>
   </div>
 </div>
+@section('before_scripts')
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('input.rating').rating({
+  'min': 1,
+  'max': 5,
+  'empty-value': 0,
+  'iconLib': 'glyphicon',
+  'activeIcon': 'glyphicon-star',
+  'inactiveIcon': 'glyphicon-star-empty',
+  'clearableIcon': 'glyphicon-remove',
+  'inline': true,
+  'readonly': false,
+  'copyClasses': true
+});
+  })
+</script>
+@endsection

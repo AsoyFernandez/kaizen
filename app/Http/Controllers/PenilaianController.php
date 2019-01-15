@@ -49,7 +49,7 @@ class PenilaianController extends Controller
             'keterangan' => $request->keterangan
         ]) ;
 
-        Session::flash("flash_notification", [
+         Session::flash("flash_notification", [
             "level"=>"success",
             "message"=>"Berhasil menyimpan penilaian"
             ]);

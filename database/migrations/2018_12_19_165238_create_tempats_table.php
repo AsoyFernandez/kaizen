@@ -14,16 +14,16 @@ class CreateTempatsTable extends Migration
     public function up()
     {
         Schema::create('tempats', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nama', 45);
-            $table->unsignedInteger('perusahaan_id')->nullable();
+            $table->tinyIncrements('id');
+            $table->string('nama', 30);
+            $table->unsignedTinyInteger('perusahaan_id')->nullable();
             $table->timestamps();
 
             $table->foreign('perusahaan_id')->references('id')->on('perusahaans')
             ->onUpdate('cascade')->onDelete('cascade');
         });
         Schema::table('tempats', function (Blueprint $table) {
-            $table->unsignedInteger('tempat_id')->nullable();
+            $table->unsignedTinyInteger('tempat_id')->nullable();
             $table->foreign('tempat_id')->references('id')->on('tempats');
         });
     }

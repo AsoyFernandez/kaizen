@@ -148,6 +148,7 @@ class PengaduanController extends Controller
 
         public function merges(Request $request)
         {
+
             if (isset($request->duplicate_id)) {
                 for ($i=0; $i < count($request->duplikat); $i++) { 
                     $duplikat = Duplikat::find($request->duplicate_id);
@@ -161,7 +162,7 @@ class PengaduanController extends Controller
             } else {
 
                 $duplikat = Duplikat::create([
-                    'nama' => $request->nama,
+                    'deskripsi' => $request->deskripsi,
                 ]) ;
 
                 for ($i=0; $i < count($request->duplikat); $i++) { 
@@ -192,13 +193,40 @@ class PengaduanController extends Controller
            dd($request->all());
        }
 
-        public function tangani($pengaduans)
+       public function tanganin($id){
+        $pengaduan = Duplikat::findOrFail($id);
+            return view('pengaduan.tangani', compact('pengaduan'));
+       }
+
+        public function tangani(Request $request, $pengaduans)
         {
             $pengaduan = Duplikat::findOrFail($pengaduans);
-            $penanganan = Penanganan::create([
+            $penanganan = Penanganan::create(array_merge($request->except('lampiran'),[
                 'user_id' => Auth::id(),
-                'duplikat_id' => $pengaduans
-            ]);
+                'duplikat_id' => $pengaduans,
+                'lampiran' =>$request->lampiran
+            ]));
+            if ($request->hasFile('lampiran')) {
+
+            // Mengambil file yang diupload
+                $uploaded_file = $request->file('lampiran');
+
+            // mengambil extension file
+                $extension = $uploaded_file->getClientOriginalExtension();
+
+            // membuat nama file random berikut extension
+                $filename = md5(time()) . '.' . $extension;
+
+            // menyimpan cover ke folder public/img
+
+                $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'lampiran';
+                $uploaded_file->move($destinationPath, $filename);
+            // mengisi field cover di book dengan filename yang baru dibuat
+                $penanganan->lampiran = $filename;
+                
+
+                $penanganan->save();
+            }
 
             return redirect()->route('penanganan.index');
         }

@@ -14,8 +14,8 @@ class CreateDuplikatsTable extends Migration
     public function up()
     {
         Schema::create('duplikats', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nama');
+            $table->smallIncrements('id');
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }

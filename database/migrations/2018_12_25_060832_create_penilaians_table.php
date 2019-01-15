@@ -14,9 +14,9 @@ class CreatePenilaiansTable extends Migration
     public function up()
     {
         Schema::create('penilaians', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('status_id')->unsigned();
-            $table->tinyInteger('nilai'); 
+            $table->smallIncrements('id');
+            $table->smallInteger('status_id')->unsigned();
+            $table->boolean('nilai'); 
             $table->text('keterangan');
             $table->timestamps();
             $table->foreign('status_id')->references('id')->on('statuses')

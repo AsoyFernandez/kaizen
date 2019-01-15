@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Penanganan;
 use App\Pengajuan;
 use Session;
+use Storage;
 class PenangananController extends Controller
 {
     /** 
@@ -34,6 +35,13 @@ class PenangananController extends Controller
     public function create()
     {
         //
+    }
+
+    public function unduh($id)
+    {
+        $penanganan = Penanganan::findOrFail($id);
+        $filename = $penanganan->lampiran;
+        return response()->download(public_path("lampiran/{$filename}"));
     }
 
     public function post_id($id)

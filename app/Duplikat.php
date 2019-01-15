@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Duplikat extends Model
 {
-    protected $fillable = ['nama'];
+    protected $fillable = ['deskripsi'];
 
     public function pengaduans()
 	{

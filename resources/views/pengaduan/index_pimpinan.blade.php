@@ -43,14 +43,21 @@
                             <tbody>
 
                               @forelse ($duplikats as $log)
-
+                                @php
+                                     $user = Auth::user();
+                                 @endphp
+                                 @foreach ($user->tempats as $key)
+                                 @foreach ($key->child as $logs)
+                                   {{ $logs->id }}
+                                    @if ($logs->id == $log->pengaduans->first()->tempats->id)
+                                      
                                  <tr>
                                      <td>{{ $log->pengaduans->first()->users->name }} <a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}""><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></a></td>
                                      @include('partials.pengaduan_users', ['object' => $log])
 
                                      <td>{{ $log->pengaduans->first()->tempats->nama }}</td>
                                       
-                                     <td><a data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}">{{ $log->nama }}</a></td>
+                                     <td><a data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}">{{ $log->deskripsi }}</a></td>
                                      @include('partials.deskripsi_duplikat', ['object' => $log])
                                      @if (!isset($log->penanganans))
                                      <td><a class="btn btn-xs btn-primary">Belum Ditangani</a></td>
@@ -69,6 +76,9 @@
                                     @endif
                                     </tr>
                                      
+                                    @endif
+                                 @endforeach
+                                 @endforeach
                                 
                                  @empty
                                   <tr>

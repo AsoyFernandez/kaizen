@@ -12,7 +12,7 @@
             </nav>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2 class="panel-title">{{ __('Daftar Perusahaan') }}</div>
+                    <h2 class="panel-title">{{ __('Daftar Alamat Perusahaan') }}</div>
 
                 <div class="panel-body">
                  <p><a class="btn btn-primary" href="{{ route('perusahaan.create') }}">Tambah</a></p> 
