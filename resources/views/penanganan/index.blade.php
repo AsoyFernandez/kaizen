@@ -29,8 +29,9 @@
                                 <tr>
                                     <td>Petugas</td>
                                     <td>Pelapor</td>
-                                    <td>Nama Ruangan</td>
+                                  <td>Nama Ruangan</td>
                                     <td>Lampiran</td>
+                                    <td>Status</td>
                                     <td>Action</td>
                                 </tr>
                             </thead>
@@ -42,7 +43,27 @@
                                     <td>{{ $log->duplikats->pengaduans->first()->users->name }}</td>
                                     <td>{{ $log->duplikats->pengaduans->first()->tempats->nama }}</td>
                                     <td><a href="{{ route('lampiran.unduh', $log->id) }}" class="btn btn-primary btn-sm glyphicon glyphicon-save">Unduh</a></td>
+{{-- Status --}}
+                                    @if(App\Pengajuan::where('penanganan_id',$log->id)->first() != null && !isset(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status))
+                                        <td>Menunggu konfirmasi
+                                        </td> 
+                                    @endif
 
+
+                                    @if(isset(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status) && App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status->status == 0)
+                                        <td>Ditolak</td>
+                                    @endif
+
+
+                                    @if(isset(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status) && App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status->status == 1 && is_null(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status->orderBy('created_at', 'desc')->first()->penilaian))
+                                        <td>Diterima</td>
+                                    @endif
+
+                                    @if(isset(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status) && App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status->status == 1 && !is_null(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status->orderBy('created_at', 'desc')->first()->penilaian))
+                                        <td>Dinilai</td>
+                                    @endif
+
+{{-- Action  --}}
                                     @if(App\Pengajuan::where('penanganan_id',$log->id)->first() == null)
                                         <td>
                                             <a class="btn btn-primary" href="{{ route('penanganan.post_id', $log->id) }}">Ajukan</a>
@@ -51,16 +72,16 @@
 
                                     @if(App\Pengajuan::where('penanganan_id',$log->id)->first() != null && !isset(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status))
                                         <td>
-                                            <a class="btn btn-primary disabled">Menunggu konfirmasi</a>
+                                            <a class="btn btn-primary disabled">Ajukan</a>
                                         </td> 
                                     @endif
 
                                     @if(isset(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status) && App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status->status == 0)
-                                        <td><a class="btn btn-primary" href="{{ route('penanganan.post_id', $log->id) }}">Ajukan Lagi</a></td>
+                                        <td><a class="btn btn-primary" href="{{ route('penanganan.post_id', $log->id) }}">Ajukan</a></td>
                                     @endif
                                     
                                     @if(isset(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status) && App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status->status == 1)
-                                        <td><a class="btn btn-primary disabled">Diterima</a></td>
+                                        <td><a class="btn btn-primary disabled">Ajukan</a></td>
                                     @endif
                                     
                                 </tr>    

@@ -15,8 +15,12 @@ class CreateDuplikatsTable extends Migration
     {
         Schema::create('duplikats', function (Blueprint $table) {
             $table->smallIncrements('id');
+            $table->unsignedTinyInteger('lokasi_id')->nullable();
             $table->text('deskripsi');
             $table->timestamps();
+
+            $table->foreign('lokasi_id')->references('id')->on('tempats')
+            ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

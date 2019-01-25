@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pengaduan extends Model
 {
-    protected $fillable = [ 'user_id', 'lokasi_id', 'kategori_id', 'foto', 'keamanan', 'kerugian', 'deskripsi'];
+    protected $fillable = [ 'user_id', 'lokasi_id', 'kategori_id', 'foto', 'keamanan', 'kerugian', 'deskripsi', 'duplikat_id'];
 
     public function users()
 	{

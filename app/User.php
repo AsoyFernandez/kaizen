@@ -37,6 +37,19 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Tempat');
     }
 
+    public function duplikats()
+    {
+        $lokasis = [];
+        foreach ($this->tempats as $tempat) {
+            foreach ($tempat->child as $area) {
+                foreach ($area->duplikats  as $dup) {
+                    array_push($lokasis, $dup); 
+                }
+            }
+        }
+        return collect($lokasis);
+    }
+
     public function formattedRoles($space = true)
     {
         $batas = $this->roles->count();

@@ -16,6 +16,7 @@
 
                 <div class="panel-body">
                  <p><a class="btn btn-primary" href="{{ route('perusahaan.create') }}">Tambah</a></p> 
+                 
                    <div class="table-responsive">
                         <table id="example" class="display stripe responsive nowrap compact" style="width:100%">
                             <thead>

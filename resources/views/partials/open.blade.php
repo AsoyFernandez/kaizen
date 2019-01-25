@@ -1,7 +1,12 @@
                                        	{{-- expr --}}
 {!! Form::open(['url' => route('pengaduan.gabungkan'), 'method' => 'post', 'files'=>'true',  'class'=>'form-horizontal', 'id' => 'gabungkan']) !!}
 <a class="btn btn-primary" href="{{ route('pengaduan.create') }}">Tambah</a>
-@if (Auth::user()->roles->first()->id == 1)
+@php
+  $user = Auth::user()->roles;
+@endphp
+@foreach ($user as $key)
+
+@if (Auth::user()->roles->first()->id == 1 || $key->id == 3)
  <!-- Split button -->
 <div class="btn-group">
   <button type="button" class="btn btn-primary">Gabungkan</button>
@@ -16,6 +21,8 @@
   </ul>
 </div> 
 @endif 
+
+@endforeach
 
 @section('after_scripts')
 <script>

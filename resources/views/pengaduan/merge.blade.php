@@ -21,8 +21,33 @@
                     @if (isset($sudah_ada))
                         <div class="form-group{{ $errors->has('ada') ? ' has-error' : '' }} row">
                         {!! Form::label('ada', 'Pilih', ['class'=>'col-sm-4 control-label']) !!}
-                        <div class="col-md-6"> 
+                        <div class="col-md-6">
+                        @php
+                          $user = Auth::user()->roles;
+                          $tempat = Auth::user()->tempats;
+                          $duplikat = App\Duplikat::all();
+                        @endphp
+                        @foreach ($user as $key)
+
+                        @if ($key->id == 1) 
                             {!! Form::select('duplicate_id', [''=>'']+App\Duplikat::pluck('deskripsi','id')->all(), null, ['class'=>'form-control col-form-label js-selectize','placeholder' => 'Pilih Pengaduan']) !!}
+                        @endif
+
+                                       @if ($key->id == 3)
+                                        {!! Form::select('duplicate_id', [''=>'']+Auth::user()->duplikats()->pluck('deskripsi','id')->all(), null, ['class'=>'form-control col-form-label js-selectize','placeholder' => 'Pilih Pengaduan']) !!}
+
+                                        @endif
+                         
+                            @foreach ($tempat as $key)
+                                @foreach ($key->child as $log)
+
+                                    @foreach ($duplikat as $el)
+
+                                    @endforeach
+
+                                @endforeach
+                            @endforeach
+                        @endforeach
                             {!! $errors->first('ada', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>

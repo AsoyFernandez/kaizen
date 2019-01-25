@@ -44,6 +44,16 @@ class UsersSeeder extends Seeder
             'tempat_id'=>$area1->id
         ]);
 
+        $area2 = Tempat::create([
+            'nama'=>'Produksi',
+            'perusahaan_id'=>$perusahaan->id
+        ]);
+
+        $lokasi2 = Tempat::create([
+            'nama'=>'Produksi A',
+            'tempat_id'=>$area2->id
+        ]);
+
         $role1 = Role::create([
             'nama'=>'Admin'
         ]);

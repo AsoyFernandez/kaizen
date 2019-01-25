@@ -21,6 +21,18 @@ class PengaduanController extends Controller
      * Display a listing of the resource.
      *
      */
+    public function pengaduanku(){
+        $user = Auth::user()->id;
+        $pengaduan = Pengaduan::where('user_id', $user)->get();
+        return view('pengaduan.pengaduanku', compact('pengaduan'));
+    }
+
+    public function semuapengaduan(){
+        $pengaduan = Pengaduan::all();
+        $duplikat = Duplikat::all();
+        return view('pengaduan.semua_pengaduan', compact('pengaduan', 'duplikat'));
+    }
+
     public function index()
     {
         $user = User::find(Auth::id())->roles()->get();
@@ -29,14 +41,15 @@ class PengaduanController extends Controller
             if ($key->nama == 'Admin') {
             $duplikats = Duplikat::all();        
             $pengaduan = Pengaduan::all();
-            return view('pengaduan.index_admin')->with(compact('pengaduan', 'duplikats'));
+            return view('pengaduan.index_gabungkan')->with(compact('pengaduan', 'duplikats'));
             }elseif ($key->nama == 'Petugas 5R') {
                 $duplikats = Duplikat::all();
                 return view('pengaduan.index_petugas')->with(compact('pengaduan', 'duplikats'));    
-            }elseif ($key->nama == 'Pimpinan 5R') {
+            }elseif ($key->nama == 'Pengawas 5R') {
                 $status = Status::all();
                 $duplikats = Duplikat::all();
-                return view('pengaduan.index_pimpinan')->with(compact('status', 'duplikats'));
+                $pengaduan = Pengaduan::all();
+                return view('pengaduan.index_gabungkan')->with(compact('status', 'duplikats', 'pengaduan'));
             }
         };
         //$duplikatts = Duplikat::with('pengaduans')->first()->pengaduans->first();
@@ -44,6 +57,8 @@ class PengaduanController extends Controller
         $pengaduan = Pengaduan::all();
         return view('pengaduan.index_petugas')->with(compact('duplikats', 'pengaduan'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -148,7 +163,38 @@ class PengaduanController extends Controller
 
         public function merges(Request $request)
         {
+            /*if (isset($request->duplicate_id)) {
+                for ($i=0; $i < count($request->duplikat); $i++) { 
+                    $duplikat = Duplikat::find($request->duplicate_id);
+                    $pengaduan = Pengaduan::find($request->duplikat[$i]);
+                    $pengaduan->update([
+                        'duplikat_id'=> $duplikat->id
+                    ]);
+                };
 
+                Session::flash("flash_notification", [
+                    "level"=>"success",
+                    "message"=>"Berhasil menggabungkan pengaduan"
+                ]);                
+            } else {
+
+                $duplikate = Duplikat::create([
+                    'deskripsi' => $request->deskripsi,
+                ]) ;
+
+                for ($i=0; $i < count($request->duplikat); $i++) { 
+                    $pengaduan = Pengaduan::find($request->duplikat[$i]);
+                    $pengaduan->update([
+                        'duplikat_id'=> $duplikate->id
+                    ]);
+                };
+            Session::flash("flash_notification", [
+                    "level"=>"success",
+                    "message"=>"Berhasil menggabungkan pengaduan"
+                ]);
+            }*/
+
+            
             if (isset($request->duplicate_id)) {
                 for ($i=0; $i < count($request->duplikat); $i++) { 
                     $duplikat = Duplikat::find($request->duplicate_id);
@@ -161,8 +207,11 @@ class PengaduanController extends Controller
                 ]);                
             } else {
 
+                $lokasi = Pengaduan::find($request->duplikat[0])->lokasi_id;
+
                 $duplikat = Duplikat::create([
                     'deskripsi' => $request->deskripsi,
+                    'lokasi_id' => $lokasi
                 ]) ;
 
                 for ($i=0; $i < count($request->duplikat); $i++) { 
@@ -175,7 +224,6 @@ class PengaduanController extends Controller
                 ]);
 
             }
-
 
 
             return redirect()->route('pengaduan.index');

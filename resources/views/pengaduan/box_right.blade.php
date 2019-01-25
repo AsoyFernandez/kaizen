@@ -24,27 +24,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($duplikats as $log)
-                           <tr>
-                               <td>{{ $log->pengaduans->first()->users->name }} <a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}""><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></a></td>
-                               @include('partials.pengaduan_users', ['object' => $log])
+                        @php
+                            $user = Auth::user()->roles;
+                            $tempat = Auth::user()->tempats;
+                            
+                        @endphp
+                        @foreach ($user as $us)
+                            @if ($us->id == 1)
+                                @include('pengaduan.admin_sudah_digabung')
+                            @endif
+                            @if ($us->id == 3)
+                                @foreach ($tempat as $lokasi)
+                                    @foreach ($lokasi->child as $el)
+                                      @include('pengaduan.pengawas_sudah_digabung')
+                                    @endforeach
+                                @endforeach
+                            @endif
+                        @endforeach
 
-                               <td>{{ $log->pengaduans->first()->tempats->nama }}</td>
-                                
-                               <td><a data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}">{{ $log->deskripsi }}</a></td>
-                               @include('partials.deskripsi_duplikat', ['object' => $log])
-                               @if (!isset($log->penanganans))
-                               <td><a class="btn btn-primary btn-xs" href="{{ route('pengaduan.tangani', $log->id) }}">Tangani</a></td>
-                               @else
-                               <td><a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal-petugas' }}" class="btn btn-primary btn-xs">Ditangani</a></td>
-                               @include('partials.modal_petugas', ['object' => $log])
-                               @endif
-                           </tr> 
-                           @empty
-                            <tr>
-                                <td colspan="2">Tidak ada data</td>
-                            </tr>
-                        @endforelse
+                        
                     </tbody>
                 </table>
             </div>

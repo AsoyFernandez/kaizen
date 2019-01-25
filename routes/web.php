@@ -22,7 +22,18 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('perusahaan', 'PerusahaanController');
 	Route::resource('area', 'AreaController');
 	Route::resource('lokasi', 'LokasiController');
+	Route::get('/pengaduan/pengaduanku',[
+	    'as' => 'pengaduan.pengaduanku',
+		'uses' => 'PengaduanController@pengaduanku'
+	]);
+
+	Route::get('/pengaduan/pengaduan/full',[
+	    'as' => 'pengaduan.semua_pengaduan',
+		'uses' => 'PengaduanController@semuapengaduan'
+	]);
+
 	Route::resource('pengaduan', 'PengaduanController');
+	
 	Route::get('/lokasi/{id}/qrcode',[
 			'as' => 'lokasi.qrcode',
 			'uses' => 'QRCodeController@lokasi'

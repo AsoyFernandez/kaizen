@@ -37,4 +37,9 @@ class Tempat extends Model
 		return $this->hasMany('App\Pengaduan');
 	}
 
+	public function duplikats()
+	{
+		return $this->hasMany(Duplikat::class, 'lokasi_id');
+	}
+
 }

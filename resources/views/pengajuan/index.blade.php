@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="box-body">
-
+                    
                         <div class="table-responsive">
                          <table id="example" class="table table-condensed table-striped">
                             <thead>
