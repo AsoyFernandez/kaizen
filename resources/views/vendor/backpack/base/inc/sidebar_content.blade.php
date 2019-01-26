@@ -52,7 +52,9 @@
 
 
 <li class="treeview">
-    <a href="#"><i class='fa fa-comment-o'></i> <span>{{ trans('Pengaduan') }}<span class="badge">{{ $hitung }}</span></span>  <i class="fa fa-angle-left pull-right"></i></a>
+    <a href="#"><i class='fa fa-comment-o'></i> <span>{{ trans('Pengaduan') }}<span class="badge">@if ($hitung != 0)
+        {{ $hitung }}
+    @endif</span></span>  <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
         <li><a href="{{ route('pengaduan.pengaduanku') }}"><i class='fa fa-plus-circle'></i> <span>{{ trans('Buat') }}</span></a></li>
         @php
