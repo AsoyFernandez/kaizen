@@ -140,20 +140,13 @@ $(document).ready(function() {
 	  .change();
 
 
-	$('.role').selectize({
-	sortField: 'text',
-	maxItems: 2
-	});
+	  $(".role,.area,.lokasi").each(function(){
+		    $(this).selectize({
+				sortField: 'text',
+				maxItems: 2
+			});
+		});
 
-	$('.area').selectize({
-	sortField: 'text',
-	maxItems: 2
-	});
-
-	$('.lokasi').selectize({
-	sortField: 'text',
-	maxItems: 2
-	});
 
 });
 </script>
