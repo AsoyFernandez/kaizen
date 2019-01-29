@@ -387,4 +387,16 @@ class PengaduanController extends Controller
         return redirect()->route('pengaduan.index');
 
     }
+
+    public function hapusgabungan($id)
+    {
+        $pengaduan = Pengaduan::find($id);
+        $pengaduan->delete();
+        Session::flash("flash_notification", [
+            "level"=>"success",
+            "message"=>"Pengaduan berhasil dihapus"
+        ]);
+        return redirect()->route('pengaduan.index');
+
+    }
 }

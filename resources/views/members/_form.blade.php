@@ -27,7 +27,7 @@
 	{!! Form::label('role', 'Role', ['class'=>'col-sm-4 control-label']) !!}
 	<div class="col-md-6">
 		@if (Request::route()->getName() != 'member.edit')
-		{!! Form::select('role[]', [''=>'']+App\Role::pluck('nama','id')->all(), null,['class'=>'form-control col-form-label js-selectize','placeholder' => 'Pilih Role', 'multiple'=>'multiple', 'id'=>'role']) !!}
+		{!! Form::select('role[]', [''=>'']+App\Role::pluck('nama','id')->all(), null,['class'=>'form-control col-form-label role','placeholder' => 'Pilih Role', 'multiple'=>'multiple', 'id'=>'role']) !!}
 		{!! $errors->first('role', '<p class="help-block">:message</p>') !!}
 		@else
 		@php
@@ -36,7 +36,7 @@
 				array_push($default, $role->id);
 			}
 		@endphp
-		{!! Form::select('role[]', [''=>'']+App\Role::pluck('nama','id')->all(), $default,['class'=>'form-control col-form-label js-selectize','placeholder' => 'Pilih Role', 'multiple'=>'multiple', 'id'=>'role']) !!}
+		{!! Form::select('role[]', [''=>'']+App\Role::pluck('nama','id')->all(), $default,['class'=>'form-control col-form-label role','placeholder' => 'Pilih Role', 'multiple'=>'multiple', 'id'=>'role']) !!}
 		{!! $errors->first('role', '<p class="help-block">:message</p>') !!}
 		@endif
 	</div>
@@ -47,7 +47,7 @@
 	{!! Form::label('lokasi', 'Tanggung Jawab Lokasi', ['class'=>'col-sm-4 control-label']) !!}
 	<div class="col-md-6">
 		@if (Request::route()->getName() != 'member.edit')
-		{!! Form::select('lokasi[]', [''=>'']+App\Tempat::whereNull('tempat_id')->pluck('nama','id')->all(), null, ['class'=>'form-control col-form-label js-selectize','placeholder' => 'Pilih Lokasi']) !!}
+		{!! Form::select('lokasi[]', [''=>'']+App\Tempat::whereNull('tempat_id')->pluck('nama','id')->all(), null, ['class'=>'form-control col-form-label lokasi','placeholder' => 'Pilih Lokasi']) !!}
 		{!! $errors->first('lokasi', '<p class="help-block">:message</p>') !!}
 		@else
 		@php
@@ -56,7 +56,7 @@
 				array_push($default, $tempat->id);
 			}
 		@endphp
-		{!! Form::select('lokasi[]', [''=>'']+App\Tempat::where('tempat_id', '!=', null)->pluck('nama','id')->all(), $default,['class'=>'form-control col-form-label js-selectize','placeholder' => 'Pilih Lokasi', 'multiple'=>'multiple', 'id'=>'lokasi']) !!}
+		{!! Form::select('lokasi[]', [''=>'']+App\Tempat::where('tempat_id', '!=', null)->pluck('nama','id')->all(), $default,['class'=>'form-control col-form-label lokasi','placeholder' => 'Pilih Lokasi', 'multiple'=>'multiple', 'id'=>'lokasi']) !!}
 		{!! $errors->first('lokasi', '<p class="help-block">:message</p>') !!}
 		@endif
 
@@ -67,7 +67,7 @@
 	{!! Form::label('area', 'Tanggung Jawab Area', ['class'=>'col-sm-4 control-label']) !!}
 	<div class="col-md-6">
 		@if (Request::route()->getName() != 'member.edit')
-		{!! Form::select('area[]', [''=>'']+App\Tempat::whereNull('tempat_id')->pluck('nama','id')->all(), null, ['class'=>'form-control col-form-label js-selectize','placeholder' => 'Pilih Area']) !!}
+		{!! Form::select('area[]', [''=>'']+App\Tempat::whereNull('tempat_id')->pluck('nama','id')->all(), null, ['class'=>'form-control col-form-label area','placeholder' => 'Pilih Area']) !!}
 		{!! $errors->first('area', '<p class="help-block">:message</p>') !!}
 		@else
 		@php
@@ -76,7 +76,7 @@
 				array_push($default, $tempat->id);
 			}
 		@endphp
-		{!! Form::select('area[]', [''=>'']+App\Tempat::whereNull('tempat_id')->pluck('nama','id')->all(), $default,['class'=>'form-control col-form-label js-selectize','placeholder' => 'Pilih Area', 'multiple'=>'multiple', 'id'=>'area']) !!}
+		{!! Form::select('area[]', [''=>'']+App\Tempat::whereNull('tempat_id')->pluck('nama','id')->all(), $default,['class'=>'form-control col-form-label area','placeholder' => 'Pilih Area', 'multiple'=>'multiple', 'id'=>'area']) !!}
 		{!! $errors->first('area', '<p class="help-block">:message</p>') !!}
 		@endif
 	</div>
@@ -140,7 +140,20 @@ $(document).ready(function() {
 	  .change();
 
 
+	$('.role').selectize({
+	sortField: 'text',
+	maxItems: 2
+	});
 
+	$('.area').selectize({
+	sortField: 'text',
+	maxItems: 2
+	});
+
+	$('.lokasi').selectize({
+	sortField: 'text',
+	maxItems: 2
+	});
 
 });
 </script>

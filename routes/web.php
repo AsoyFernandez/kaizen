@@ -33,6 +33,10 @@ Route::group(['middleware' => 'auth'], function () {
 	]);
 
 	Route::resource('pengaduan', 'PengaduanController');
+	Route::post('/pengaduans/gabungkan/hapus/{$id}',[
+			'as' => 'pengaduan.gabungkan.hapus',
+			'uses' => 'PengaduanController@hapusgabungan'
+		]);
 	
 	Route::get('/lokasi/{id}/qrcode',[
 			'as' => 'lokasi.qrcode',

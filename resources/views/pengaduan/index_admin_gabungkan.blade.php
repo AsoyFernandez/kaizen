@@ -2,12 +2,18 @@
     @if ($log->duplikats->count() == 0)
     <tr>
         <td>PE{{ $log->id }}</td>    
-        <td><a href="{{ route('pengaduan.show', $log->id) }}">
+        <td>
             {{ $log->users['name'] }}
-            
-            </a>
         </td>
-        <td>{{ $log->tempats->nama }}</td>
+        <td>
+            {{ $log->tempats->nama }}
+            @if ($log->keamanan == 1)
+                <span class="glyphicon glyphicon-fire"></span>
+            @endif
+            @if ($log->kerugian == 1)
+                <span class="glyphicon glyphicon-warning-sign"></span>
+            @endif
+        </td>
         <td>{{ $log->kategoris->nama }}</td>
         <td><a  data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}">{{ str_limit($log->deskripsi, $limit = 15, '...') }}</a></td>
         

@@ -16,22 +16,7 @@
             <div class="row">
                 Kategori : {{ $object->pengaduans->first()->kategoris->nama }}
             </div>
-            <div class="row">
-              Status :  @if (!isset($object->penanganans->pengajuans))
-                          Belum ditangani
-                        @elseif(isset($object->penanganans->pengajuans))
-                            @foreach($object->penanganans->pengajuans as $key)
-                              @foreach ($key->status as $element)
-
-                                @if ($key == [])
-                                Sedang Ditangani
-                                @elseif (isset($key->status))
-                                Sudah Selesai
-                              @endif
-                              @endforeach
-                            @endforeach
-                        @endif
-            </div>
+            
             <div class="row">
                 {{ $object->nama }}
             </div>

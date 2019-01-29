@@ -17,9 +17,12 @@
                 <table class="display responsive nowrap compact example">
                     <thead>
                         <tr>
+                            <td>Kode</td>
                             <td>Pelapor</td>
                             <td>Nama Ruangan</td>
+                            <td>Kategori</td>
                             <td>Deskripsi</td>
+                            <td>Tanggal</td>
                             <td>Action</td>
                         </tr>
                     </thead>

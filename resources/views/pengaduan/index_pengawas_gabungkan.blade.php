@@ -2,10 +2,8 @@
     @if ($log->lokasi_id == $el->id && $log->duplikats->count() == 0)
     <tr> 
         <td>PE{{ $log->id }}</td>    
-        <td><a href="{{ route('pengaduan.show', $log->id) }}">
+        <td>
             {{ $log->users['name'] }}
-            
-            </a>
         </td>
         <td>{{ $log->tempats->nama }}</td>
         <td>{{ $log->kategoris->nama }}</td>

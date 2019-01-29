@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
@@ -31,31 +31,45 @@
                  </p> 
                    <div class="table-responsive">
                         <table id="example" class="display responsive nowrap compact">
+                            @php
+                                $user = Auth::user()->roles;
+                                $tempat = Auth::user()->tempats;
+                                
+                            @endphp
                             <thead>
-                                <tr>
-                                    
+                                <tr>                                    
                                     <td>Kode</td>
                                     <td>Nama Ruangan</td>
+                                    <td>Kategori</td>
                                     <td>Deskripsi</td>
                                     <td>Tanggal</td>
-                                    <td>Action</td>
+                                    @foreach ($user as $key)
+                                    @if ($key->id == 1  || $key->id == 3)
+                                        <td>Status</td>
+                                    @endif
+                                    @endforeach
+                                    @foreach ($user as $key)
+                                    @if ($key->id == 1  || $key->id == 4)
+                                        <td>Action</td>
+                                    @endif
+                                    @endforeach   
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $user = Auth::user()->roles;
-                                    $tempat = Auth::user()->tempats;
-                                    
-                                @endphp
                                 @foreach ($user as $key)
                                     @if ($key->id == 1)
                                       @forelse ($pengaduan as $log)
                                         <tr>  
                                             <td>PE{{ $log->id }}</td>
-                                            <td>{{ $log->tempats->nama }}</td>
+                                            <td>
+                                                {{ $log->tempats->nama }}
+                                                @include('partials.simbol_pengaduan')
+                                            </td>
+                                            <td>{{ $log->kategoris->nama }}</td>
                                             <td>{{ $log->deskripsi }}</td>
                                             <td>{{ $log->created_at->format('d/m/Y H:i') }}</td>
-                                            <td></td>
+                                            @include('partials.status_pengaduan') 
+                                            <td>@include('pengaduan.action')</td>
                                         </tr>
                                       @empty
                                       @endforelse
@@ -68,11 +82,14 @@
                                                     @if ($log->lokasi_id == $el->id)
                                                         <tr>  
                                                             <td>PE{{ $log->id }}</td>
-                                                            <td>{{ $log->tempats->nama }}</td>
-                                                            <td>{{ $log->deskripsi }}</td>
-                                                            <td>{{ $log->created_at->format('d/m/Y H:i') }}</td>
                                                             <td>
+                                                                {{ $log->tempats->nama }}
+                                                                @include('partials.simbol_pengaduan')
                                                             </td>
+                                                            <td>{{ $log->kategoris->nama }}</td>
+                                                            <td>{{ $log->deskripsi }}</td>
+                                                            @include('partials.status_pengaduan') 
+                                                            <td>{{ $log->created_at->format('d/m/Y H:i') }}</td> 
                                                         </tr>
                                                     @endif
                                               @empty
@@ -87,8 +104,12 @@
                                                 @if (!isset($log->penanganans))
                                                     @if ($log->pengaduans->first()->lokasi_id == $lokasi->id)
                                                         <tr>  
-                                                            <td>{{ $log->id }}</td>
-                                                            <td>{{ $log->pengaduans->first()->tempats->nama }}</td>
+                                                            <td>GA{{ $log->id }}</td>
+                                                            <td>
+                                                                {{ $log->pengaduans->first()->tempats->nama }}
+                                                                @include('partials.simbol_gabungan')
+                                                            </td>
+                                                            <td>{{ $log->pengaduans->first()->kategoris->nama }}</td>
                                                             <td>{{ $log->deskripsi }}</td>
                                                             <td>{{ $log->created_at->format('d/m/Y H:i') }}</td>
                                                             <td><a class="btn btn-primary btn-xs" href="{{ route('pengaduan.tangani', $log->id) }}">Tangani</a></td>
@@ -105,9 +126,19 @@
                             <tfoot>
                                 <td>Kode</td>
                                     <td>Nama Ruangan</td>
+                                    <td>Kategori</td>
                                     <td>Deskripsi</td>
                                     <td>Tanggal</td>
-                                    <td>Action</td>
+                                    @foreach ($user as $key)
+                                    @if ($key->id == 1  || $key->id == 3)
+                                        <td>Status</td>
+                                    @endif
+                                    @endforeach
+                                    @foreach ($user as $key)
+                                    @if ($key->id == 1 || $key->id == 4)
+                                        <td>Action</td>
+                                    @endif
+                                    @endforeach  
                             </tfoot>
                         </table>
                     </div>

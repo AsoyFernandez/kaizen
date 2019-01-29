@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12 ">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
@@ -36,6 +36,7 @@
                                     
                                     <td>Kode</td>
                                     <td>Nama Ruangan</td>
+                                    <td>Kategori</td>
                                     <td>Deskripsi</td>
                                     <td>Tanggal</td>
                                     <td>Status</td>
@@ -46,7 +47,16 @@
                               @forelse ($pengaduan as $log)
                                     <tr>  
                                     <td>PE{{ $log->id }}</td>
-                                    <td>{{ $log->tempats->nama }}</td>
+                                    <td>
+                                        {{ $log->tempats->nama }}
+                                        @if ($log->keamanan == 1)
+                                            <span class="glyphicon glyphicon-fire"></span>
+                                        @endif
+                                        @if ($log->kerugian == 1)
+                                            <span class="glyphicon glyphicon-warning-sign"></span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $log->kategoris->nama }}</td>
                                     <td>{{ $log->deskripsi }}</td>
                                     <td>{{ $log->created_at->format('d/m/Y H:i') }}</td>
                                     @if ($log->duplikats->count() == 0)
@@ -75,8 +85,10 @@
                             <tfoot>
                                 <td>Kode</td>
                                     <td>Nama Ruangan</td>
+                                    <td>Kategori</td>
                                     <td>Deskripsi</td>
                                     <td>Tanggal</td>
+                                    <td>Status</td>
                                     <td>Action</td>
                             </tfoot>
                         </table>

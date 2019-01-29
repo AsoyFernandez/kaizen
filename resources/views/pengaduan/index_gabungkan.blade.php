@@ -10,7 +10,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Pengaduan</li>
               </ol>
             </nav>
-        </div>
+        </div> 
 
             @include('pengaduan.box_left')
             @include('pengaduan.box_right')

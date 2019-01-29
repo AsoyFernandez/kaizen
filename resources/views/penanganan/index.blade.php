@@ -9,7 +9,7 @@
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Daftar Penanganan</li>
             </ol>
-        </nav>
+        </nav> 
         <div class="box box-default">
             <div class="box-header with-border">
                 <h2 class="panel-title">{{ __('Penanganan') }}</h2>
@@ -29,7 +29,7 @@
                                 <tr>
                                     <td>Petugas</td>
                                     <td>Pelapor</td>
-                                  <td>Nama Ruangan</td>
+                                    <td>Nama Ruangan</td>
                                     <td>Lampiran</td>
                                     <td>Status</td>
                                     <td>Action</td>
