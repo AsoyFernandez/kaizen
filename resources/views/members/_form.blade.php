@@ -7,6 +7,22 @@
 	</div>
 </div>
 
+<div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+	{!! Form::label('username', 'Nama Pengguna', ['class'=>'col-md-4 control-label']) !!}
+	<div class="col-md-6">
+		{!! Form::text('username', null, ['class'=>'form-control']) !!}
+		{!! $errors->first('username', '<p class="help-block">:message</p>') !!}
+	</div>
+</div>
+
+<div class="form-group{{ $errors->has('nik') ? ' has-error' : '' }}">
+	{!! Form::label('nik', 'NIK', ['class'=>'col-md-4 control-label']) !!}
+	<div class="col-md-6">
+		{!! Form::text('nik', null, ['class'=>'form-control']) !!}
+		{!! $errors->first('nik', '<p class="help-block">:message</p>') !!}
+	</div>
+</div>
+
 <div class="form-group{{ $errors->has('jabatan') ? ' has-error' : '' }} row">
 	{!! Form::label('jabatan', 'Jabatan', ['class'=>'col-sm-4 control-label']) !!}
 	<div class="col-md-6">
@@ -83,13 +99,6 @@
 </div>
 
 
-<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-	{!! Form::label('email', 'e-mail', ['class'=>'col-md-4 control-label']) !!}
-	<div class="col-md-6">
-		{!! Form::email('email', null, ['class'=>'form-control']) !!}
-		{!! $errors->first('email', '<p class="help-block">:message</p>') !!}
-	</div>
-</div>
 
 @if (Request::route()->getName() != 'member.edit')
 	<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->tinyIncrements('id');
             $table->string('name', 30);
             $table->string('username', 15)->unique();
-            $table->string('email', 30)->unique();
+            $table->string('nik', 16)->unique();
             $table->string('password', 60);
             $table->string('hp', 14)->nullable();
             $table->string('jabatan', 20);

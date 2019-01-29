@@ -54,15 +54,17 @@ class MembersController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|unique:users',
+            'username' => 'required|unique:users',
             'jabatan' => 'required',
             'role'=>'required',
-            'email' => 'required|unique:users',
+            'nik' => 'required|unique:users',
             'password'=>'required'
         ]);
 
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'username' => $request->username,
+            'nik' => $request->nik,
             'password'=> Hash::make($request->password),
             'hp'=> $request->hp,
             'jabatan'=> $request->jabatan,
@@ -125,15 +127,17 @@ class MembersController extends Controller
     {
         $this->validate($request, [
             'name' => "required|unique:users,name,$id",
+            'username' => "required|unique:users,username,$id",
             'jabatan' => 'required',
             'role'=>'required|exists:roles,id',
-            'email' => "required|unique:users,email,$id",
+            'nik' => "required|unique:users,nik,$id",
         ]);
 
         $user = User::find($id);
         $user->update([
             'name' => $request->name,
-            'email' => $request->email,
+            'username' => $request->username,
+            'nik' => $request->nik,
             'hp'=> $request->phone,
             'jabatan'=> $request->jabatan,
         ]) ;
