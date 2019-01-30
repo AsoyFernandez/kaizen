@@ -391,7 +391,7 @@ class PengaduanController extends Controller
     public function hapusgabungan($id)
     {
         $pengaduan = Pengaduan::find($id);
-        $pengaduan->delete();
+        $pengaduan->duplikats()->detach(Duplikat::find($id));
         Session::flash("flash_notification", [
             "level"=>"success",
             "message"=>"Pengaduan berhasil dihapus"

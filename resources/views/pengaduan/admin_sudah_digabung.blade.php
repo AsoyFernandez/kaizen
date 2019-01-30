@@ -18,12 +18,17 @@
         @include('partials.deskripsi_duplikat', ['object' => $log])
        </td>
        <td>{{ $log->pengaduans->first()->created_at->format('d/m/Y H:i') }}</td>
-
           @if (is_null($log->penanganans))
               <td>Belum Ditangani</td>
           @endif
           @if (!is_null($log->penanganans))
-              <td>Sedang Ditangani</td>
+              @if ($log->penanganans->pengajuans->count() == 0)
+                <td>Sedang Ditangani</td>
+              @endif
+              @if ($log->penanganans->pengajuans->count() != 0)  
+                <td>Dalam Pengajuan</td>
+              @endif
+
           @endif
         
 

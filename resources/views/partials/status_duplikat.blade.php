@@ -1,6 +1,7 @@
 @if ($log->duplikats->count() == 0)
     <td>Belum Ditinjau</td>
 @endif
+
 @if ($log->duplikats->count() != 0)
     
     @foreach ($log->duplikats as $element)
@@ -11,8 +12,4 @@
         <td>Sedang Ditangani</td>
     @endif
 @endforeach
-    @if ($log->duplikats == '[]')
-        <td>Belum Ditinjau</td>
-    @endif
-
 @endif
