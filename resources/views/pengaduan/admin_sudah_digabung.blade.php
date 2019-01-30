@@ -26,11 +26,20 @@
                 <td>Sedang Ditangani</td>
               @endif
               @if ($log->penanganans->pengajuans->count() != 0)  
-                <td>Dalam Pengajuan</td>
+                @php
+                    $current = $log->penanganans->pengajuans()->orderBy('created_at', 'desc')->first();
+                @endphp
+                @if (!is_null($current->status))
+                  @if (($current->status->status == 1) and is_null($current->status->penilaian))
+                    <td>Dalam Pengajuan</td>
+                    @else
+                    <td>Selesai</td>
+                  @endif
+                @endif
               @endif
-
           @endif
-        
+          
+
 
        @if (!isset($log->penanganans))
        <td><a class="btn btn-primary btn-xs" href="{{ route('pengaduan.tangani', $log->id) }}">Tangani</a></td>
