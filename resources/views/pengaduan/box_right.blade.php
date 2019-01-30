@@ -23,6 +23,7 @@
                             <td>Kategori</td>
                             <td>Deskripsi</td>
                             <td>Tanggal</td>
+                            <td>Status</td>
                             <td>Action</td>
                         </tr>
                     </thead>

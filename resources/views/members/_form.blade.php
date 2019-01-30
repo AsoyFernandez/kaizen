@@ -2,7 +2,7 @@
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 	{!! Form::label('name', 'Nama', ['class'=>'col-md-4 control-label']) !!}
 	<div class="col-md-6">
-		{!! Form::text('name', null, ['class'=>'form-control']) !!}
+		{!! Form::text('name', null, ['class'=>'form-control','placeholder' => 'Nama Lengkap']) !!}
 		{!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 	</div>
 </div>
@@ -10,7 +10,7 @@
 <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
 	{!! Form::label('username', 'Nama Pengguna', ['class'=>'col-md-4 control-label']) !!}
 	<div class="col-md-6">
-		{!! Form::text('username', null, ['class'=>'form-control']) !!}
+		{!! Form::text('username', null, ['class'=>'form-control','placeholder' => 'Nama Untuk Login']) !!}
 		{!! $errors->first('username', '<p class="help-block">:message</p>') !!}
 	</div>
 </div>
@@ -18,7 +18,7 @@
 <div class="form-group{{ $errors->has('nik') ? ' has-error' : '' }}">
 	{!! Form::label('nik', 'NIK', ['class'=>'col-md-4 control-label']) !!}
 	<div class="col-md-6">
-		{!! Form::text('nik', null, ['class'=>'form-control']) !!}
+		{!! Form::text('nik', null, ['class'=>'form-control', 'placeholder' => 'NIK']) !!}
 		{!! $errors->first('nik', '<p class="help-block">:message</p>') !!}
 	</div>
 </div>
@@ -26,7 +26,7 @@
 <div class="form-group{{ $errors->has('jabatan') ? ' has-error' : '' }} row">
 	{!! Form::label('jabatan', 'Jabatan', ['class'=>'col-sm-4 control-label']) !!}
 	<div class="col-md-6">
-		{!! Form::text('jabatan', null, ['class'=>'form-control']) !!}
+		{!! Form::text('jabatan', null, ['class'=>'form-control', 'placeholder' => 'Status Jabatan']) !!}
 		{!! $errors->first('jabatan', '<p class="help-block">:message</p>') !!}
 	</div>
 </div>
@@ -34,7 +34,7 @@
 <div class="form-group{{ $errors->has('hp') ? ' has-error' : '' }}">
 	{!! Form::label('hp', 'Nomor HP', ['class'=>'col-md-4 control-label']) !!}
 	<div class="col-md-6">
-		{!! Form::text('hp', null, ['class'=>'form-control']) !!}
+		{!! Form::text('hp', null, ['class'=>'form-control', 'placeholder' => 'No Handphone']) !!}
 		{!! $errors->first('hp', '<p class="help-block">:message</p>') !!}
 	</div>
 </div>
@@ -104,7 +104,7 @@
 	<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 		{!! Form::label('password', 'Password', ['class'=>'col-md-4 control-label']) !!}
 		<div class="col-md-6">
-			{!! Form::password('password',['class'=>'form-control']) !!}
+			{!! Form::password('password',['class'=>'form-control', 'placeholder' => 'Password']) !!}
 			{!! $errors->first('password', '<p class="help-block">:message</p>') !!}
 		</div>
 	</div>
