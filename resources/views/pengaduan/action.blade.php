@@ -1,9 +1,9 @@
 {!! Form::open(['url' => route('pengaduan.destroy', $log->id),
     'method' => 'delete',  'class'=>'delete form-horizontal']) !!}
-    <a class="btn btn-primary btn-xs" href="{{ route('pengaduan.edit', $log->id) }}">Ubah</a> 
-    {{ Form::submit('Hapus', array('class' => 'btn btn-xs btn-warning')) }}
+    <a class="btn btn-primary btn-xs" href="{{ route('pengaduan.edit', $log->id) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true" data-toggle="tooltip" title="Edit"></span></a>
+    <button type="submit" class="btn btn-warning btn-link btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="tooltip" title="Hapus"></span></button>
     
-    <a href="#" class="btn btn-info btn-xs glyphicon glyphicon-eye-open" data-toggle="modal" data-target={{ '#' . $log->id . '-modal' }}></a>
+    <a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target={{ '#' . $log->id . '-modal' }}><span class=" glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Lihat"></span></a>
 
 	<!-- Modal -->
 	<div id="{{ $log->id . '-modal' }}" class="modal fade" role="dialog">

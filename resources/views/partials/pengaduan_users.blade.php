@@ -24,7 +24,7 @@
         <table class="table table-striped" id="tblGrid">
           <tbody class="scrollable">
                 @foreach ($log->pengaduans as $el)
-              <tr>
+              <tr> 
 
                 <td>PE{{ $el->id }}</td>
                 <td>{{ $el->users->name }}</td>

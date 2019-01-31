@@ -98,7 +98,7 @@
                                     @endif
 
                                     @if ($key->id == 4)
-                                        @foreach ($tempat as $lokasi)
+                                        @foreach (Auth::user()->tempats as $lokasi)
                                                 @forelse ($duplikat as $log)
                                                 @if (!isset($log->penanganans))
                                                     @if ($log->pengaduans->first()->lokasi_id == $lokasi->id)
