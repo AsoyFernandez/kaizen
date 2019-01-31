@@ -104,6 +104,15 @@ class UsersSeeder extends Seeder
         $user3->save();
         $user3->tempats()->attach(Tempat::find(2));
         $user3->roles()->attach(Role::find(4));
+
+        $user4 = new User();
+        $user4->name = 'Heri';
+        $user4->username = 'heri';
+        $user4->nik = '3603190209950001';
+        $user4->password = bcrypt('rahasia');
+        $user4->jabatan = 'Karyawan' ;
+        $user4->save();
+        $user4->roles()->attach(Role::find(5));
         
         $kategori1 = Kategori::create([
             'nama'=>'Ringkas',

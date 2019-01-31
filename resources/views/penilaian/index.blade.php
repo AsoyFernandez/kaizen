@@ -34,8 +34,8 @@
 
                             </thead>
                             <tbody>
-                                <tr>
                                     @forelse ($status as $log)
+                                <tr>
                                     <td>{{ $log->pengajuans->penanganans->users->name }}</td>
                                     <td>{{ $log->pengajuans->penanganans->duplikats->pengaduans->first()->tempats->nama }}</td>
                                     <td>{{ $log->pengajuans->deskripsi }}</td>
@@ -47,10 +47,10 @@
                                     <td><a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}" class="btn btn-xs btn-primary">Nilai</a> <a href="" class="btn btn-xs btn-primary">Buka Kembali</a></td>
                                     
                                     @endif
-                                @include('partials.pimpinan_nilai', ['object' => $log])
+                                    @include('partials.pimpinan_nilai', ['object' => $log])
                                     @empty
-                                    @endforelse
                                 </tr>
+                                    @endforelse
                             </tbody>
                         </table>
                     </div>

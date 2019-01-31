@@ -33,22 +33,21 @@
                         <table id="example" class="display responsive nowrap compact">
                             @php
                                 $user = Auth::user()->roles;
-                                $tempat = Auth::user()->tempats;
-                                
+                                $tempat = Auth::user()->tempats;     
                             @endphp
                             <thead>
-                                <tr>                                    
+                                <tr>                         
                                     <td>Kode</td>
                                     <td>Nama Ruangan</td>
                                     <td>Kategori</td>
                                     <td>Deskripsi</td>
                                     <td>Tanggal</td>
-                                    @foreach ($user as $key)
-                                    @if ($key->id == 1  || $key->id == 3)
+                                    @foreach (Auth::user()->roles as $key)
+                                    @if ($key->id == 1 or $key->id == 3)
                                         <td>Status</td>
                                     @endif
                                     @endforeach
-                                    @foreach ($user as $key)
+                                    @foreach (Auth::user()->roles as $key)
                                     @if ($key->id == 1  || $key->id == 4)
                                         <td>Action</td>
                                     @endif
@@ -56,7 +55,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($user as $key)
+                                @foreach (Auth::user()->roles as $key)
                                     @if ($key->id == 1)
                                       @forelse ($pengaduan as $log)
                                         <tr>  
@@ -76,7 +75,7 @@
                                         
                                     @endif
                                     @if ($key->id == 3)
-                                        @foreach ($tempat as $lokasi)
+                                        @foreach (Auth::user()->tempats as $lokasi)
                                             @foreach ($lokasi->child as $el)
                                                 @forelse ($pengaduan as $log)
                                                     @if ($log->lokasi_id == $el->id)
@@ -88,8 +87,8 @@
                                                             </td>
                                                             <td>{{ $log->kategoris->nama }}</td>
                                                             <td>{{ $log->deskripsi }}</td>
-                                                            @include('partials.status_pengaduan') 
                                                             <td>{{ $log->created_at->format('d/m/Y H:i') }}</td> 
+                                                            @include('partials.status_pengaduan') 
                                                         </tr>
                                                     @endif
                                               @empty
@@ -129,12 +128,12 @@
                                     <td>Kategori</td>
                                     <td>Deskripsi</td>
                                     <td>Tanggal</td>
-                                    @foreach ($user as $key)
+                                    @foreach (Auth::user()->roles as $key)
                                     @if ($key->id == 1  || $key->id == 3)
                                         <td>Status</td>
                                     @endif
                                     @endforeach
-                                    @foreach ($user as $key)
+                                    @foreach (Auth::user()->roles as $key)
                                     @if ($key->id == 1 || $key->id == 4)
                                         <td>Action</td>
                                     @endif
