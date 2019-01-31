@@ -25,14 +25,22 @@
               @if ($log->penanganans->pengajuans->count() == 0)
                 <td>Sedang Ditangani</td>
               @endif
+
               @if ($log->penanganans->pengajuans->count() != 0)  
                 @php
                     $current = $log->penanganans->pengajuans()->orderBy('created_at', 'desc')->first();
                 @endphp
+                @if (is_null($current->status))
+                  <td>Dalam Pengajuan</td>
+                @endif
                 @if (!is_null($current->status))
+                  @if (($current->status->status == 0) and is_null($current->status->penilaian))
+                    <td>Ditolak Pengawas</td>
+                  @endif
                   @if (($current->status->status == 1) and is_null($current->status->penilaian))
-                    <td>Dalam Pengajuan</td>
-                    @else
+                    <td>Menunggu Penilaian</td>
+                  @endif
+                  @if (($current->status->status == 1) and !is_null($current->status->penilaian))
                     <td>Selesai</td>
                   @endif
                 @endif
