@@ -34,7 +34,4 @@
         @include('partials.deskripsi_pengaduan', ['object' => $log])
     @endif
 @empty
-    <tr>
-        <td colspan="2">Tidak ada data</td>
-    </tr>
 @endforelse

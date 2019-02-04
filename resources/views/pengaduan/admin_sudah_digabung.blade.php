@@ -52,7 +52,4 @@
        @include('pengaduan.action_tangani')
    </tr> 
    @empty
-    <tr>
-        <td colspan="2">Tidak ada data</td>
-    </tr>
 @endforelse

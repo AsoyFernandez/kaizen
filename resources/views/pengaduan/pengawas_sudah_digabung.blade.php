@@ -32,7 +32,4 @@
    </tr> 
   @endif
    @empty
-    <tr>
-        <td colspan="2">Tidak ada data</td>
-    </tr>
 @endforelse
