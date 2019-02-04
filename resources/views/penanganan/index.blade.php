@@ -99,6 +99,22 @@
                                 </tr>
                                 @endforelse
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Kode Pengaduan</th>
+                                    @if (Request::route()->getName() == 'semua.penanganan')
+                                        <th>Petugas</th>
+                                    @endif
+                                    <th>Pelapor</th>
+                                    <th>Nama Ruangan</th>
+                                    <th>Kategori</th>
+                                    <th>Lampiran</th>
+                                    <th>Status</th>
+                                    @if (Request::route()->getName() != 'semua.penanganan')
+                                    <th>Action</th>
+                                    @endif
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                         {{ $penanganan->links() }}
