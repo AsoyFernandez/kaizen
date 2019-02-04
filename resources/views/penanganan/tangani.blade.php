@@ -24,8 +24,8 @@
                         </div>
                 </div>
                 <div class="box-body">
-                    {!! Form::open(['url' => route('pengaduan.tangani', $pengaduan->id),
-                    'method' => 'post', 'files'=>'true',  'class'=>'form-horizontal']) !!}
+                    {!! Form::open(['url' => route('penanganan.update', $pengaduan->id),
+                    'method' => 'put', 'files'=>'true',  'class'=>'form-horizontal']) !!}
 
                         <div class="form-group{{ $errors->has('lampiran') ? ' has-error' : '' }} row">
                           {!! Form::label('lampiran', 'Lampiran', ['class'=>'col-sm-4 control-label']) !!}   

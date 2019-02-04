@@ -243,7 +243,7 @@ class PengaduanController extends Controller
 
        public function tanganin($id){
         $pengaduan = Duplikat::findOrFail($id);
-            return view('pengaduan.tangani', compact('pengaduan'));
+        return view('pengaduan.tangani', compact('pengaduan'));
        }
 
         public function tangani(Request $request, $pengaduans)

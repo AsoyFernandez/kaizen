@@ -12,10 +12,17 @@
 
               </ol>
             </nav>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2 class="panel-title">{{ __('Tambah Area') }}</h2></div>
-                    <div class="panel-body">
+            <div class="box box-solid box-default">
+                <div class="box-header with-border">
+                    <h2 class="box-title">{{ __('Tambah Area') }}</h2>
+                    <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fa fa-times"></i></button>
+                </div>
+                </div>
+                    <div class="box-body">
                         {!! Form::open(['url' => route('area.store'),
                         'method' => 'post',  'class'=>'form-horizontal']) !!}
                             @include('area._form')                 

@@ -1,6 +1,6 @@
 @forelse ($duplikats as $log)
    <tr>
-      <td>
+      <td> 
         GA{{ $log->id }} <a href="#myModal" id="openBtn" data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
         @include('partials.pengaduan_users', ['object' => $log]) 
       </td>
@@ -49,12 +49,7 @@
           
 
 
-       @if (!isset($log->penanganans))
-       <td><a class="btn btn-primary btn-xs" href="{{ route('pengaduan.tangani', $log->id) }}">Tangani</a></td>
-       @else
-       <td><a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal-petugas' }}" class="btn disabled btn-xs">Tangani</a></td>
-       @include('partials.modal_petugas', ['object' => $log])
-       @endif
+       @include('pengaduan.action_tangani')
    </tr> 
    @empty
     <tr>

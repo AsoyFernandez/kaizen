@@ -12,10 +12,10 @@
             </nav>
 
 
-            <div class="box box-default">
+            <div class="box box-solid box-primary">
                 <div class="box-header with-border">
 
-                    <h2 class="panel-title">{{ __('Pengaduan Ku') }}
+                    <h2 class="box-title">{{ __('Pengaduan Ku') }}</h2>
 
                     <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -34,13 +34,13 @@
                             <thead>
                                 <tr>
                                     
-                                    <td>Kode</td>
-                                    <td>Nama Ruangan</td>
-                                    <td>Kategori</td>
-                                    <td>Deskripsi</td>
-                                    <td>Tanggal</td>
-                                    <td>Status</td>
-                                    <td>Action</td>
+                                    <th>Kode</th>
+                                    <th>Nama Ruangan</th>
+                                    <th>Kategori</th>
+                                    <th>Deskripsi</th>
+                                    <th>Tanggal</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +57,7 @@
                                         @endif
                                     </td>
                                     <td>{{ $log->kategoris->nama }}</td>
-                                    <td>{{ $log->deskripsi }}</td>
+                                    <td> <span class="aria-hidden="true" data-toggle="tooltip" title="{{ $log->deskripsi }}">{{ str_limit($log->deskripsi, $limit = 25, $end = '...') }}</span></td>
                                     <td>{{ $log->created_at->format('d/m/Y H:i') }}</td>
                                     <td>{{ $log->status() }}</td>
                                     <td>@include('pengaduan.action')</td>
@@ -66,13 +66,15 @@
                               @endforelse
                             </tbody>
                             <tfoot>
-                                <td>Kode</td>
-                                    <td>Nama Ruangan</td>
-                                    <td>Kategori</td>
-                                    <td>Deskripsi</td>
-                                    <td>Tanggal</td>
-                                    <td>Status</td>
-                                    <td>Action</td>
+                                <tr>
+                                    <th>Kode</th>
+                                    <th>Nama Ruangan</th>
+                                    <th>Kategori</th>
+                                    <th>Deskripsi</th>
+                                    <th>Tanggal</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
                             </tfoot>
                         </table>
                     </div>

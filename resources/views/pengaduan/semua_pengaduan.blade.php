@@ -12,10 +12,10 @@
             </nav>
 
 
-            <div class="box box-default">
+            <div class="box box-solid box-primary">
                 <div class="box-header with-border">
 
-                    <h2 class="panel-title">{{ __('Semua Pengaduan') }}
+                    <h2 class="box-title">{{ __('Semua Pengaduan') }}</h2>
 
                     <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -37,19 +37,20 @@
                             @endphp
                             <thead>
                                 <tr>                         
-                                    <td>Kode</td>
-                                    <td>Nama Ruangan</td>
-                                    <td>Kategori</td>
-                                    <td>Deskripsi</td>
-                                    <td>Tanggal</td>
+                                    <th>Kode</th>
+                                    <th>Pelapor</th>
+                                    <th>Nama Ruangan</th>
+                                    <th>Kategori</th>
+                                    <th>Deskripsi</th>
+                                    <th>Tanggal</th>
                                     @foreach (Auth::user()->roles as $key)
                                     @if ($key->id == 1 or $key->id == 3)
-                                        <td>Status</td>
+                                        <th>Status</th>
                                     @endif
                                     @endforeach
                                     @foreach (Auth::user()->roles as $key)
                                     @if ($key->id == 1  || $key->id == 4)
-                                        <td>Action</td>
+                                        <th>Action</th>
                                     @endif
                                     @endforeach   
                                 </tr>
@@ -60,6 +61,7 @@
                                       @forelse ($pengaduan as $log)
                                         <tr>  
                                             <td>PE{{ $log->id }}</td>
+                                            <td>{{ $log->users['name'] }}</td>
                                             <td>
                                                 {{ $log->tempats->nama }}
                                                 @include('partials.simbol_pengaduan')
@@ -81,6 +83,7 @@
                                                     @if ($log->lokasi_id == $el->id)
                                                         <tr>  
                                                             <td>PE{{ $log->id }}</td>
+                                                            <td>{{ $log->users['name'] }}</td>
                                                             <td>
                                                                 {{ $log->tempats->nama }}
                                                                 @include('partials.simbol_pengaduan')
@@ -104,10 +107,11 @@
                                                     @if ($log->pengaduans->first()->lokasi_id == $lokasi->id)
                                                         <tr>  
                                                             <td>GA{{ $log->id }}</td>
+                                                            </td>
+                                                            <td>{{ $log->pengaduans->first()->users->name }}</td>
                                                             <td>
                                                                 {{ $log->pengaduans->first()->tempats->nama }}
                                                                 @include('partials.simbol_gabungan')
-                                                            </td>
                                                             <td>{{ $log->pengaduans->first()->kategoris->nama }}</td>
                                                             <td>{{ $log->deskripsi }}</td>
                                                             <td>{{ $log->created_at->format('d/m/Y H:i') }}</td>
@@ -123,21 +127,24 @@
                                 @endforeach
                             </tbody>
                             <tfoot>
-                                <td>Kode</td>
-                                    <td>Nama Ruangan</td>
-                                    <td>Kategori</td>
-                                    <td>Deskripsi</td>
-                                    <td>Tanggal</td>
+                                <tr>
+                                    <th>Kode</th>
+                                    <th>Pelapor</th>
+                                    <th>Nama Ruangan</th>
+                                    <th>Kategori</th>
+                                    <th>Deskripsi</th>
+                                    <th>Tanggal</th>
                                     @foreach (Auth::user()->roles as $key)
                                     @if ($key->id == 1  || $key->id == 3)
-                                        <td>Status</td>
+                                        <th>Status</th>
                                     @endif
                                     @endforeach
                                     @foreach (Auth::user()->roles as $key)
                                     @if ($key->id == 1 || $key->id == 4)
-                                        <td>Action</td>
+                                        <th>Action</th>
                                     @endif
                                     @endforeach  
+                                </tr>
                             </tfoot>
                         </table>
                     </div>

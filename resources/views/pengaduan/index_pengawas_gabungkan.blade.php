@@ -20,8 +20,6 @@
         @include('partials.close')
         
         @if(!isset( $log->penanganans ))
-        <td>
-        @include('pengaduan.action')</td>
         @else
         <td>
             @if (Auth::id() == $log->where('id', $log->id)->first()->user_id)

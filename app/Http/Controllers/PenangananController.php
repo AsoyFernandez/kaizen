@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Penanganan;
 use App\Pengajuan;
+use App\Duplikat;
 use Session;
 use Storage;
+use File;
 class PenangananController extends Controller
 {
     /** 
@@ -15,6 +17,12 @@ class PenangananController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        $penanganan = Penanganan::with('users', 'duplikats')->paginate(3);
+        return view('penanganan.index')->with(compact('penanganan'));
+    }
+
+    public function semua_penanganan()
     {
         $penanganan = Penanganan::with('users', 'duplikats')->paginate(3);
         return view('penanganan.index')->with(compact('penanganan'));
@@ -117,7 +125,8 @@ class PenangananController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pengaduan = Penanganan::findOrFail($id);
+        return view('penanganan.tangani', compact('pengaduan'));
     }
 
     /**
@@ -129,7 +138,39 @@ class PenangananController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'lampiran' => 'required',
+        ]);
+
+
+        $penanganan = Penanganan::find($id);
+        $penanganan->update($request->all());
+        if ($request->hasFile('lampiran')) {
+
+            // Mengambil file yang diupload
+                $uploaded_file = $request->file('lampiran');
+
+            // mengambil extension file
+                $extension = $uploaded_file->getClientOriginalExtension();
+
+            // membuat nama file random berikut extension
+                $filename = md5(time()) . '.' . $extension;
+
+            // menyimpan cover ke folder public/img
+
+                $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'lampiran';
+                $uploaded_file->move($destinationPath, $filename);
+            // mengisi field cover di book dengan filename yang baru dibuat
+                $penanganan->lampiran = $filename;
+                
+
+                $penanganan->save();
+            }
+        Session::flash("flash_notification", [
+            "level"=>"success",
+            "message"=>"Berhasil memperbarui lampiran"
+        ]);
+        return redirect()->route('penanganan.index');
     }
 
     /**

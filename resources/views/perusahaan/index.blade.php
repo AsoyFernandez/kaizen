@@ -3,18 +3,25 @@
 @section('content')
 <div class="container-fluid spark-screen">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Perusahaan</li>
               </ol>
             </nav>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2 class="panel-title">{{ __('Daftar Alamat Perusahaan') }}</div>
+            <div class="box box-solid box-primary">
+                    <div class="box-header with-border">
+                        <h2 class="box-title">Daftar Alamat Perusahaan</h2>
 
-                <div class="panel-body">
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fa fa-minus"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                                <i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
                  <p><a class="btn btn-primary" href="{{ route('perusahaan.create') }}">Tambah</a></p> 
                  
                    <div class="table-responsive">
@@ -38,7 +45,7 @@
                                         <td>{{ $log->provinsi }}</td>
                                         <td>{{ $log->kota }}</td>
                                         <td>{{ $log->kecamatan }}</td>
-                                        <td>{{ $log->detail }}</td>
+                                        <td><span class="aria-hidden="true" data-toggle="tooltip" title="{{ $log->detail }}">{{ str_limit($log->detail, $limit = 25, $end = '...') }}</span></td>
                                         <td> @include('perusahaan.action')
                                         </td>
                                     </tr>

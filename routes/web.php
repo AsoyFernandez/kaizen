@@ -77,8 +77,14 @@ Route::group(['middleware' => 'auth'], function () {
 			'uses' => 'PengaduanController@nilai'
 		]);
 	
-
+	Route::get('/penanganan/semua_penanganan',[
+			'as' => 'semua.penanganan',
+			'uses' => 'PenangananController@semua_penanganan'
+		]);
+	
 	Route::resource('penanganan', 'PenangananController');
+
+	
 
 	Route::get('/lampiran/{id}/unduh',[
 			'as' => 'lampiran.unduh',

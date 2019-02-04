@@ -3,13 +3,13 @@
 @section('content')
 	<div class="container-fluid spark-screen">
 		<div class="row justify-content-center">
-			<div class="col-md-10 col-md-offset-1">
+			<div class="col-md-12">
 				<ul class="breadcrumb">
 					<li><a href="{{ url('/home') }}">Dashboard</a></li>
 					<li class="active">Member</li>
 				</ul>
 				
-				<div class="box box-default">
+				<div class="box box-solid box-primary">
                     <div class="box-header with-border">
                         <h2 class="box-title">Member</h2>
 
@@ -26,11 +26,11 @@
                         <table id="example" class="display responsive nowrap compact" style="width:100%">
                             <thead>
                                 <tr>
-                                    <td>Nama</td>
-                                    <td>Jabatan</td>
-                                    <td>Role</td>
-                                    <td>Tempat</td>
-                                    <td>Action</td>
+                                    <th>Nama</th>
+                                    <th>Jabatan</th>
+                                    <th>Role</th>
+                                    <th>Tempat</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,6 +48,15 @@
                                     </tr>
                                 @endforelse
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Jabatan</th>
+                                    <th>Role</th>
+                                    <th>Tempat</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                     </div>

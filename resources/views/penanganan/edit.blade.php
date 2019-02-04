@@ -7,13 +7,13 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('area.index') }}">Area</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Ubah Area</li>
+                <li class="breadcrumb-item"><a href="{{ route('penanganan.index') }}">Daftar Penanganan</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Ubah Lampiran</li>
               </ol>
             </nav>
             <div class="box box-solid box-default">
                 <div class="box-header with-border">
-                    <h2 class="box-title">{{ __('Ubah Detail Area') }}</h2>
+                    <h2 class="box-title">{{ __('Ubah Detail Lampiran') }}</h2>
                     <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fa fa-minus"></i></button>
@@ -22,9 +22,9 @@
                 </div>
                 </div>
                     <div class="box-body">
-                        {!! Form::model($area, ['url' => route('area.update', $area->id),
+                        {!! Form::model($penanganan, ['url' => route('penanganan.update', $penanganan->id),
                         'method' => 'put', 'files'=>'true',  'class'=>'form-horizontal']) !!}
-                            @include('area._form')                 
+                            @include('pengaduan.tangani')                 
                         {!! Form::close() !!}
                 </div>
             </div>

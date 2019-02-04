@@ -13,22 +13,21 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Status</h4>
+	        <h4 class="modal-title">Detail Pengaduan</h4>
 	      </div>
 	      <div class="modal-body">
-	      	@foreach ($log->duplikats as $element)
-                            
-	            @if (isset($element) && isset($element->penanganans))
-	                <center>Status : Ditangani</center>
-	            @endif
-	            @if (isset($element) && !isset($element->penanganans))
-	                <center>Status : Belum Ditangani</center>
-	            @endif
-	        @endforeach
-
-	            @if ($log->duplikats == '[]')
-	                <center>Belum Ditinjau</center>
-	            @endif
+	      	<center>  
+             @if (isset($log) && $log->foto)
+                <img class="img-rounded img-responsive " style="width: 30rem; height: 30rem" src="{!!asset('img/'.$log->foto)!!}">
+              @else
+                 Foto belum di upload
+              @endif
+            <div class="row">
+                Kategori : {{ $log->kategoris->nama }}
+            </div>
+            <div class="row">
+                {{ $log->deskripsi }}
+            </div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

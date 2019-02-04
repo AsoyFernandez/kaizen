@@ -2,7 +2,7 @@
     <div class="box box-solid box-default">
         <div class="box-header with-border">
 
-            <h2 class="panel-title">{{ __('Pengaduan yang diterima') }}
+            <h2 class="box-title">{{ __('Pengaduan yang diterima') }}</h2>
 
             <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -19,14 +19,19 @@
                 <table class="display responsive nowrap compact example">
                     <thead>
                         <tr>
-                            <td>Kode</td>
-                            <td>Pelapor</td>
-                            <td>Nama Ruangan</td>
-                            <td>Kategori</td>
-                            <td>Deskripsi</td>
-                            <td>Tanggal</td>
-                            <td></td>
-                            <td>Action</td>
+                            <th>Kode</th>
+                            <th>Pelapor</th>
+                            <th>Nama Ruangan</th>
+                            <th>Kategori</th>
+                            <th>Deskripsi</th>
+                            <th>Tanggal</th>
+                            <th></th>
+                            @foreach (Auth::user()->roles as $key)
+                                @if ($key->id == 1)
+                                    <th>Action</th>
+                                
+                                @endif
+                            @endforeach
                         </tr>
                     </thead>
                     <tbody>
@@ -35,12 +40,12 @@
                             $tempat = Auth::user()->tempats;
                             
                         @endphp
-                        @foreach ($user as $key)
+                        @foreach (Auth::user()->roles as $key)
                             @if ($key->id == 1)
                                 @include('pengaduan.index_admin_gabungkan')
                             @endif
                             @if ($key->id == 3)
-                                @foreach ($tempat as $log)
+                                @foreach (Auth::user()->tempats as $log)
                                     @foreach ($log->child as $el)
                                         @include('pengaduan.index_pengawas_gabungkan')
                                     @endforeach
@@ -50,6 +55,23 @@
 
                                
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Kode</th>
+                            <th>Pelapor</th>
+                            <th>Nama Ruangan</th>
+                            <th>Kategori</th>
+                            <th>Deskripsi</th>
+                            <th>Tanggal</th>
+                            <th></th>
+                            @foreach (Auth::user()->roles as $key)
+                                @if ($key->id == 1)
+                                    <th>Action</th>
+                                
+                                @endif
+                            @endforeach
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
 

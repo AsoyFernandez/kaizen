@@ -15,9 +15,9 @@
         </li>
 
         <li class="treeview">
-            <a href="#"><i class='fa fa-child'></i> <span>{{ trans('Member') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+            <a href="#"><i class='fa fa-child'></i> <span>{{ trans('Anggota') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
             <ul class="treeview-menu">
-                <li><a href="{{ route('member.index') }}"><i class='fa fa-group'></i> <span>{{ trans('Member') }}</span></a></li>
+                <li><a href="{{ route('member.index') }}"><i class='fa fa-group'></i> <span>{{ trans('Anggota') }}</span></a></li>
                 
             </ul>
         </li> 
@@ -76,14 +76,21 @@
     </ul>
 </li>
 
-<li class="treeview">  
-    <a href="#"><i class='fa fa-sign-language'></i> <span>{{ trans('Penanganan') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-        <ul class="treeview-menu">
+@foreach (Auth::user()->roles as $penanganan)
+    @if ($penanganan->id == 3 or $penanganan->id == 4)
+    <li class="treeview">  
+        <a href="#"><i class='fa fa-sign-language'></i> <span>{{ trans('Penanganan') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+            <ul class="treeview-menu">
 
-        <li><a href="{{ route('penanganan.index') }}"><i class='fa fa-sign-language'></i> <span>{{ trans('Penanganan') }}</span></a></li>
-        </ul>
-    </a>
-</li>
+            <li><a href="{{ route('penanganan.index') }}"><i class='fa fa-cube'></i> <span>{{ trans('Penanganan Ku') }}</span></a></li>
+            @if ($penanganan->id == 3)
+                <li><a href="{{ route('semua.penanganan') }}"><i class='fa fa-cubes'></i> <span>{{ trans('Semua Penanganan') }}</span></a></li>
+            @endif
+            </ul>
+        </a>
+    </li>
+    @endif
+@endforeach
 
 
 <li class="treeview">  
