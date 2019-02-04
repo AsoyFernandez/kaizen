@@ -65,7 +65,9 @@
         
         <li><a href="{{ route('pengaduan.semua_pengaduan') }}"><i class='fa fa-newspaper-o'></i> <span>{{ trans('Pengaduan') }}</span></a></li>
 
-        <li><a href="{{ route('pengaduan.index') }}"><i class='fa fa-clone'></i> <span>{{ trans('Gabungkan') }}</span><span class="badge">{{ $hitung }}</span></a></li>
+        <li><a href="{{ route('pengaduan.index') }}"><i class='fa fa-clone'></i> <span>{{ trans('Gabungkan') }}</span><span class="badge">@if ($hitung != 0)
+        {{ $hitung }}
+    @endif</span></a></li>
         
         @endif
         @if ($role->id == 4)
