@@ -63,7 +63,7 @@
 	{!! Form::label('lokasi', 'Tanggung Jawab Lokasi', ['class'=>'col-sm-4 control-label']) !!}
 	<div class="col-md-6">
 		@if (Request::route()->getName() != 'member.edit')
-		{!! Form::select('lokasi[]', [''=>'']+App\Tempat::whereNull('tempat_id')->pluck('nama','id')->all(), null, ['class'=>'form-control col-form-label lokasi','placeholder' => 'Pilih Lokasi']) !!}
+		{!! Form::select('lokasi[]', [''=>'']+App\Tempat::where('tempat_id', '!=', null)->pluck('nama','id')->all(), null, ['class'=>'form-control col-form-label lokasi','placeholder' => 'Pilih Lokasi']) !!}
 		{!! $errors->first('lokasi', '<p class="help-block">:message</p>') !!}
 		@else
 		@php
