@@ -1,3 +1,7 @@
+@if(App\Pengajuan::where('penanganan_id',$log->id)->first() == null )
+    <td>Belum ada
+    </td> 
+@endif
 @if(App\Pengajuan::where('penanganan_id',$log->id)->first() != null && !isset(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status))
     <td>Menunggu konfirmasi
     </td> 
