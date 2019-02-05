@@ -181,6 +181,12 @@ class PenangananController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $penanganan = Penanganan::find($id);
+        $penanganan->delete();
+        Session::flash("flash_notification", [
+            "level"=>"success",
+            "message"=>"penanganan berhasil dihapus"
+        ]);
+        return redirect()->route('penanganan.index');
     }
 }
