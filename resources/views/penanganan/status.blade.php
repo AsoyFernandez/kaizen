@@ -26,7 +26,6 @@
 		{!! Form::open(['url' => route('penanganan.destroy', $log->id),
     'method' => 'delete',  'class'=>'delete form-horizontal']) !!}
     <td>
-            <a class="btn btn-primary btn-xs" href="{{ route('penanganan.edit', $log->id) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true" data-toggle="tooltip" title="Edit"></span></a>
     		<button type="submit" class="btn btn-warning btn-link btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="tooltip" title="Hapus"></span></button>
         </td>
 {!! Form::close() !!}
