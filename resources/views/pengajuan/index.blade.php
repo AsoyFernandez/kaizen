@@ -3,14 +3,14 @@
 @section('content')
 <div class="container-fluid spark-screen">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Daftar Pengajuan</li>
             </ol>
         </nav>
-        <div class="box box-default">
+        <div class="box box-solid box-primary">
             <div class="box-header with-border">
                 <h2 class="panel-title">{{ __('Pengajuan') }}</h2>
                 <div class="box-tools pull-right">
@@ -62,9 +62,6 @@
                                     @endif
                                 </tr>
                                 @empty
-                                <tr>
-                                    <td colspan="2">Tidak ada data</td>
-                                </tr>
                                 @endforelse
                             </tbody>
                         </table>

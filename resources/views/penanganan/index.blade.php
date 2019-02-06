@@ -9,7 +9,7 @@
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Daftar Penanganan</li>
             </ol>
-        </nav> 
+        </nav>  
         <div class="box box-solid box-primary">
             <div class="box-header with-border">
                 <h2 class="panel-title">{{ __('Penanganan') }}</h2>
@@ -20,14 +20,13 @@
                             <i class="fa fa-times"></i></button>
                         </div>
                     </div>
-
-                    <div class="box-body">
-
+                    
+                    <div class="box-body">  
                         <div class="table-responsive">
                          <table id="example" class="table table-condensed table-striped">
                             <thead>
                                 <tr>
-                                    <th>Kode Pengaduan</th>
+                                    <th>Kode</th>
                                     @if (Request::route()->getName() == 'semua.penanganan')
                                         <th>Petugas</th>
                                     @endif
@@ -39,6 +38,13 @@
                                     @if (Request::route()->getName() != 'semua.penanganan')
                                     <th>Action</th>
                                     @endif
+                                    @if (Request::route()->getName() == 'semua.penanganan')
+                                    @foreach (Auth::user()->roles as $el)
+                                        @if ($el->id == 1)
+                                        <th>Action</th>
+                                        @endif
+                                    @endforeach
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,7 +53,8 @@
                                 @if (Request::route()->getName() != 'semua.penanganan')
                                 @if ($log->users->id == Auth::id())
                                 <tr>
-                                    <td>GA{{ $log->duplikats->id }}</td>
+                                    <td>GA{{ $log->duplikats->id }}<a href="#myModal" id="openBtn" data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
+                                    @include('partials.penanganan_detail')</td>
                                     <td>{{ $log->duplikats->pengaduans->first()->users->name }}</td>
                                     <td>{{ $log->duplikats->pengaduans->first()->tempats->nama }}</td>
                                     <td>{{ $log->duplikats->pengaduans->first()->kategoris->nama }}</td>
@@ -82,8 +89,12 @@
                                 
                                 {{-- Semua Penanganan --}}
                                 @if (Request::route()->getName() == 'semua.penanganan')
+                                @foreach (Auth::user()->roles as $k)
+                                {{-- Admin --}}
+                                    @if ($k->id == 1)
                                     <tr>
-                                        <td>GA{{ $log->duplikats->id }}</td>
+                                        <td>GA{{ $log->duplikats->id }}<a href="#myModal" id="openBtn" data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
+                                    @include('partials.penanganan_detail')</td>
                                         <td>{{ $log->users['name'] }}</td>
                                         <td>{{ $log->duplikats->pengaduans->first()->users->name }}</td>
                                         <td>{{ $log->duplikats->pengaduans->first()->tempats->nama }}</td>
@@ -91,6 +102,29 @@
                                         <td><a href="{{ route('lampiran.unduh', $log->id) }}" class="btn btn-primary btn-sm glyphicon glyphicon-save">Unduh</a></td>
                                         @include('penanganan.status')
                                     </tr>
+                                    @endif
+                                {{-- Admin --}}
+                                {{-- Pengawas --}}
+                                    @if ($k->id == 3)
+                                        @foreach (Auth::user()->tempats as $e)
+                                            @foreach ($e->child as $el)
+                                            @if ($el->id == $log->duplikats->lokasi_id)
+                                                <tr>
+                                                <td>GA{{ $log->duplikats->id }}<a href="#myModal" id="openBtn" data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
+                                            @include('partials.penanganan_detail')</td>
+                                                <td>{{ $log->users['name'] }}</td>
+                                                <td>{{ $log->duplikats->pengaduans->first()->users->name }}</td>
+                                                <td>{{ $log->duplikats->pengaduans->first()->tempats->nama }}</td>
+                                                <td>{{ $log->duplikats->pengaduans->first()->kategoris->nama }}</td>
+                                                <td><a href="{{ route('lampiran.unduh', $log->id) }}" class="btn btn-primary btn-sm glyphicon glyphicon-save">Unduh</a></td>
+                                                @include('penanganan.status')
+                                            </tr> 
+                                            @endif
+                                            @endforeach
+                                        @endforeach
+                                    @endif
+                                {{-- Pengawas --}}
+                                @endforeach
                                 @endif
                                 {{-- Semua Penanganan --}}
                                 @empty
@@ -101,7 +135,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Kode Pengaduan</th>
+                                    <th>Kode</th>
                                     @if (Request::route()->getName() == 'semua.penanganan')
                                         <th>Petugas</th>
                                     @endif
@@ -112,6 +146,13 @@
                                     <th>Status</th>
                                     @if (Request::route()->getName() != 'semua.penanganan')
                                     <th>Action</th>
+                                    @endif
+                                    @if (Request::route()->getName() == 'semua.penanganan')
+                                    @foreach (Auth::user()->roles as $el)
+                                        @if ($el->id == 1)
+                                        <th>Action</th>
+                                        @endif
+                                    @endforeach
                                     @endif
                                 </tr>
                             </tfoot>

@@ -1,7 +1,7 @@
 {!! Form::open(['url' => route('penanganan.destroy', $log->id),
     'method' => 'delete',  'class'=>'delete form-horizontal']) !!}
     @if(App\Pengajuan::where('penanganan_id',$log->id)->first() == null)
-        <td></td>
+        <td>Belum ada</td>
         <td>
             <a class="btn btn-primary btn-xs glyphicon glyphicon-hand-up" href="{{ route('penanganan.post_id', $log->id) }}" data-toggle="tooltip" title="Ajukan"></a> 
             <a class="btn btn-primary btn-xs" href="{{ route('penanganan.edit', $log->id) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true" data-toggle="tooltip" title="Edit"></span></a>

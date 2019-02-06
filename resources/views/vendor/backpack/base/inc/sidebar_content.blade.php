@@ -50,6 +50,9 @@
         }
 @endphp
 
+@php
+    $jumlah = App\Duplikat::duplikatTanpaPenanganan()->count();
+@endphp
 
 <li class="treeview">
     <a href="#"><i class='fa fa-comment-o'></i> <span>{{ trans('Pengaduan') }}<span class="badge">@if ($hitung != 0)
@@ -69,7 +72,11 @@
         
         @endif
         @if ($role->id == 4)
-            <li><a href="{{ route('pengaduan.semua_pengaduan') }}"><i class='fa fa-newspaper-o'></i> <span>{{ trans('Pengaduan') }}</span></a></li>
+            <li><a href="{{ route('pengaduan.semua_pengaduan') }}"><i class='fa fa-newspaper-o'></i> <span>{{ trans('Pengaduan') }}</span>
+            @if ($jumlah != 0)
+                <span class="badge"> {{ $jumlah }}</span>
+            @endif
+            </a></li>
         @endif
         @endforeach
 
@@ -77,13 +84,14 @@
 </li>
 
 @foreach (Auth::user()->roles as $penanganan)
-    @if ($penanganan->id == 3 or $penanganan->id == 4)
+    @if ($penanganan->id == 3 or $penanganan->id == 4 or $penanganan->id == 1)
     <li class="treeview">  
         <a href="#"><i class='fa fa-sign-language'></i> <span>{{ trans('Penanganan') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
             <ul class="treeview-menu">
-
+            @if ($penanganan->id == 3 or $penanganan->id == 4)
             <li><a href="{{ route('penanganan.index') }}"><i class='fa fa-cube'></i> <span>{{ trans('Penanganan Ku') }}</span></a></li>
-            @if ($penanganan->id == 3)
+            @endif
+            @if ($penanganan->id == 3 or $penanganan->id == 1)
                 <li><a href="{{ route('semua.penanganan') }}"><i class='fa fa-cubes'></i> <span>{{ trans('Semua Penanganan') }}</span></a></li>
             @endif
             </ul>
