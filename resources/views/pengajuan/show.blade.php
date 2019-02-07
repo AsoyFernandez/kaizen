@@ -7,7 +7,8 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Daftar Pengajuan</li>
+                <li class="breadcrumb-item" aria-current="page"><a href="{{ route('pengajuan.index') }}">Pengajuan</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Detail Pengajuan Pada Kelompok Pengaduan GA{{ $penanganan->duplikats->id }}</li>
             </ol>
         </nav>
         <div class="box box-solid box-primary">
@@ -26,37 +27,36 @@
                         <div class="table-responsive">
                          <table id="example" class="table table-condensed table-striped">
                             <thead>
-                                <tr>
-                                    <th>Kel. Pengaduan</th>
-                                    @if (Request::route()->getName() == 'semua.pengajuan')
-                                    <th>Petugas</th>
-                                    @endif
-                                    <th>Nama Ruangan</th>
-                                    <th>Kategori</th>
-                                    <th>Deskripsi</th>
+                                <tr><th>No</th>
                                     <th>Tanggal</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($penanganan as $log)
-                                @include('pengajuan.pengajuanku')
-                                {{-- Pengawas --}}
-                                @include('pengajuan.pengajuankita')
-                                {{-- Pengawas --}}
-                                @empty
-                                @endforelse
+                                @foreach ($penanganan->pengajuans as $e)
+                                <tr>
+                                        <td>{{ $e->id }}</td>
+                                    {{-- <td>
+                                        @if (isset($e->foto) && $e->foto)
+                                            <img class="img-rounded img-thumbnail" style="width: 10rem; height: 10rem" src="{!!asset('img/'.$e->foto)!!}">
+                                        @else
+                                            Foto belum di upload
+                                        @endif
+                                    </td> --}}
+                                    <td>{{ $e->created_at->format('d/m/Y H:i') }}</td>
+                                    <td>-</td>
+                                    <td>
+                                        <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target={{ '#' . $e->id . '-modal' }}><span class=" glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Lihat"></span></a>
+                                        @include('pengajuan.modalView')
+                                    </td>
+                                </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <th>Kel. Pengaduan</th>
-                                    @if (Request::route()->getName() == 'semua.pengajuan')
-                                    <th>Petugas</th>
-                                    @endif
-                                    <th>Nama Ruangan</th>
-                                    <th>Kategori</th>
-                                    <th>Deskripsi</th>
+                                <tr><th>No</th>
                                     <th>Tanggal</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>

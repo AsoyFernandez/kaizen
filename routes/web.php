@@ -95,6 +95,11 @@ Route::group(['middleware' => 'auth'], function () {
 			'as' => 'penanganan.post_id',
 			'uses' => 'PenangananController@post_id'
 		]);
+
+	Route::get('/pengajuan/semua_pengajuan',[
+			'as' => 'semua.pengajuan',
+			'uses' => 'PengajuanController@semua_pengajuan'
+		]);
 	Route::resource('pengajuan', 'PengajuanController');
 	Route::resource('status', 'StatusController');
 

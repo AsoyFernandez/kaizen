@@ -34,4 +34,9 @@ class Duplikat extends Model
 
 		return collect($return);
 	}
+
+	public function tempats()
+	{
+		return $this->belongsTo('App\Tempat', 'lokasi_id');
+	}
 }

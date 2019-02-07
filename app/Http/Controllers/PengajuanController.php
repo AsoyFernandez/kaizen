@@ -17,8 +17,17 @@ class PengajuanController extends Controller
     public function index()
     {
         $pengajuan = Pengajuan::all();
+        $penanganan = Penanganan::all();
         $status = Status::all();
-        return view('pengajuan.index', compact('pengajuan', 'status'));
+        return view('pengajuan.index', compact('pengajuan', 'status', 'penanganan'));
+    }
+
+    public function semua_pengajuan()
+    {
+        $pengajuan = Pengajuan::all();
+        $penanganan = Penanganan::all();
+        $status = Status::all();
+        return view('pengajuan.index', compact('pengajuan', 'status', 'penanganan'));
     }
 
     /**
@@ -84,7 +93,8 @@ class PengajuanController extends Controller
      */
     public function show($id)
     {
-        //
+        $penanganan = Penanganan::findOrFail($id);
+        return view('pengajuan.show', compact('penanganan'));
     }
 
     /**

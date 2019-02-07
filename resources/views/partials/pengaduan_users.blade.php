@@ -4,25 +4,23 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 class="modal-title">Detail Seluruh Pengaduan</h3>
-        <hr>
-        <table class="table table-striped" id="tblGrid">
-          <thead id="tblHead">
-            <tr>
-              <td>Kode</td>
-              <td>Pelapor</td>
-              <td>Ruang</td>
-              <td>Kategori</td>
-              <td>Deskripsi</td>
-              <td>Tanggal</td>
-              <td>Action</td>
-            </tr>
-          </thead>
-        </table>
+        <h3 class="modal-title">Detail Seluruh Pengaduan</h3>     
       </div>
       <div class="modal-body scrollable">
-        <table class="table table-striped" id="tblGrid">
-          <tbody class="scrollable">
+        <div class="table-responsive">
+        <table class="table table-striped table-responsive ">
+          <thead>
+            <tr>
+              <th>Kode</th>
+              <th>Pelapor</th>
+              <th>Ruang</th>
+              <th>Kategori</th>
+              <th>Deskripsi</th>
+              <th>Tanggal</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
                 @foreach ($log->pengaduans as $el)
               <tr> 
 
@@ -30,7 +28,7 @@
                 <td>{{ $el->users->name }}</td>
                 <td>{{ $el->tempats->nama }}</td>
                 <td>{{ $el->kategoris->nama }}</td>
-                <td>
+                <td> 
                   <a href="#" data-toggle="tooltip" data-placement="bottom" title="{{ $el->deskripsi }}">{{ str_limit($el->deskripsi, $limit = 10, $end = '...') }} </a>
                 </td>
                 <td>{{ $el->created_at->format('d/m/Y H:i') }}</td>
@@ -42,7 +40,19 @@
               </tr>
                 @endforeach
           </tbody>
+          <tfoot>
+            <tr>
+              <th>Kode</th>
+              <th>Pelapor</th>
+              <th>Ruang</th>
+              <th>Kategori</th>
+              <th>Deskripsi</th>
+              <th>Tanggal</th>
+              <th>Action</th>
+            </tr>
+          </tfoot>
         </table>
+      </div>
   </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
