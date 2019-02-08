@@ -35,6 +35,7 @@
                                     <th>Kategori</th>
                                     <th>Deskripsi</th>
                                     <th>Tanggal</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -57,6 +58,7 @@
                                     <th>Kategori</th>
                                     <th>Deskripsi</th>
                                     <th>Tanggal</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>

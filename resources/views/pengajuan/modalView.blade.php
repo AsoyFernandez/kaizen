@@ -21,23 +21,23 @@
               	<tbody>
               		<tr>
               			<th>Deskripsi</th>
-              			<td>{{ $e->deskripsi }}</td>
+              			<td><a href="#" data-toggle="tooltip" data-placement="bottom" title="{{ $e->deskripsi }}">{{ str_limit($e->deskripsi, $limit = 20, $end = '...') }}</a></td>
               		</tr>
               		<tr>
               			<th>Tanggal Input</th>
-              			<td>{{ $e->created_at }}</td>
+              			<td>{{ $e->created_at->format('d/m/Y H:i') }}</td>
               		</tr>
               		<tr>
               			<th>Status</th>
-              			<td>Belum Ada</td>
+              			@include('pengajuan.status')
               		</tr>
               		<tr>
               			<th>Tanggal Konfirmasi</th>
-              			<td>-</td>
+              			@include('pengajuan.tanggalKonfirmasi')
               		</tr>
               		<tr>
               			<th>Detail</th>
-              			<td>-</td>
+              			@include('pengajuan.keterangan')
               		</tr>
               	</tbody>
               </table>

@@ -45,7 +45,7 @@
                                         @endif
                                     </td> --}}
                                     <td>{{ $e->created_at->format('d/m/Y H:i') }}</td>
-                                    <td>-</td>
+                                    @include('pengajuan.status')
                                     <td>
                                         <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target={{ '#' . $e->id . '-modal' }}><span class=" glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Lihat"></span></a>
                                         @include('pengajuan.modalView')

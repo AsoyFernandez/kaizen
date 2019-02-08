@@ -106,17 +106,17 @@
         <ul class="treeview-menu">
 @foreach (Auth::user()->roles as $pengajuan)
             @if ($pengajuan->id == 4 or $pengajuan->id == 3)
-                <li><a href="{{ route('pengajuan.index') }}"><i class='fa fa-envelope'></i> <span>{{ trans('Pengajuan Ku') }}</span></a>
+                <li><a href="{{ route('pengajuan.index') }}"><i class='fa fa-recycle'></i> <span>{{ trans('Pengajuan Ku') }}</span></a>
                 </li>
             @endif
             @if ($pengajuan->id == 1 or $pengajuan->id == 3)
-                <li><a href="{{ route('semua.pengajuan') }}"><i class='fa fa-envelope'></i> <span>{{ trans('Semua Pengajuan') }}</span></a>
+                <li><a href="{{ route('semua.pengajuan') }}"><i class='fa fa-object-group'></i> <span>{{ trans('Semua Pengajuan') }}</span></a>
                 </li>
             @endif
+@endforeach
         </ul>
     </a>
 </li>
-@endforeach
 
 <li class="treeview">  
     <a href="#"><i class='fa fa-thumbs-o-up'></i> <span>{{ trans('Penilaian') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
