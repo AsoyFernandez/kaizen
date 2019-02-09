@@ -9,6 +9,7 @@
 	        <h4 class="modal-title">Detail Pengajuan</h4>
 	      </div>
 	      <div class="modal-body scrollable">
+        <div>
 	      	<center>  
              @if (isset($e) && $e->foto)
                 <img class="img-rounded " style="width: 30rem; height: 30rem" src="{!!asset('img/'.$e->foto)!!}">
@@ -16,6 +17,7 @@
                  Foto belum di upload
               @endif
         </center>
+        </div>
         <div class="table">
               <table class="table table-responsive table-bordered" border="3">
               	<tbody>

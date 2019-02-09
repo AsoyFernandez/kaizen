@@ -68,7 +68,7 @@
         
         <li><a href="{{ route('pengaduan.semua_pengaduan') }}"><i class='fa fa-newspaper-o'></i> <span>{{ trans('Pengaduan') }}</span></a></li>
 
-        <li><a href="{{ route('pengaduan.index') }}"><i class='fa fa-clone'></i> <span>{{ trans('Gabungkan') }}</span><span class="badge">{{ $hitung }}</span></a></li>
+        <li><a href="{{ route('pengaduan.index') }}"><i class='glyphicon glyphicon-compressed'></i> <span>{{ trans('Gabungkan') }}</span><span class="badge">{{ $hitung }}</span></a></li>
         
         @endif
         @if ($role->id == 4)
@@ -101,27 +101,28 @@
 @endforeach
 
 
+@foreach (Auth::user()->roles as $pengajuan)
+@if ($pengajuan->id == 4 or $pengajuan->id == 3&&2 or $pengajuan->id == 1 )
 <li class="treeview">  
     <a href="#"><i class='fa fa-envelope'></i> <span>{{ trans('Pengajuan') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-@foreach (Auth::user()->roles as $pengajuan)
-            @if ($pengajuan->id == 4 or $pengajuan->id == 3)
-                <li><a href="{{ route('pengajuan.index') }}"><i class='fa fa-recycle'></i> <span>{{ trans('Pengajuan Ku') }}</span></a>
+            <li><a href="{{ route('pengajuan.index') }}"><i class='fa fa-recycle'></i> <span>{{ trans('Pengajuan Ku') }}</span></a>
                 </li>
-            @endif
-            @if ($pengajuan->id == 1 or $pengajuan->id == 3)
+            @if ($pengajuan->id == 1 or $pengajuan->id == 3 or $pengajuan->id == 2)
                 <li><a href="{{ route('semua.pengajuan') }}"><i class='fa fa-object-group'></i> <span>{{ trans('Semua Pengajuan') }}</span></a>
                 </li>
             @endif
-@endforeach
         </ul>
     </a>
 </li>
+    @endif
+@endforeach
 
 <li class="treeview">  
     <a href="#"><i class='fa fa-thumbs-o-up'></i> <span>{{ trans('Penilaian') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-        <li><a href="{{ route('penilaian.index') }}"><i class='fa fa-thumbs-o-up'></i> <span>{{ trans('Penilaian') }}</span></a></li>    
+        <li><a href="{{ route('penilaian.index') }}"><i class='fa fa-star-half-empty'></i> <span>{{ trans('Penilaian') }}</span></a></li>
+        <li><a href="{{ route('penilaian.index') }}"><i class='fa fa-trophy'></i> <span>{{ trans('Peringkat') }}</span></a></li>     
         </ul>
     </a>
 </li>

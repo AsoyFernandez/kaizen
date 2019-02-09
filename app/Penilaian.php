@@ -12,4 +12,9 @@ class Penilaian extends Model
 	{
 		return $this->belongsTo('App\Status', 'status_id');
 	}
+
+	public function pengaduans()
+	{
+		return $this->hasMany('App\Pengaduan');
+	}
 }

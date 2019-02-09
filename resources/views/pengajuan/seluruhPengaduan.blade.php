@@ -1,4 +1,4 @@
-<div class="modal fade" id="{{ $log->id . 'modal' }}">
+<div class="modal fade " id="{{ $log->duplikats->id . 'modal' }}">
 <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -16,11 +16,15 @@
               <th>Kategori</th>
               <th>Deskripsi</th>
               <th>Tanggal</th>
+              @foreach (Auth::user()->roles as $role)
+              @if ($role->id == 1 or $role->id == 3)
               <th>Action</th>
+              @endif
+              @endforeach
             </tr>
           </thead>
           <tbody>
-                @foreach ($log->pengaduans as $el)
+                @foreach ($log->duplikats->pengaduans as $el)
               <tr> 
 
                 <td>PE{{ $el->id }}</td>
@@ -31,11 +35,15 @@
                   <a href="#" data-toggle="tooltip" data-placement="bottom" title="{{ $el->deskripsi }}">{{ str_limit($el->deskripsi, $limit = 10, $end = '...') }} </a>
                 </td>
                 <td>{{ $el->created_at->format('d/m/Y H:i') }}</td>
+                @foreach (Auth::user()->roles as $role)
+                @if ($role->id == 1 or $role->id == 3)
                 <td>
                   {!! Form::open(['url' => route('pengaduan.gabungkan.hapus', $el->id), 'method' => 'delete',  'class'=>'delete form-horizontal']) !!}
                       <button type="submit" class="btn btn-link"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </button>
                   {!! Form::close() !!}
                 </td>
+                @endif
+                @endforeach
               </tr>
                 @endforeach
           </tbody>
@@ -47,7 +55,11 @@
               <th>Kategori</th>
               <th>Deskripsi</th>
               <th>Tanggal</th>
+              @foreach (Auth::user()->roles as $role)
+              @if ($role->id == 1 or $role->id == 3)
               <th>Action</th>
+              @endif
+              @endforeach
             </tr>
           </tfoot>
         </table>

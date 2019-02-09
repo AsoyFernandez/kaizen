@@ -1,6 +1,6 @@
                                        	{{-- expr --}}
 {!! Form::open(['url' => route('pengaduan.gabungkan'), 'method' => 'post', 'files'=>'true',  'class'=>'form-horizontal', 'id' => 'gabungkan']) !!}
-<a class="btn btn-primary" href="{{ route('pengaduan.create') }}">Tambah</a>
+<a class="btn btn-primary" href="{{ route('pengaduan.create') }}"><i class='fa fa-plus-circle'></i> Tambah</a>
 @php
   $user = Auth::user()->roles;
 @endphp
@@ -9,7 +9,7 @@
 @if (Auth::user()->roles->first()->id == 1 || $key->id == 3)
  <!-- Split button -->
 <div class="btn-group">
-  <button type="button" class="btn btn-primary">Gabungkan</button>
+  <button type="button" class="btn btn-primary"><i class='glyphicon glyphicon-compressed'></i> Gabungkan</button>
   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="caret"></span>
     <span class="sr-only">Toggle Dropdown</span>

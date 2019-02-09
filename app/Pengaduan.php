@@ -43,5 +43,10 @@ class Pengaduan extends Model
 			}
 		}
 		return $status;
+	}
+
+	public function penilaians()
+	{
+		return $this->belongsTo('App\Penilaian', 'penilaian_id');
 	}	
 }

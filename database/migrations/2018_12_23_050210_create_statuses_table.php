@@ -16,10 +16,13 @@ class CreateStatusesTable extends Migration
         Schema::create('statuses', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->smallInteger('pengajuan_id')->unsigned();
+            $table->unsignedTinyInteger('user_id');
             $table->boolean('status')->default(false);
             $table->text('keterangan');
             $table->timestamps();
             $table->foreign('pengajuan_id')->references('id')->on('pengajuans')
+            ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
         });
     }

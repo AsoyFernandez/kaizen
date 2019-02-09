@@ -17,7 +17,7 @@
                 <table class="display responsive nowrap compact example">
                     <thead>
                         <tr>
-                            <th>Kode</th>
+                            <th>Kel. Pengaduan</th>
                             <th>Pelapor</th>
                             <th>Nama Ruangan</th>
                             <th>Kategori</th>
@@ -54,7 +54,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Kode</th>
+                            <th>Kel. Pengaduan</th>
                             <th>Pelapor</th>
                             <th>Nama Ruangan</th>
                             <th>Kategori</th>

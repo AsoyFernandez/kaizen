@@ -11,8 +11,8 @@ $(document).ready(function () {
     $(this).find('.modal-dialog').css({
     	alignContent = 'center',
     	width:'100%',
-                               height:'auto', 
-                              'max-height':'100%'});
+        height:'auto', 
+        'max-height':'100%'});
 	});
 // add selectize to select element
 	$('.js-selectize').selectize({

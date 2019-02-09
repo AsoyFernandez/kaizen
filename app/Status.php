@@ -17,4 +17,9 @@ class Status extends Model
     {
         return $this->hasOne('App\Penilaian');
     }    
+
+    public function users()
+	{
+		return $this->belongsTo('App\User', 'user_id');
+	}
 }

@@ -22,6 +22,11 @@ class CreatePenilaiansTable extends Migration
             $table->foreign('status_id')->references('id')->on('statuses')
             ->onUpdate('cascade')->onDelete('cascade');
         });
+
+        Schema::table('pengaduans', function (Blueprint $table) {
+            $table->unsignedSmallInteger('penilaian_id')->nullable();
+            $table->foreign('penilaian_id')->references('id')->on('penilaians');
+        });
     }
 
     /**

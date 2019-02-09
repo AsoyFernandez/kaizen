@@ -90,7 +90,7 @@ class User extends Authenticatable
         }
 
         if ($str == '') {
-            return 'Bukan Penganggung Jawab';
+            return 'Bukan Penanggung Jawab';
         }
         return $str;
     }
@@ -103,5 +103,9 @@ class User extends Authenticatable
     public function penanganans()
     {
         return $this->hasMany('App\Penanganan');
+    }
+    public function status()
+    {
+        return $this->hasMany('App\Status');
     }
 }

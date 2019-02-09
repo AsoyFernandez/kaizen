@@ -45,7 +45,7 @@
                                         <td>{{ $log->provinsi }}</td>
                                         <td>{{ $log->kota }}</td>
                                         <td>{{ $log->kecamatan }}</td>
-                                        <td><span class="aria-hidden="true" data-toggle="tooltip" title="{{ $log->detail }}">{{ str_limit($log->detail, $limit = 25, $end = '...') }}</span></td>
+                                        <td><a href="#" class="aria-hidden="true" data-toggle="tooltip" title="{{ $log->detail }}">{{ str_limit($log->detail, $limit = 25, $end = '...') }}</a></td>
                                         <td> @include('perusahaan.action')
                                         </td>
                                     </tr>

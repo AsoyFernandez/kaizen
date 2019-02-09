@@ -26,7 +26,10 @@
                         <table id="example" class="display responsive nowrap compact" style="width:100%">
                             <thead>
                                 <tr>
+                                    <th>NIK</th>
                                     <th>Nama</th>
+                                    <th>Nama Pengguna</th>
+                                    <th>HP</th>
                                     <th>Jabatan</th>
                                     <th>Role</th>
                                     <th>Tempat</th>
@@ -36,10 +39,17 @@
                             <tbody>
                                 @forelse ($user as $log)
                                     <tr>
+                                        <td>{{ $log->nik }}</td>
                                         <td>{{ $log->name }}</td>
+                                        <td>{{ $log->username }}</td>
+                                        @if (is_null($log->hp))
+                                        <td>-</td>
+                                        @else
+                                        <td>{{ $log->hp }}</td>
+                                        @endif
                                         <td>{{ $log->jabatan }}</td>
                                         <td>{{ $log->formattedRoles() }}</td>
-                                        <td>{{ $log->formattedTempats() }}</td>
+                                        <td><a href="#" data-toggle="tooltip" data-placement="bottom" title="{{ $log->formattedTempats() }}">{{ str_limit($log->formattedTempats(), $limit = 22, $end = '...') }}</a></td>
                                         <td>@include('members.action')</td>
                                     </tr>
                                 @empty
@@ -50,7 +60,10 @@
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <th>NIK</th>
                                     <th>Nama</th>
+                                    <th>Nama Pengguna</th>
+                                    <th>HP</th>
                                     <th>Jabatan</th>
                                     <th>Role</th>
                                     <th>Tempat</th>

@@ -26,7 +26,7 @@
                          <table id="example" class="table table-condensed table-striped">
                             <thead>
                                 <tr>
-                                    <th>Kode</th>
+                                    <th>Kel. Pengaduan</th>
                                     @if (Request::route()->getName() == 'semua.penanganan')
                                         <th>Petugas</th>
                                     @endif
@@ -58,7 +58,7 @@
                                     <td>{{ $log->duplikats->pengaduans->first()->users->name }}</td>
                                     <td>{{ $log->duplikats->pengaduans->first()->tempats->nama }}</td>
                                     <td>{{ $log->duplikats->pengaduans->first()->kategoris->nama }}</td>
-                                    <td><a href="{{ route('lampiran.unduh', $log->id) }}" class="btn btn-primary btn-sm glyphicon glyphicon-save">Unduh</a></td>
+                                    <td><a href="{{ route('lampiran.unduh', $log->id) }}" class="btn btn-primary btn-xs"><span class=" glyphicon glyphicon-save" aria-hidden="true" data-toggle="tooltip" title="Unduh Lampiran"></span></a></td>
 {{-- Status --}}
                                     @if(App\Pengajuan::where('penanganan_id',$log->id)->first() != null && !isset(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status))
                                         <td>Menunggu konfirmasi
@@ -99,7 +99,7 @@
                                         <td>{{ $log->duplikats->pengaduans->first()->users->name }}</td>
                                         <td>{{ $log->duplikats->pengaduans->first()->tempats->nama }}</td>
                                         <td>{{ $log->duplikats->pengaduans->first()->kategoris->nama }}</td>
-                                        <td><a href="{{ route('lampiran.unduh', $log->id) }}" class="btn btn-primary btn-sm glyphicon glyphicon-save">Unduh</a></td>
+                                        <td><a href="{{ route('lampiran.unduh', $log->id) }}" class="btn btn-primary btn-xs"><span class=" glyphicon glyphicon-save" aria-hidden="true" data-toggle="tooltip" title="Unduh Lampiran"></span></a></td>
                                         @include('penanganan.status')
                                     </tr>
                                     @endif
@@ -116,7 +116,7 @@
                                                 <td>{{ $log->duplikats->pengaduans->first()->users->name }}</td>
                                                 <td>{{ $log->duplikats->pengaduans->first()->tempats->nama }}</td>
                                                 <td>{{ $log->duplikats->pengaduans->first()->kategoris->nama }}</td>
-                                                <td><a href="{{ route('lampiran.unduh', $log->id) }}" class="btn btn-primary btn-sm glyphicon glyphicon-save">Unduh</a></td>
+                                                <td><a href="{{ route('lampiran.unduh', $log->id) }}" class="btn btn-primary btn-xs"><span class=" glyphicon glyphicon-save" aria-hidden="true" data-toggle="tooltip" title="Unduh Lampiran"></span></a></td>
                                                 @include('penanganan.status')
                                             </tr> 
                                             @endif
@@ -135,7 +135,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Kode</th>
+                                    <th>Kel. Pengaduan</th>
                                     @if (Request::route()->getName() == 'semua.penanganan')
                                         <th>Petugas</th>
                                     @endif

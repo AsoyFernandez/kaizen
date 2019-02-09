@@ -8,7 +8,8 @@
                     @if ($log->duplikats->lokasi_id == $el->id)
                         
                     <tr>
-                        <td>GA{{ $log->duplikats->id }}</td>
+                        <td>GA{{ $log->duplikats->id }} <a href="#myModal" id="openBtn" data-toggle="modal" data-target="{{ '#' . $log->duplikats->id . 'modal' }}"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
+                        @include('pengajuan.seluruhPengaduan', ['object' => $log])</td>
                         <td>{{ $log->users->name }}</td>
                         <td>{{ $log->duplikats->pengaduans->first()->tempats->nama }}</td>
                         <td>{{ $log->duplikats->pengaduans->first()->kategoris->nama }}</td>
@@ -28,11 +29,7 @@
 
                         @if (!isset($log->status))
 
-                        @include('partials.pengawas_tolak', ['object' => $log])
-                            <td><a data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}" class="btn btn-xs btn-primary">Tolak</a>
-                         <a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}" class="btn btn-xs btn-primary">Terima</a></td>
-                         
-                    @include('partials.pengawas_terima', ['object' => $log])
+                        @include('pengajuan.action')
                         @endif
                     </tr>
                     @endif
@@ -45,7 +42,8 @@
     @foreach (Auth::user()->roles as $role)
         @if ($role->id == 1)
             <tr>
-                <td>GA{{ $log->duplikats->id }}</td>
+                <td>GA{{ $log->duplikats->id }} <a href="#myModal" id="openBtn" data-toggle="modal" data-target="{{ '#' . $log->duplikats->id . 'modal' }}"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
+                        @include('pengajuan.seluruhPengaduan', ['object' => $log])</td>
                 <td>{{ $log->users->name }}</td>
                 <td>{{ $log->duplikats->pengaduans->first()->tempats->nama }}</td>
                 <td>{{ $log->duplikats->pengaduans->first()->kategoris->nama }}</td>
@@ -62,15 +60,7 @@
                     <td><a class="btn btn-primary disabled">Diterima</a></td>
                     
                 @endif
-
-                @if (!isset($log->status))
-
-                @include('partials.pengawas_tolak', ['object' => $log])
-                    <td><a data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}" class="btn btn-xs btn-primary">Tolak</a>
-                 <a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}" class="btn btn-xs btn-primary">Terima</a></td>
-                 
-            @include('partials.pengawas_terima', ['object' => $log])
-                @endif
+                <td>@include('pengajuan.view') </td> 
             </tr>
         @endif
     @endforeach
