@@ -8,6 +8,7 @@
 	@if (!is_null($log->pengajuans->last()->status) && $log->pengajuans->last()->status->status == 1)
 		<td>Diterima</td>
 	@endif
+	
 @endif
 
 @if (Request::route()->getName() == 'pengajuan.show')

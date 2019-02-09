@@ -16,16 +16,7 @@
                         <td><a href="#" data-toggle="tooltip" data-placement="bottom" title="{{ $log->duplikats->deskripsi }}">{{ $log->duplikats->deskripsi }}</a></td>
 
                         <td>{{ $log->duplikats->pengaduans->first()->created_at->format('d/m/Y H:i') }}</td>
-                        <td>-</td>
-
-                        @if (isset($log->status) && $log->status->status == 0)
-                            <td><a class="btn btn-primary disabled">Ditolak</a></td>
-                        @endif
-
-                        @if (isset($log->status) && $log->status->status == 1)
-                            <td><a class="btn btn-primary disabled">Diterima</a></td>
-                            
-                        @endif
+                        @include('pengajuan.status')
 
                         @if (!isset($log->status))
 
@@ -50,16 +41,9 @@
                 <td><a href="#" data-toggle="tooltip" data-placement="bottom" title="{{ $log->duplikats->deskripsi }}">{{ $log->duplikats->deskripsi }}</a></td>
 
                 <td>{{ $log->duplikats->pengaduans->first()->created_at->format('d/m/Y H:i') }}</td>
-                <td>-</td>
+                
+                @include('pengajuan.status')
 
-                @if (isset($log->status) && $log->status->status == 0)
-                    <td><a class="btn btn-primary disabled">Ditolak</a></td>
-                @endif
-
-                @if (isset($log->status) && $log->status->status == 1)
-                    <td><a class="btn btn-primary disabled">Diterima</a></td>
-                    
-                @endif
                 <td>@include('pengajuan.view') </td> 
             </tr>
         @endif
