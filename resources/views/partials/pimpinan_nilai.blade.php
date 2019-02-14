@@ -10,6 +10,7 @@
               {!! Form::open(['url' => route('penilaian.store'), 'method' => 'post', 'files'=>'true',  'class'=>'form-horizontal']) !!}
 
                 <input type="hidden" id="status_id" name="status_id" value="{{ $object->id }}">
+                <input type="hidden" id="duplikat" name="duplikat" value="{{ $object->pengajuans->penanganans->duplikats->id }}">
 
                 <div class="form-group{{ $errors->has('nilai') ? ' has-error' : '' }} row">
                   <div class="col-md-12 col-md-offset-2">

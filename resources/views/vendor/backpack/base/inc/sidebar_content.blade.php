@@ -1,10 +1,8 @@
 <!-- This file is used to store sidebar items, starting with Backpack\Base 0.9.0 -->
         <li><a href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
-@php
-    $user = Auth::user()->roles;
-@endphp
-@foreach ($user as $role)
-    @if ($role->id == 1)
+
+@if (Auth::user()->hasRole([1,3]))
+
         <li class="treeview">
             <a href="#"><i class='fa fa-institution'></i> <span>{{ trans('Perusahaan') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
             <ul class="treeview-menu">
@@ -21,8 +19,7 @@
                 
             </ul>
         </li> 
-    @endif
-@endforeach
+@endif
 
 @php
         $user = Auth::user()->roles;
@@ -60,69 +57,65 @@
     @endif</span></span>  <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
         <li><a href="{{ route('pengaduan.pengaduanku') }}"><i class='fa fa-plus-circle'></i> <span>{{ trans('Buat') }}</span></a></li>
-        @php
-            $user = Auth::user()->roles;
-        @endphp
-        @foreach ($user as $role)
-        @if ($role->id == 1 || $role->id == 3)
-        
+        @if (Auth::user()->hasRole([1,3]))
         <li><a href="{{ route('pengaduan.semua_pengaduan') }}"><i class='fa fa-newspaper-o'></i> <span>{{ trans('Pengaduan') }}</span></a></li>
 
         <li><a href="{{ route('pengaduan.index') }}"><i class='glyphicon glyphicon-compressed'></i> <span>{{ trans('Gabungkan') }}</span><span class="badge">{{ $hitung }}</span></a></li>
-        
         @endif
-        @if ($role->id == 4)
+        
+        @if (Auth::user()->hasRole([4]))
             <li><a href="{{ route('pengaduan.semua_pengaduan') }}"><i class='fa fa-newspaper-o'></i> <span>{{ trans('Pengaduan') }}</span>
             @if ($jumlah != 0)
                 <span class="badge"> {{ $jumlah }}</span>
             @endif
             </a></li>
         @endif
-        @endforeach
 
     </ul>
 </li>
 
-@foreach (Auth::user()->roles as $penanganan)
-    @if ($penanganan->id == 3 or $penanganan->id == 4 or $penanganan->id == 1)
+@if (Auth::user()->hasRole([1,3,4]))
     <li class="treeview">  
         <a href="#"><i class='fa fa-sign-language'></i> <span>{{ trans('Penanganan') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
             <ul class="treeview-menu">
-            @if ($penanganan->id == 3 or $penanganan->id == 4)
+            @if (Auth::user()->hasRole([3,4]))
             <li><a href="{{ route('penanganan.index') }}"><i class='fa fa-cube'></i> <span>{{ trans('Penanganan Ku') }}</span></a></li>
             @endif
-            @if ($penanganan->id == 3 or $penanganan->id == 1)
+            @if (Auth::user()->hasRole([1,3]))
                 <li><a href="{{ route('semua.penanganan') }}"><i class='fa fa-cubes'></i> <span>{{ trans('Semua Penanganan') }}</span></a></li>
             @endif
             </ul>
         </a>
     </li>
-    @endif
-@endforeach
+@endif
 
 
-@foreach (Auth::user()->roles as $pengajuan)
-@if ($pengajuan->id == 4 or $pengajuan->id == 3&&2 or $pengajuan->id == 1 )
+@if (Auth::user()->hasRole([1,2,3,4]))
 <li class="treeview">  
     <a href="#"><i class='fa fa-envelope'></i> <span>{{ trans('Pengajuan') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
+            @if (Auth::user()->hasRole([3,4]))
             <li><a href="{{ route('pengajuan.index') }}"><i class='fa fa-recycle'></i> <span>{{ trans('Pengajuan Ku') }}</span></a>
                 </li>
-            @if ($pengajuan->id == 1 or $pengajuan->id == 3 or $pengajuan->id == 2)
-                <li><a href="{{ route('semua.pengajuan') }}"><i class='fa fa-object-group'></i> <span>{{ trans('Semua Pengajuan') }}</span></a>
+            @endif
+            @if (Auth::user()->hasRole([1,2,3]))
+            <li><a href="{{ route('pengajuan.semua') }}"><i class='fa fa-object-group'></i> <span>{{ trans('Semua Pengajuan') }}</span></a>
                 </li>
             @endif
         </ul>
     </a>
 </li>
-    @endif
-@endforeach
+@endif
 
+@if (Auth::user()->hasRole([1,2]))
 <li class="treeview">  
     <a href="#"><i class='fa fa-thumbs-o-up'></i> <span>{{ trans('Penilaian') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
+        @if (Auth::user()->hasRole([2]))
         <li><a href="{{ route('penilaian.index') }}"><i class='fa fa-star-half-empty'></i> <span>{{ trans('Penilaian') }}</span></a></li>
-        <li><a href="{{ route('penilaian.index') }}"><i class='fa fa-trophy'></i> <span>{{ trans('Peringkat') }}</span></a></li>     
+        @endif
+        <li><a href="{{ route('penilaian.peringkat') }}"><i class='fa fa-trophy'></i> <span>{{ trans('Peringkat') }}</span></a></li>     
         </ul>
     </a>
 </li>
+@endif

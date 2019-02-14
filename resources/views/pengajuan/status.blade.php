@@ -1,4 +1,4 @@
-@if (Request::route()->getName() == 'semua.pengajuan' or Request::route()->getName() == 'pengajuan.index')
+@if (Request::route()->getName() == 'pengajuan.semua' or Request::route()->getName() == 'pengajuan.index')
 	@if ($log->pengajuans->last()->status == null)
 		<td>-</td>
 	@endif

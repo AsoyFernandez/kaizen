@@ -21,6 +21,12 @@ class PengaduanController extends Controller
      * Display a listing of the resource.
      *
      */
+    public function unduh($id){
+        $duplikat = Duplikat::all();
+        return view('pengaduan.unduh', compact('duplikat'));
+    }
+
+
     public function pengaduanku(){
         $user = Auth::user()->id;
         $pengaduan = Pengaduan::where('user_id', $user)->get();
@@ -141,7 +147,7 @@ class PengaduanController extends Controller
             "message"=>"Berhasil menyimpan pengaduan"
             ]);
                         
-            return redirect()->route('pengaduan.index');
+            return redirect()->route('pengaduan.pengaduanku');
         }
 
         public function merge(Request $request)

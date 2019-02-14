@@ -27,6 +27,10 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses' => 'PengaduanController@pengaduanku'
 	]);
 
+	Route::get('/pengaduan/unduh/{id}',[
+	    'as' => 'pengaduan.unduh',
+		'uses' => 'PengaduanController@unduh'
+	]);
 	Route::get('/pengaduan/pengaduan/full',[
 	    'as' => 'pengaduan.semua_pengaduan',
 		'uses' => 'PengaduanController@semuapengaduan'
@@ -97,7 +101,7 @@ Route::group(['middleware' => 'auth'], function () {
 		]);
 
 	Route::get('/pengajuan/semua_pengajuan',[
-			'as' => 'semua.pengajuan',
+			'as' => 'pengajuan.semua',
 			'uses' => 'PengajuanController@semua_pengajuan'
 		]);
 	Route::resource('pengajuan', 'PengajuanController');
@@ -111,6 +115,12 @@ Route::group(['middleware' => 'auth'], function () {
 			'as' => 'pengajuan.terima',
 			'uses' => 'PengajuanController@terima'
 		]);
+	
+	Route::get('/penilaian/peringkat',[
+			'as' => 'penilaian.peringkat',
+			'uses' => 'PenilaianController@peringkat'
+		]);
+	
 	Route::resource('penilaian', 'PenilaianController');
 
 });

@@ -7,6 +7,7 @@ use App\Pengajuan;
 use App\Penanganan;
 use App\Status;
 use Session;
+use Auth;
 class PengajuanController extends Controller
 {
     /**
@@ -27,7 +28,7 @@ class PengajuanController extends Controller
         $pengajuan = Pengajuan::all();
         $penanganan = Penanganan::all();
         $status = Status::all();
-        return view('pengajuan.index', compact('pengajuan', 'status', 'penanganan'));
+        return view('pengajuan.semua_pengajuan', compact('pengajuan', 'status', 'penanganan'));
     }
 
     /**
@@ -47,14 +48,15 @@ class PengajuanController extends Controller
         Status::create([
             'pengajuan_id'=> $pengajuan->id,
             'status' => 0,
-            'keterangan' => $request->keterangan
+            'keterangan' => $request->keterangan,
+            'user_id' => Auth::user()->id,
         ]);
 
         Session::flash("flash_notification", [
             "level"=>"success",
             "message"=>"Berhasil menolak pengajuan"
             ]);
-            return redirect()->route('pengajuan.index');
+            return redirect()->route('pengajuan.semua');
     }
 
     public function terima(Request $request, $id)
@@ -63,14 +65,15 @@ class PengajuanController extends Controller
         Status::create([
             'pengajuan_id'=> $pengajuan->id,
             'status' => 1,
-            'keterangan' => $request->keterangan
+            'keterangan' => $request->keterangan,
+            'user_id' => Auth::user()->id,
         ]);
 
         Session::flash("flash_notification", [
             "level"=>"success",
             "message"=>"Pengajuan diterima"
             ]);
-            return redirect()->route('pengajuan.index');
+            return redirect()->route('pengajuan.semua');
     }    
     
 

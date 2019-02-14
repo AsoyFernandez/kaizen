@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Status;
 use App\Penilaian;
+use App\Pengaduan;
+use App\Duplikat;
 use Session;
+use App\User;
 class PenilaianController extends Controller
 {
     /**
@@ -13,6 +16,13 @@ class PenilaianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function peringkat()
+    {
+        $user = User::all();
+        $status = Status::where('status', 1)->get();
+        return view('penilaian.peringkat', compact('status', 'user'));
+    }
+
     public function index()
     {
         $status = Status::where('status', 1)->get();
@@ -47,7 +57,12 @@ class PenilaianController extends Controller
             'status_id' => $request->status_id,
             'nilai' => $request->nilai,
             'keterangan' => $request->keterangan
-        ]) ;
+        ]);
+
+        $pengaduan = Duplikat::find($request->duplikat);
+        $pengaduan->update([
+            'nilai_id' => $penilaian->id
+        ]);
 
          Session::flash("flash_notification", [
             "level"=>"success",
@@ -66,7 +81,8 @@ class PenilaianController extends Controller
      */
     public function show($id)
     {
-        //
+        $status = Status::find($id);
+        return view('penilaian.show', compact('status'));
     }
 
     /**

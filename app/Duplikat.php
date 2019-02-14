@@ -7,7 +7,12 @@ use Auth;
 
 class Duplikat extends Model
 {
-    protected $fillable = ['deskripsi', 'lokasi_id'];
+    protected $fillable = ['deskripsi', 'lokasi_id', 'nilai_id'];
+
+    public function penilaian()
+    {
+    	return $this->belongsTo(Penilaian::class, 'nilai_id');
+    }
 
     public function pengaduans()
 	{

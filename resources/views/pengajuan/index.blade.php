@@ -42,8 +42,7 @@
                             <tbody>
                                 @forelse ($penanganan as $log)
                                 @include('pengajuan.pengajuanku')
-                                {{-- Pengawas --}}
-                                @include('pengajuan.pengajuankita')
+                                {{-- Pengawas --}} 
                                 {{-- Pengawas --}}
                                 @empty
                                 @endforelse

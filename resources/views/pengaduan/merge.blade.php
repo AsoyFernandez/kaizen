@@ -8,12 +8,12 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('pengaduan.index') }}">Pengaduan</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Pengaduan</li>
+                <li class="breadcrumb-item active" aria-current="page">Kelompok Pengaduan</li>
               </ol>
             </nav>
             <div class="box box-solid box-default">
                 <div class="box-header with-border">
-                    <h2 class="box-title">{{ __('Pengaduan') }}</h2>
+                    <h2 class="box-title">{{ __('Kelompok Pengaduan') }}</h2>
                     <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fa fa-minus"></i></button>

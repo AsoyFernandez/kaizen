@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
 {
-	protected $fillable = [ 'pengajuan_id','status','keterangan'];
+	protected $fillable = [ 'pengajuan_id','user_id','status','keterangan'];
 
 	public function pengajuans()
 	{

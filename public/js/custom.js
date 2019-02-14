@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    $('.js-selectize').selectize({
+    sortField: 'text',
+    });
 	//dataTables
 	var table = $('#myModal').DataTable( {
         rowReorder: {
@@ -9,15 +12,13 @@ $(document).ready(function () {
 
     $('.myModal').on('shown.bs.modal', function () {
     $(this).find('.modal-dialog').css({
-    	alignContent = 'center',
+    	alignContent : 'center',
     	width:'100%',
         height:'auto', 
         'max-height':'100%'});
 	});
 // add selectize to select element
-	$('.js-selectize').selectize({
-	sortField: 'text',
-	});
+	
 
 	$(".delete").on("submit", function(){
         return confirm("Apakah anda yakin?");

@@ -7,7 +7,7 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('pengaduan.index') }}">Pengaduan</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('pengaduan.pengaduanku') }}">Pengaduan</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Buat Pengaduan</li>
               </ol>
             </nav>

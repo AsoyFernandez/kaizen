@@ -108,4 +108,23 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Status');
     }
+    public function hasRole($params)
+    {
+        foreach ($this->roles as $role) {
+            if (in_array($role->id, $params)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function rating()
+    {
+        $return = [];
+        foreach ($this->penanganans as $penanganan) {
+            array_push($return, $penanganan->duplikats->penilaian);
+        }
+        $collect = collect($return);
+        return ($collect->sum('nilai') / $collect->count());
+    }
 }

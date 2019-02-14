@@ -1,6 +1,6 @@
-<!-- This file is used to store topbar (right) items -->
+{{-- <!-- This file is used to store topbar (right) items -->
 
-{{--<li class="">
+<li class="">
     <a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">
         <i class="fa fa-cog"></i> Direct Link
     </a>
@@ -81,4 +81,5 @@
         </li>
         <li class="footer"><a href="#">See All Messages</a></li>
     </ul>
-</li>--}}
+</li>
+ --}}

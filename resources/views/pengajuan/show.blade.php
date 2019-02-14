@@ -7,7 +7,12 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
+                @if (Auth::user()->hasRole([4]))
                 <li class="breadcrumb-item" aria-current="page"><a href="{{ route('pengajuan.index') }}">Pengajuan</a></li>
+                @endif
+                @if (Auth::user()->hasRole([1,3]))
+                <li class="breadcrumb-item" aria-current="page"><a href="{{ route('pengajuan.semua') }}">Pengajuan</a></li>
+                @endif
                 <li class="breadcrumb-item active" aria-current="page">Detail Pengajuan Pada Kelompok Pengaduan GA{{ $penanganan->duplikats->id }}</li>
             </ol>
         </nav>
@@ -34,9 +39,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $pijet = 1;
+                                @endphp
                                 @foreach ($penanganan->pengajuans as $e)
                                 <tr>
-                                        <td>{{ $e->id }}</td>
+                                    <td>{{ $pijet }}</td>
                                     {{-- <td>
                                         @if (isset($e->foto) && $e->foto)
                                             <img class="img-rounded img-thumbnail" style="width: 10rem; height: 10rem" src="{!!asset('img/'.$e->foto)!!}">
@@ -48,6 +56,9 @@
                                     @include('pengajuan.status')
                                     @include('pengajuan.action')
                                 </tr>
+                                @php
+                                    $pijet ++;
+                                @endphp
                                 @endforeach
                             </tbody>
                             <tfoot>

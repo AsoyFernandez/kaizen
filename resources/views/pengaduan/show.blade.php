@@ -1,4 +1,4 @@
-@extends('vendor.backpack.base.layout')
+{{-- @extends('vendor.backpack.base.layout')
 
 @section('content')
 <div class="container">
@@ -88,3 +88,4 @@
     </div>
 </div>
 @endsection
+ --}}

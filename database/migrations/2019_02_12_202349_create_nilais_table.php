@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCobasTable extends Migration
+class CreateNilaisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateCobasTable extends Migration
      */
     public function up()
     {
-        Schema::create('cobas', function (Blueprint $table) {
-            $table->tinyIncrements('id', 2)->change();
-            $table->timestamps();
+        Schema::table('duplikats', function (Blueprint $table) {
+            $table->unsignedSmallInteger('nilai_id')->nullable();
+            $table->foreign('nilai_id')->references('id')->on('penilaians')->onUpdate('cascade')->onDelete('cascade');;
         });
     }
 
@@ -26,6 +26,6 @@ class CreateCobasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cobas');
+        Schema::dropIfExists('nilais');
     }
 }

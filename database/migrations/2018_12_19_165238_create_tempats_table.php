@@ -24,7 +24,7 @@ class CreateTempatsTable extends Migration
         });
         Schema::table('tempats', function (Blueprint $table) {
             $table->unsignedTinyInteger('tempat_id')->nullable();
-            $table->foreign('tempat_id')->references('id')->on('tempats');
+            $table->foreign('tempat_id')->references('id')->on('tempats')->onUpdate('cascade')->onDelete('cascade');;
         });
     }
 

@@ -15,7 +15,7 @@ class CreatePengaduansTable extends Migration
     {
         Schema::create('pengaduans', function (Blueprint $table) {
             $table->smallIncrements('id');
-            $table->tinyInteger('user_id')->unsigned();
+            $table->smallInteger('user_id')->unsigned();
             $table->unsignedTinyInteger('lokasi_id')->nullable();
             $table->unsignedTinyInteger('kategori_id')->nullable();
             $table->string('foto', 36)->nullable();

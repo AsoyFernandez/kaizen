@@ -27,23 +27,36 @@
                             <thead>
                                 <tr>
                                     <td>Petugas</td>
-                                    <td>Nama Ruangan</td>
-                                    <td>Deskripsi</td>
+                                    <td>Total Pengaduan</td>
+                                    <td>Nilai Akhir</td>
                                     <td>Action</td>
                                 </tr>
-
                             </thead>
                             <tbody>
-                                    @forelse ($status as $log)
-                                    
-                                <tr>
-                                    <td>{{ $log->pengajuans->penanganans->users->name }}</td>
-                                    <td>{{ $log->pengajuans->penanganans->duplikats->pengaduans->first()->tempats->nama }}</td>
-                                    <td>{{ $log->pengajuans->deskripsi }}</td>
-                                    @include('penilaian.action')
-                                    @empty
-                                </tr>
-                                    @endforelse
+                                @foreach ($user as $e)
+                                    @if ($e->penanganans->count() != 0)
+                                        <tr>
+                                            <td>{{ $e->name }}</td>
+                                            @php
+                                                $count = 0;
+                                            @endphp
+                                            @foreach ($e->penanganans as $penanganan)
+                                            @php
+                                            if (!is_null($penanganan->duplikat_id)) {
+                                             if (!is_null($penanganan->duplikats->nilai_id)) {
+                                                $count ++;
+                                             }
+                                            }
+                                            @endphp
+                                            @endforeach
+                                            <td>{{ $count }}</td>
+                                            @php
+                                                $count = 0;
+                                            @endphp
+                                            <td>{{ $e->rating() }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

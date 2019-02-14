@@ -23,9 +23,9 @@ class CreatePenilaiansTable extends Migration
             ->onUpdate('cascade')->onDelete('cascade');
         });
 
-        Schema::table('pengaduans', function (Blueprint $table) {
-            $table->unsignedSmallInteger('penilaian_id')->nullable();
-            $table->foreign('penilaian_id')->references('id')->on('penilaians');
+        Schema::table('duplikats', function (Blueprint $table) {
+            $table->unsignedSmallInteger('nilai_id')->nullable();
+            $table->foreign('nilai_id')->references('id')->on('penilaians')->onUpdate('cascade')->onDelete('cascade');;
         });
     }
 

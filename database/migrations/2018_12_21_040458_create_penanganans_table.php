@@ -15,7 +15,7 @@ class CreatePenanganansTable extends Migration
     {
         Schema::create('penanganans', function (Blueprint $table) {
             $table->smallIncrements('id');
-            $table->tinyInteger('user_id')->unsigned();
+            $table->smallInteger('user_id')->unsigned();
             $table->smallInteger('duplikat_id')->unsigned();
             $table->string('lampiran', 36);
             $table->timestamps();
