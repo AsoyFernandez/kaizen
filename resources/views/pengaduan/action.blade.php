@@ -2,11 +2,11 @@
     'method' => 'delete',  'class'=>'delete form-horizontal']) !!}
     <a class="btn btn-primary btn-xs" href="{{ route('pengaduan.edit', $log->id) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true" data-toggle="tooltip" title="Edit"></span></a>
     <button type="submit" class="btn btn-warning btn-link btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="tooltip" title="Hapus"></span></button>
-    @foreach ($log->duplikats as $el)
-    	@if ($el->nilai_id != null)
+    @if (!is_null($log->duplikats))
+    	@if ($log->duplikats->nilai_id != null)
     		<a class="btn btn-primary btn-xs" href="{{ route('pengaduan.unduh', $log->id) }}"><span class=" glyphicon glyphicon-save" aria-hidden="true" data-toggle="tooltip" title="Unduh Laporan"></span></a>
     	@endif
-    @endforeach
+    @endif
     <a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target={{ '#' . $log->id . '-modal' }}><span class=" glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Lihat"></span></a>
 
 	<!-- Modal -->

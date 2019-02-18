@@ -27,9 +27,8 @@
         $hitung = 0;
         foreach ($user as $key) {
             if ($key->id == 1) {
-                # code...
                 foreach (App\Pengaduan::all() as $pengaduan) {
-                    if ($pengaduan->duplikats->count() == 0) {
+                    if($pengaduan->duplikats == null){
                         $hitung ++;
                     }
                 }
@@ -37,13 +36,29 @@
                 foreach ($tempat as $key) {
                      foreach ($key->child as $log) {
                          foreach (App\Pengaduan::all() as $pengaduan) {
-                            if ($pengaduan->lokasi_id == $log->id && $pengaduan->duplikats->count() == 0) {
+                            if ($pengaduan->lokasi_id == $log->id && $pengaduan->duplikats == null) {
                                 $hitung ++;
                             }
                         }
                     }
                  }
-            } 
+                # code...
+                // foreach (App\Pengaduan::all() as $pengaduan) {
+                //     if ($pengaduan->duplikats->count() == 0) {
+                //         $hitung ++;
+                //     }
+                // }
+            // }elseif ($key->id == 3) {
+            //     foreach ($tempat as $key) {
+            //          foreach ($key->child as $log) {
+            //              foreach (App\Pengaduan::all() as $pengaduan) {
+            //                 if ($pengaduan->lokasi_id == $log->id && $pengaduan->duplikats->count() == 0) {
+            //                     $hitung ++;
+            //                 }
+            //             }
+            //         }
+            //      }
+         } 
         }
 @endphp
 

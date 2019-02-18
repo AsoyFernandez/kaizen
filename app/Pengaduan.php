@@ -25,23 +25,21 @@ class Pengaduan extends Model
 
 	public function duplikats()
 	{
-		return $this->belongsToMany('App\Duplikat');
+		return $this->belongsTo('App\Duplikat', 'duplikat_id');
 	}
 
 	public function status()
 	{
 		$status = 'Belum Ditinjau';
 		
-		if ($this->duplikats->count() != 0) {
-			foreach ($this->duplikats as $element) {
-				if (is_null($element->penanganans)) {
+		if ($this->duplikats != null) {
+				if (is_null($this->duplikats->penanganans)) {
 					$status = 'Belum Ditangani';
 				}
-				if (!is_null($element->penanganans)) {
+				if (!is_null($this->duplikats->penanganans)) {
 					$status = 'Sedang Ditangani';
 				}
 			}
-		}
 		return $status;
 	}
 

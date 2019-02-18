@@ -27,7 +27,7 @@
         </li>
 
         <li class="active">
-            {{ trans('backpack::base.update_account_info') }}
+            {{ trans('Update Akun') }}
         </li>
 
     </ol>
@@ -77,7 +77,7 @@
 
                     <div class="form-group">
                         @php
-                            $label = config('backpack.base.authentication_column_name');
+                            $label = trans('Nama Pengguna');
                             $field = backpack_authentication_column();
                         @endphp
                         <label class="required">{{ $label }}</label>
@@ -94,8 +94,8 @@
                     </div>
 
                     <div class="form-group m-b-0">
-                        <button type="submit" class="btn btn-success"><span class="ladda-label"><i class="fa fa-save"></i> {{ trans('backpack::base.save') }}</span></button>
-                        <a href="{{ backpack_url() }}" class="btn btn-default"><span class="ladda-label">{{ trans('backpack::base.cancel') }}</span></a>
+                        <button type="submit" class="btn btn-success"><span class="ladda-label"><i class="fa fa-save"></i> {{ trans('Simpan') }}</span></button>
+                        <a href="{{ backpack_url() }}" class="btn btn-default"><span class="ladda-label">{{ trans('Batal') }}</span></a>
                     </div>
 
                 </div>

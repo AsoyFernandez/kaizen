@@ -35,26 +35,31 @@
                             <tbody>
                                 @foreach ($user as $e)
                                     @if ($e->penanganans->count() != 0)
-                                        <tr>
-                                            <td>{{ $e->name }}</td>
-                                            @php
-                                                $count = 0;
-                                            @endphp
-                                            @foreach ($e->penanganans as $penanganan)
-                                            @php
-                                            if (!is_null($penanganan->duplikat_id)) {
-                                             if (!is_null($penanganan->duplikats->nilai_id)) {
-                                                $count ++;
-                                             }
-                                            }
-                                            @endphp
-                                            @endforeach
-                                            <td>{{ $count }}</td>
-                                            @php
-                                                $count = 0;
-                                            @endphp
-                                            <td>{{ $e->rating() }}</td>
-                                        </tr>
+                                    @foreach ($e->penanganans as $el)
+                                        @if ($el->duplikats->penilaian != null)
+                                            <tr>
+                                                <td>{{ $e->name }}</td>
+                                                @php
+                                                    $count = 0;
+                                                @endphp
+                                                @foreach ($e->penanganans as $penanganan)
+                                                @php
+                                                if (!is_null($penanganan->duplikat_id)) {
+                                                 if (!is_null($penanganan->duplikats->nilai_id)) {
+                                                    $count ++;
+                                                 }
+                                                }
+                                                @endphp
+                                                @endforeach
+                                                <td>{{ $count }}</td>
+                                                @php
+                                                    $count = 0;
+                                                @endphp
+                                                <td>{{ $e->rating() }}</td>
+                                                <td></td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                     @endif
                                 @endforeach
                             </tbody>

@@ -106,7 +106,8 @@
                                                 @if (!isset($log->penanganans))
                                                     @if ($log->pengaduans->first()->lokasi_id == $lokasi->id)
                                                         <tr>  
-                                                            <td>GA{{ $log->id }}</td>
+                                                            <td>GA{{ $log->id }}<a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}""><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
+                                        @include('partials.pengaduan_users', ['object' => $log])</td>
                                                             </td>
                                                             <td>{{ $log->pengaduans->first()->users->name }}</td>
                                                             <td>

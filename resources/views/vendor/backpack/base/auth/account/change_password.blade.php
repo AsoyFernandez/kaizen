@@ -27,7 +27,7 @@
         </li>
 
         <li class="active">
-            {{ trans('backpack::base.change_password') }}
+            {{ trans('Ganti Password') }}
         </li>
 
     </ol>
@@ -68,7 +68,7 @@
 
                     <div class="form-group">
                         @php
-                            $label = trans('backpack::base.old_password');
+                            $label = trans('Password Lama');
                             $field = 'old_password';
                         @endphp
                         <label class="required">{{ $label }}</label>
@@ -77,7 +77,7 @@
 
                     <div class="form-group">
                         @php
-                            $label = trans('backpack::base.new_password');
+                            $label = trans('Password Baru');
                             $field = 'new_password';
                         @endphp
                         <label class="required">{{ $label }}</label>
@@ -86,7 +86,7 @@
 
                     <div class="form-group">
                         @php
-                            $label = trans('backpack::base.confirm_password');
+                            $label = trans('Konfirmasi Password');
                             $field = 'confirm_password';
                         @endphp
                         <label class="required">{{ $label }}</label>
@@ -95,8 +95,8 @@
 
                     <div class="form-group m-b-0">
 
-                        <button type="submit" class="btn btn-success"><span class="ladda-label"><i class="fa fa-save"></i> {{ trans('backpack::base.change_password') }}</span></button>
-                        <a href="{{ backpack_url() }}" class="btn btn-default"><span class="ladda-label">{{ trans('backpack::base.cancel') }}</span></a>
+                        <button type="submit" class="btn btn-success"><span class="ladda-label"><i class="fa fa-save"></i> {{ trans('Simpan') }}</span></button>
+                        <a href="{{ backpack_url() }}" class="btn btn-default"><span class="ladda-label">{{ trans('Batal') }}</span></a>
 
                     </div>
 

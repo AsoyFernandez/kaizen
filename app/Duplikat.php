@@ -16,7 +16,7 @@ class Duplikat extends Model
 
     public function pengaduans()
 	{
-		return $this->belongsToMany('App\Pengaduan');
+		return $this->hasMany('App\Pengaduan');
 	}
 
 	public function penanganans()
@@ -29,6 +29,9 @@ class Duplikat extends Model
 		$return = [];
 		$duplikats = Duplikat::orderBy('created_at', 'desc')->get();
 		$lokasi = Auth::user()->tempats()->pluck('id')->all();
+
+
+
 		foreach ($duplikats as $duplikat) {
 			if (is_null($duplikat->penanganans)) {
 				if (in_array($duplikat->lokasi_id, $lokasi)) {

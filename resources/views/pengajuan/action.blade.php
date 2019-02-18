@@ -3,15 +3,7 @@
     <td>
     	<a href="{{ route('pengajuan.show', $log->id) }}" class="btn btn-primary btn-xs"><span class=" glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Lihat"></span></a>
     	@if (Auth::user()->hasRole([3]))
-	    	@if (!is_null($log->pengajuans->last()->status))
-	    	<a data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}" class="btn btn-xs btn-danger disabled"><span class="	fa fa-times-circle-o" aria-hidden="true" data-toggle="tooltip" title="Tolak"></span></a>
-	     	<a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}" class="btn btn-xs btn-primary disabled"><span class=" fa fa-check-circle-o" aria-hidden="true" data-toggle="tooltip" title="Terima"></span></a>	
-	    	@endif
-
-	    	@if(is_null($log->pengajuans->last()->status))
-	    	<a data-toggle="modal" data-target="{{ '#' . $log->id . '-modal' }}" class="btn btn-xs btn-danger"><span class="	fa fa-times-circle-o" aria-hidden="true" data-toggle="tooltip" title="Tolak"></span></a>
-	     	<a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}" class="btn btn-xs btn-primary"><span class=" fa fa-check-circle-o" aria-hidden="true" data-toggle="tooltip" title="Terima"></span></a>
-	     	@endif
+	    	
      	@endif
      </td>
 @include('partials.pengawas_terima', ['object' => $log])

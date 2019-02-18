@@ -1,4 +1,5 @@
 @if (Request::route()->getName() == 'pengajuan.index')
+@if (count($log->pengajuans) != 0)
 	@if (Auth::user()->id == $log->users->id)
 	<tr>
 	    <td>GA{{ $log->duplikats->id }} <a href="#myModal" id="openBtn" data-toggle="modal" data-target="{{ '#' . $log->duplikats->id . 'modal' }}"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
@@ -12,4 +13,5 @@
 	    </td> 
 	</tr>
 	@endif
+@endif
 @endif

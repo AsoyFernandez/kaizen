@@ -1,5 +1,5 @@
 @forelse ($pengaduan as $log)
-    @if ($log->lokasi_id == $el->id && $log->duplikats->count() == 0)
+    @if ($log->lokasi_id == $el->id && $log->duplikats == null)
     <tr> 
         <td>PE{{ $log->id }}</td>    
         <td>

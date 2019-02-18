@@ -15,7 +15,9 @@
               <td>Kategori</td>
               <td>Deskripsi</td>
               <td>Tanggal</td>
+              @if (Auth::user()->hasRole([1,3]))
               <td>Action</td>
+              @endif
             </tr>
           </thead>
         </table>
@@ -34,11 +36,13 @@
                   <a href="#" data-toggle="tooltip" data-placement="bottom" title="{{ $el->deskripsi }}">{{ str_limit($el->deskripsi, $limit = 10, $end = '...') }} </a>
                 </td>
                 <td>{{ $el->created_at->format('d/m/Y H:i') }}</td>
+                @if (Auth::user()->hasRole([1,3]))
                 <td>
                   {!! Form::open(['url' => route('pengaduan.gabungkan.hapus', $el->id), 'method' => 'delete',  'class'=>'delete form-horizontal']) !!}
                       <button type="submit" class="btn btn-link"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </button>
                   {!! Form::close() !!}
                 </td>
+                @endif
               </tr>
                 @endforeach
           </tbody>

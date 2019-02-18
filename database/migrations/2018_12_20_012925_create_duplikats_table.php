@@ -22,6 +22,11 @@ class CreateDuplikatsTable extends Migration
             $table->foreign('lokasi_id')->references('id')->on('tempats')
             ->onUpdate('cascade')->onDelete('cascade');
         });
+
+        Schema::table('pengaduans', function (Blueprint $table) {
+            $table->unsignedSmallInteger('duplikat_id')->nullable();
+            $table->foreign('duplikat_id')->references('id')->on('duplikats')->onUpdate('cascade')->onDelete('set null');
+        });
     }
 
     /**

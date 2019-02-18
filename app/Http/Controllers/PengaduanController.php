@@ -15,6 +15,7 @@ use DB;
 use Disk;
 use App\User;
 use App\Status;
+use PDF;
 class PengaduanController extends Controller
 {
     /**
@@ -22,8 +23,10 @@ class PengaduanController extends Controller
      *
      */
     public function unduh($id){
-        $duplikat = Duplikat::all();
-        return view('pengaduan.unduh', compact('duplikat'));
+        $pengaduan = Pengaduan::find($id);
+        // $pdf = PDF::loadView('pengaduan.unduh', compact('pengaduan'));
+        // return $pdf->download('unduh.pdf');
+        return view('pengaduan.unduh', compact('pengaduan'));
     }
 
 
@@ -169,6 +172,40 @@ class PengaduanController extends Controller
 
         public function merges(Request $request)
         {
+            if (isset($request->duplicate_id)) {
+                for ($i=0; $i < count($request->duplikat); $i++) { 
+                    $duplikat = Duplikat::find($request->duplicate_id);
+                    $pengaduan = Pengaduan::find($request->duplikat[$i]);
+                    $pengaduan->update([
+                        'duplikat_id' => $duplikat->id,
+                    ]);
+                };
+
+                Session::flash("flash_notification", [
+                    "level"=>"success",
+                    "message"=>"Berhasil menggabungkan pengaduan"
+                ]);                
+            } else {
+
+            $lokasi = Pengaduan::find($request->duplikat[0])->lokasi_id;
+
+                $duplikat = Duplikat::create([
+                    'deskripsi' => $request->deskripsi,
+                    'lokasi_id' => $lokasi
+                ]) ;
+
+                for ($i=0; $i < count($request->duplikat); $i++) { 
+                    $pengaduan = Pengaduan::find($request->duplikat[$i]);
+                    $pengaduan->update([
+                        'duplikat_id' => $duplikat->id,
+                    ]);
+                };
+
+                Session::flash("flash_notification", [
+                    "level"=>"success",
+                    "message"=>"Berhasil menggabungkan pengaduan"
+                ]);
+            }
             /*if (isset($request->duplicate_id)) {
                 for ($i=0; $i < count($request->duplikat); $i++) { 
                     $duplikat = Duplikat::find($request->duplicate_id);
@@ -200,36 +237,36 @@ class PengaduanController extends Controller
                 ]);
             }*/
 
-            
-            if (isset($request->duplicate_id)) {
-                for ($i=0; $i < count($request->duplikat); $i++) { 
-                    $duplikat = Duplikat::find($request->duplicate_id);
-                    $duplikat->pengaduans()->attach(Pengaduan::find($request->duplikat[$i]));
-                };
+            //Coba hasMany Pengaduan
+            // if (isset($request->duplicate_id)) {
+            //     for ($i=0; $i < count($request->duplikat); $i++) { 
+            //         $duplikat = Duplikat::find($request->duplicate_id);
+            //         $duplikat->pengaduans()->attach(Pengaduan::find($request->duplikat[$i]));
+            //     };
 
-                Session::flash("flash_notification", [
-                    "level"=>"success",
-                    "message"=>"Berhasil menggabungkan pengaduan"
-                ]);                
-            } else {
+            //     Session::flash("flash_notification", [
+            //         "level"=>"success",
+            //         "message"=>"Berhasil menggabungkan pengaduan"
+            //     ]);                
+            // } else {
 
-                $lokasi = Pengaduan::find($request->duplikat[0])->lokasi_id;
+            //     $lokasi = Pengaduan::find($request->duplikat[0])->lokasi_id;
 
-                $duplikat = Duplikat::create([
-                    'deskripsi' => $request->deskripsi,
-                    'lokasi_id' => $lokasi
-                ]) ;
+            //     $duplikat = Duplikat::create([
+            //         'deskripsi' => $request->deskripsi,
+            //         'lokasi_id' => $lokasi
+            //     ]) ;
 
-                for ($i=0; $i < count($request->duplikat); $i++) { 
-                    $duplikat->pengaduans()->attach(Pengaduan::find($request->duplikat[$i]));
-                };
+            //     for ($i=0; $i < count($request->duplikat); $i++) { 
+            //         $duplikat->pengaduans()->attach(Pengaduan::find($request->duplikat[$i]));
+            //     };
 
-                Session::flash("flash_notification", [
-                    "level"=>"success",
-                    "message"=>"Berhasil menggabungkan pengaduan"
-                ]);
+            //     Session::flash("flash_notification", [
+            //         "level"=>"success",
+            //         "message"=>"Berhasil menggabungkan pengaduan"
+            //     ]);
 
-            }
+            // }
 
 
             return redirect()->route('pengaduan.index');
@@ -397,7 +434,9 @@ class PengaduanController extends Controller
     public function hapusgabungan($id)
     {
         $pengaduan = Pengaduan::find($id);
-        $pengaduan->duplikats()->detach(Duplikat::find($id));
+        $pengaduan->update([
+            'duplikat_id' => null,
+        ]);
         Session::flash("flash_notification", [
             "level"=>"success",
             "message"=>"Pengaduan berhasil dihapus"
