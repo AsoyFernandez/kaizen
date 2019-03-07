@@ -1,7 +1,7 @@
 <!-- This file is used to store sidebar items, starting with Backpack\Base 0.9.0 -->
         <li><a href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
 
-@if (Auth::user()->hasRole([1,3]))
+@if (Auth::user()->hasRole([1]))
 
         <li class="treeview">
             <a href="#"><i class='fa fa-institution'></i> <span>{{ trans('Perusahaan') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -89,14 +89,14 @@
     </ul>
 </li>
 
-@if (Auth::user()->hasRole([1,3,4]))
+@if (Auth::user()->hasRole([1,2,3,4]))
     <li class="treeview">  
         <a href="#"><i class='fa fa-sign-language'></i> <span>{{ trans('Penanganan') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
             <ul class="treeview-menu">
             @if (Auth::user()->hasRole([3,4]))
             <li><a href="{{ route('penanganan.index') }}"><i class='fa fa-cube'></i> <span>{{ trans('Penanganan Ku') }}</span></a></li>
             @endif
-            @if (Auth::user()->hasRole([1,3]))
+            @if (Auth::user()->hasRole([1,2,3]))
                 <li><a href="{{ route('semua.penanganan') }}"><i class='fa fa-cubes'></i> <span>{{ trans('Semua Penanganan') }}</span></a></li>
             @endif
             </ul>
@@ -122,14 +122,14 @@
 </li>
 @endif
 
-@if (Auth::user()->hasRole([1,2]))
+@if (Auth::user()->hasRole([1,2,4]))
 <li class="treeview">  
     <a href="#"><i class='fa fa-thumbs-o-up'></i> <span>{{ trans('Penilaian') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-        @if (Auth::user()->hasRole([2]))
+        @if (Auth::user()->hasRole([1,2,4]))
         <li><a href="{{ route('penilaian.index') }}"><i class='fa fa-star-half-empty'></i> <span>{{ trans('Penilaian') }}</span></a></li>
         @endif
-        <li><a href="{{ route('penilaian.peringkat') }}"><i class='fa fa-trophy'></i> <span>{{ trans('Peringkat') }}</span></a></li>     
+        {{-- <li><a href="{{ route('penilaian.peringkat') }}"><i class='fa fa-trophy'></i> <span>{{ trans('Peringkat') }}</span></a></li> --}}     
         </ul>
     </a>
 </li>

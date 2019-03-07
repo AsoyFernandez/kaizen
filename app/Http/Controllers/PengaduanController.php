@@ -16,6 +16,7 @@ use Disk;
 use App\User;
 use App\Status;
 use PDF;
+use Cloudder;
 class PengaduanController extends Controller
 {
     /**
@@ -24,9 +25,16 @@ class PengaduanController extends Controller
      */
     public function unduh($id){
         $pengaduan = Pengaduan::find($id);
+        $pdf = PDF::loadView('pengaduan.unduh', compact('pengaduan'));
+        return $pdf->stream('unduh.pdf');
+        // return view('pengaduan.unduh', compact('pengaduan'));
+    }
+
+    public function petugasLihat($id){
+        $pengaduan = Pengaduan::find($id);
         // $pdf = PDF::loadView('pengaduan.unduh', compact('pengaduan'));
         // return $pdf->download('unduh.pdf');
-        return view('pengaduan.unduh', compact('pengaduan'));
+        return view('pengaduan.petugasLihat', compact('pengaduan'));
     }
 
 
@@ -94,15 +102,21 @@ class PengaduanController extends Controller
         $this->validate($request, [
             'lokasi_id' => 'required',
             'kategori_id' => 'required',
-            'foto' => 'image|max:2048',
+            'foto' => 'required|image|max:2048',
             'deskripsi' => 'required',
         ]);
+
+
+        $image_name = $request->file('foto')->getRealPath();
+        $cloud = Cloudder::upload($image_name, null);
+        $result = Cloudder::getResult();
+        // dd($result['url']);
 
         $pengaduan = Pengaduan::create(array_merge($request->except('foto'), [
             'user_id' => Auth::id(),
             'lokasi_id' => $request->lokasi_id,
             'kategori_id' => $request->kategori_id,
-            'foto' => $request->foto,
+            'foto' => $result['url'],
             'deskripsi' => $request->deskripsi
         ])) ;
 
@@ -124,26 +138,26 @@ class PengaduanController extends Controller
             }
     */
             // isi field cover jika ada cover yang diupload
-            if ($request->hasFile('foto')) {
+            // if ($request->hasFile('foto')) {
 
-            // Mengambil file yang diupload
-                $uploaded_foto = $request->file('foto');
+            // // Mengambil file yang diupload
+            //     $uploaded_foto = $request->file('foto');
 
-            // mengambil extension file
-                $extension = $uploaded_foto->getClientOriginalExtension();
+            // // mengambil extension file
+            //     $extension = $uploaded_foto->getClientOriginalExtension();
 
-            // membuat nama file random berikut extension
-                $filename = md5(time()) . '.' . $extension;
+            // // membuat nama file random berikut extension
+            //     $filename = md5(time()) . '.' . $extension;
 
-            // menyimpan cover ke folder public/img
-                $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img';
-                $uploaded_foto->move($destinationPath, $filename);
-            // mengisi field cover di book dengan filename yang baru dibuat
-                $pengaduan->foto = $filename;
+            // // menyimpan cover ke folder public/img
+            //     $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img';
+            //     $uploaded_foto->move($destinationPath, $filename);
+            // // mengisi field cover di book dengan filename yang baru dibuat
+            //     $pengaduan->foto = $filename;
                 
-
-                $pengaduan->save();
-            }
+                
+            //     $pengaduan->save();
+            // }
 
             Session::flash("flash_notification", [
             "level"=>"success",

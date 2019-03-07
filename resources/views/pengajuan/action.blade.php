@@ -16,7 +16,7 @@
 
 @if (Request::route()->getName() == 'pengajuan.show')
 <td> 
-	<a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target={{ '#' . $e->id . '-modal' }}><span class=" glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Lihat"></span></a>
+	<a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target={{ '#' . $e->id . 'modals' }}><span class=" glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Lihat"></span></a>
 	@if (Auth::user()->hasRole([3]))
 		@if (is_null($e->status))
 			@include('partials.pengawas_tolak', ['object' => $e])

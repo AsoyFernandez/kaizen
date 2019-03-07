@@ -9,6 +9,7 @@ use App\Pengaduan;
 use App\Duplikat;
 use Session;
 use App\User;
+use Auth;
 class PenilaianController extends Controller
 {
     /**
@@ -25,7 +26,7 @@ class PenilaianController extends Controller
 
     public function index()
     {
-        $status = Status::where('status', 1)->get();
+        $status = Status::all();
         return view('penilaian.index', compact('status'));
     }
 
@@ -37,6 +38,28 @@ class PenilaianController extends Controller
     public function create()
     {
         //
+    }
+
+    public function tolak(Request $request, $id){
+        $status = Status::findOrFail($id);
+        $status->update([
+            'user_id' => Auth::user()->id,
+            'status' => 2,
+            'keterangan' => $request->keterangan,
+        ]);
+        $status->penilaian->delete();
+        // Status::create([
+        //     'pengajuan_id'=> $pengajuan->id,
+        //     'status' => 0,
+        //     'keterangan' => $request->keterangan,
+        //     'user_id' => Auth::user()->id,
+        // ]);
+
+        Session::flash("flash_notification", [
+            "level"=>"success",
+            "message"=>"Berhasil membuka kembali permasalahan"
+            ]);
+        return redirect()->route('pengajuan.semua');
     }
 
     /**

@@ -3,6 +3,6 @@
 		<td>-</td>
 	@endif
 	@if (!is_null($e->status))
-		<td>{{ $e->status->created_at->format('d/m/Y H:i') }}</td>
+		<td>{{ $e->status->updated_at->format('d/m/Y H:i') }}</td>
 	@endif
 @endif

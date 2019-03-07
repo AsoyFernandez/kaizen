@@ -9,6 +9,7 @@ use App\Duplikat;
 use Session;
 use Storage;
 use File;
+use Cloudder;
 class PenangananController extends Controller
 {
     /** 
@@ -71,32 +72,38 @@ class PenangananController extends Controller
             'deskripsi' => 'required',
         ]);
 
+        $image_name = $request->file('foto')->getRealPath();
+        $cloud = Cloudder::upload($image_name, null);
+        $result = Cloudder::getResult();
+        
+
         $pengajuan = Pengajuan::create(array_merge($request->except('foto'), [
             'penanganan_id' => $request->penanganan_id,
-            'foto' => $request->foto,
+            'foto' => $result['url'],
             'deskripsi' => $request->deskripsi
         ]));
-        // isi field cover jika ada cover yang diupload
-            if ($request->hasFile('foto')) {
 
-            // Mengambil file yang diupload
-                $uploaded_foto = $request->file('foto');
+        // // isi field cover jika ada cover yang diupload
+        //     if ($request->hasFile('foto')) {
 
-            // mengambil extension file
-                $extension = $uploaded_foto->getClientOriginalExtension();
+        //     // Mengambil file yang diupload
+        //         $uploaded_foto = $request->file('foto');
 
-            // membuat nama file random berikut extension
-                $filename = md5(time()) . '.' . $extension;
+        //     // mengambil extension file
+        //         $extension = $uploaded_foto->getClientOriginalExtension();
 
-            // menyimpan cover ke folder public/img
-                $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img';
-                $uploaded_foto->move($destinationPath, $filename);
-            // mengisi field cover di book dengan filename yang baru dibuat
-                $pengajuan->foto = $filename;
+        //     // membuat nama file random berikut extension
+        //         $filename = md5(time()) . '.' . $extension;
+
+        //     // menyimpan cover ke folder public/img
+        //         $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img';
+        //         $uploaded_foto->move($destinationPath, $filename);
+        //     // mengisi field cover di book dengan filename yang baru dibuat
+        //         $pengajuan->foto = $filename;
                 
 
-                $pengajuan->save();
-            }
+        //         $pengajuan->save();
+        //     }
             Session::flash("flash_notification", [
             "level"=>"success",
             "message"=>"Berhasil menyimpan bukti penanganan"

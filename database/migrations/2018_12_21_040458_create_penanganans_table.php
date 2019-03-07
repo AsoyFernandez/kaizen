@@ -21,10 +21,10 @@ class CreatePenanganansTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')
-            ->onUpdate('cascade')->onDelete('cascade');
+            ->onUpdate('cascade');
 
             $table->foreign('duplikat_id')->references('id')->on('duplikats')
-            ->onUpdate('cascade')->onDelete('cascade');
+            ->onUpdate('cascade');
         });
     }
 

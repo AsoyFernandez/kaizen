@@ -37,7 +37,7 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody> 
                                 @forelse ($penanganan as $log)
                                 @if (count($log->pengajuans) != 0)
                                     @foreach (Auth::user()->tempats as $e)

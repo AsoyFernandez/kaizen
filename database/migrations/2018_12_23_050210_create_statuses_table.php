@@ -21,9 +21,9 @@ class CreateStatusesTable extends Migration
             $table->text('keterangan');
             $table->timestamps();
             $table->foreign('pengajuan_id')->references('id')->on('pengajuans')
-            ->onUpdate('cascade')->onDelete('cascade');
+            ->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')
-            ->onUpdate('cascade')->onDelete('cascade');
+            ->onUpdate('cascade');
         });
     }
 

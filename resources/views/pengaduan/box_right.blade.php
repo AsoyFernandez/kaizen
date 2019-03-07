@@ -1,6 +1,6 @@
 <div class="col-md-12">
     <div class="box box-solid box-primary">
-        
+         
         <div class="box-header with-border">
             <h2 class="box-title">{{ __('Pengaduan yang sudah digabungkan') }}</h2>
 

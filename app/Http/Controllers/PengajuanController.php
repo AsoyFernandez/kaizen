@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pengajuan;
 use App\Penanganan;
+use App\Pengaduan;
 use App\Status;
 use Session;
 use Auth;
@@ -15,6 +16,12 @@ class PengajuanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function lihat($id){
+        $pengaduan = Pengajuan::find($id);
+        // $pdf = PDF::loadView('pengaduan.unduh', compact('pengaduan'));
+        // return $pdf->download('unduh.pdf');
+        return view('pengajuan.lihat', compact('pengaduan'));
+    }
     public function index()
     {
         $pengajuan = Pengajuan::all();

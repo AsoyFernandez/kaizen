@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('backpack.auth.login');
 });
 
 Auth::routes();
@@ -31,6 +31,12 @@ Route::group(['middleware' => 'auth'], function () {
 	    'as' => 'pengaduan.unduh',
 		'uses' => 'PengaduanController@unduh'
 	]);
+
+	Route::get('/pengaduan/lihat/{id}',[
+	    'as' => 'pengaduan.lihat',
+		'uses' => 'PengaduanController@petugasLihat'
+	]);
+
 	Route::get('/pengaduan/pengaduan/full',[
 	    'as' => 'pengaduan.semua_pengaduan',
 		'uses' => 'PengaduanController@semuapengaduan'
@@ -99,6 +105,10 @@ Route::group(['middleware' => 'auth'], function () {
 			'as' => 'penanganan.post_id',
 			'uses' => 'PenangananController@post_id'
 		]);
+	Route::get('/pengajuan/lihat/{id}',[
+	    'as' => 'pengajuan.lihat',
+		'uses' => 'PengajuanController@lihat'
+	]);
 
 	Route::get('/pengajuan/semua_pengajuan',[
 			'as' => 'pengajuan.semua',
@@ -122,5 +132,10 @@ Route::group(['middleware' => 'auth'], function () {
 		]);
 	
 	Route::resource('penilaian', 'PenilaianController');
+	Route::get('/penilaian/{id}/tolak',[
+			'as' => 'penilaian.tolak',
+			'uses' => 'PenilaianController@tolak'
+		]);
+
 
 });

@@ -49,7 +49,7 @@
                                     @endif
                                     @endforeach
                                     @foreach (Auth::user()->roles as $key)
-                                    @if ($key->id == 1  || $key->id == 4)
+                                    @if ($key->id == 1  || $key->id == 4 || $key->id == 3)
                                         <th>Action</th>
                                     @endif
                                     @endforeach   
@@ -67,7 +67,7 @@
                                                 @include('partials.simbol_pengaduan')
                                             </td>
                                             <td>{{ $log->kategoris->nama }}</td>
-                                            <td>{{ $log->deskripsi }}</td>
+                                            <td>{{ str_limit($log->deskripsi, $limit = 25, $end = '...') }}</td>
                                             <td>{{ $log->created_at->format('d/m/Y H:i') }}</td>
                                             @include('partials.status_pengaduan') 
                                             <td>@include('pengaduan.action')</td>
@@ -89,9 +89,10 @@
                                                                 @include('partials.simbol_pengaduan')
                                                             </td>
                                                             <td>{{ $log->kategoris->nama }}</td>
-                                                            <td>{{ $log->deskripsi }}</td>
+                                                            <td>{{ str_limit($log->deskripsi, $limit = 25, $end = '...') }}</td>
                                                             <td>{{ $log->created_at->format('d/m/Y H:i') }}</td> 
                                                             @include('partials.status_pengaduan') 
+                                                            <td>@include('pengaduan.pengawas_view')</td>
                                                         </tr>
                                                     @endif
                                               @empty
@@ -141,7 +142,7 @@
                                     @endif
                                     @endforeach
                                     @foreach (Auth::user()->roles as $key)
-                                    @if ($key->id == 1 || $key->id == 4)
+                                    @if ($key->id == 1 || $key->id == 4 || $key->id == 3)
                                         <th>Action</th>
                                     @endif
                                     @endforeach  

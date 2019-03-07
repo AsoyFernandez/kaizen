@@ -15,6 +15,6 @@ class Penilaian extends Model
 
 	public function pengaduans()
 	{
-		return $this->hasMany('App\Pengaduan');
+		return $this->hasOne('App\Duplikat');
 	}
 }

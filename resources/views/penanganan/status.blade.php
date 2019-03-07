@@ -12,6 +12,10 @@
     <td>Ditolak</td>
 @endif
 
+@if(isset(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status) && App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status->status == 2)
+    <td>Ditolak oleh pimpinan</td>
+@endif
+
 
 @if(isset(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status) && App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status->status == 1 && is_null(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status->orderBy('created_at', 'desc')->first()->penilaian))
     <td>Diterima</td>

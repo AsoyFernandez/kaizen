@@ -9,6 +9,7 @@
         "backpack/base": "^1.0",
         "barryvdh/laravel-dompdf": "^0.8.3",
         "fideloper/proxy": "^4.0",
+        "jrm2k6/cloudder": "^0.6.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "5.5.*",

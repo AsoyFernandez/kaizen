@@ -17,4 +17,16 @@ class Pengajuan extends Model
 	{
 		return $this->hasOne('App\Status');
 	}
+
+	public static function semuaPengajuanTanpaStatus()
+	{
+		$return = [];
+		$duplikats = Pengajuan::orderBy('created_at', 'desc')->get();
+		foreach ($duplikats as $duplikat) {
+			if (is_null($duplikat->status)) {
+				array_push($return, $duplikat);
+			}
+		}
+		return collect($return);
+	}
 }

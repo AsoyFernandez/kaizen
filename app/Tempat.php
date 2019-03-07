@@ -41,5 +41,4 @@ class Tempat extends Model
 	{
 		return $this->hasMany(Duplikat::class, 'lokasi_id');
 	}
-
 }

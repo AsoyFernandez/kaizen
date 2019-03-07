@@ -9,7 +9,7 @@
         <div class="row">
           <center>  
              @if (isset($object) && $object->foto)
-                <img class="img-rounded img-responsive " style="width: 30rem; height: 30rem" src="{!!asset('img/'.$object->foto)!!}">
+                <img class="img-rounded img-responsive " style="width: 30rem; height: 30rem" src="{{ $object->foto }}">
               @else
                  Foto belum di upload
               @endif

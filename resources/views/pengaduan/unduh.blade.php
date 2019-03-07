@@ -65,6 +65,14 @@ img,tr {page-break-inside: avoid;}
 		<tr style="text-align: center; font-weight: bold">
 			<td colspan="2">{{ $pengaduan->tempats->nama }}</td>
 		</tr>
+		<tr style="text-align: center; font-weight: bold;">
+			<td>Keamanan :@if ($pengaduan->keamanan == 1)
+			 <img class="img-rounded img-responsive" style="width: 20px; height: 20px" src="https://res.cloudinary.com/esarizki15/image/upload/v1551260488/Check-PNG-Image.png">
+			@endif</td>
+			<td>Kerugian :@if ($pengaduan->kerugian == 1)
+				 <img class="img-rounded img-responsive" style="width: 20px; height: 20px" src="https://res.cloudinary.com/esarizki15/image/upload/v1551260488/Check-PNG-Image.png">
+			@endif</td>
+		</tr>
 		<tr style="font-weight: bold;">
 			<td><center>Kondisi Sekarang</center></td>
 			<td><center>Setelah Perbaikan</center></td>	
@@ -73,7 +81,7 @@ img,tr {page-break-inside: avoid;}
 			@if (isset($pengaduan) && $pengaduan->foto)
 			<td>
 				<center>
-                	<img class="img-rounded img-responsive" style="width: 300px; height: 300px" src="{{ url('img/'.$pengaduan->foto) }}">
+                	<img class="img-rounded img-responsive" style="width: 300px; height: 300px" src="{{ $pengaduan->foto }}">
                 </center>
 		    @else
 		         Foto belum di upload
@@ -83,7 +91,7 @@ img,tr {page-break-inside: avoid;}
 			@if ($pengaduan->duplikats->penanganans->pengajuans->last()->status->status == 1)
 			<td>
 				<center>
-                	<img class="img-rounded img-responsive" style="width: 300px; height: 300px" src="{!!asset('img/'.$pengaduan->duplikats->penanganans->pengajuans->last()->foto)!!}">
+                	<img class="img-rounded img-responsive" style="width: 300px; height: 300px" src="{{ $pengaduan->duplikats->penanganans->pengajuans->last()->foto }}">
                 </center>
 			</td>				
 			@endif
@@ -102,6 +110,14 @@ img,tr {page-break-inside: avoid;}
 			<tr>
 				<td style="text-align: center;">{{ $pengaduan->created_at }}</td>
 				<td style="text-align: center;">{{ $pengaduan->duplikats->penanganans->pengajuans->last()->created_at }}</td>
+			</tr>
+			@if (!is_null($pengaduan->duplikats->nilai_id))
+
+			<tr style="text-align: center;">
+				<td colspan="2"><span style="font-size:300%;">{{ $pengaduan->duplikats->penilaian->nilai }}</span><img class="img-rounded img-responsive" style="width: 40px; height: 40px" src="https://res.cloudinary.com/esarizki15/image/upload/v1551259926/gold-star-png--new-calendar-template-site-7.png">
+
+</td>	
+			@endif
 			</tr>
 	</table>
 </body>

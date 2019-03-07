@@ -22,4 +22,16 @@ class Status extends Model
 	{
 		return $this->belongsTo('App\User', 'user_id');
 	}
+
+	public static function semuaStatusTanpaPenilaian()
+	{
+		$return = [];
+		$penilaians = Status::orderBy('created_at', 'desc')->get();
+		foreach ($penilaians as $nilai) {
+			if ($nilai->first()->status == 1 && is_null($nilai->first()->penilaian)) {
+				array_push($return, $penilaians);
+			}
+		}
+		return collect($return);
+	}
 }

@@ -47,11 +47,11 @@
                         {!! Form::close() !!}
                 </div>
             </div>
-            <div class="text-center m-t-10">  
+{{--             <div class="text-center m-t-10">  
 
             <a class="btn btn-link" href="{{ url('/password/reset') }}">Lupa password</a>
              </div>
-        </div>
+ --}}        </div>
     </div>
 </div>
 @endsection

@@ -18,7 +18,7 @@
             </div>
             
             <div class="row">
-                {{ $object->nama }}
+                {{ $object->pengaduans->first()->tempats->nama }}
             </div>
           </center>
         </div>

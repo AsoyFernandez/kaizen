@@ -34,6 +34,11 @@ class UsersSeeder extends Seeder
             'tempat_id'=>$area->id
         ]);
 
+        $lokasi9 = Tempat::create([
+            'nama'=>'Kantor B',
+            'tempat_id'=>$area->id
+        ]);
+
         $area1 = Tempat::create([
             'nama'=>'Gudang',
             'perusahaan_id'=>$perusahaan->id
@@ -41,6 +46,11 @@ class UsersSeeder extends Seeder
 
         $lokasi1 = Tempat::create([
             'nama'=>'Gudang A',
+            'tempat_id'=>$area1->id
+        ]);
+
+        $lokasi12 = Tempat::create([
+            'nama'=>'Gudang B',
             'tempat_id'=>$area1->id
         ]);
 
@@ -74,7 +84,7 @@ class UsersSeeder extends Seeder
         ]);
 
         $user = new User();
-        $user->name = 'Admin Larapus';
+        $user->name = 'Admin';
         $user->username = 'admin';
         $user->nik = '3603190209990001';
         $user->password = bcrypt('rahasia');
@@ -114,15 +124,24 @@ class UsersSeeder extends Seeder
         $user4->save();
         $user4->roles()->attach(Role::find(5));
 
-        $user4 = new User();
-        $user4->name = 'Wisrul';
-        $user4->username = 'wisrul';
-        $user4->nik = '3603190209940001';
-        $user4->password = bcrypt('rahasia');
-        $user4->jabatan = 'Staff' ;
-        $user4->save();
-        $user4->roles()->attach(Role::find(4));
-        $user4->tempats()->attach(Tempat::find(6));
+        $user5 = new User();
+        $user5->name = 'Jelal';
+        $user5->username = 'jelal';
+        $user5->nik = '3603190209940001';
+        $user5->password = bcrypt('rahasia');
+        $user5->jabatan = 'Karyawan' ;
+        $user5->save();
+        $user5->roles()->attach(Role::find(2));
+
+        $user6 = new User();
+        $user6->name = 'Wisrul';
+        $user6->username = 'wisrul';
+        $user6->nik = '3603190209930001';
+        $user6->password = bcrypt('rahasia');
+        $user6->jabatan = 'Staff' ;
+        $user6->save();
+        $user6->roles()->attach(Role::find(4));
+        $user6->tempats()->attach(Tempat::find(6));
         
         $kategori1 = Kategori::create([
             'nama'=>'Ringkas',

@@ -1,5 +1,5 @@
 <!-- Modal -->
-	<div id="{{ $e->id . '-modal' }}" class="modal fade" role="dialog">
+	<div id="{{ $e->id . 'modals' }}" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 
 	    <!-- Modal content-->
@@ -12,7 +12,7 @@
         <div>
 	      	<center>  
              @if (isset($e) && $e->foto)
-                <img class="img-rounded " style="width: 30rem; height: 30rem" src="{!!asset('img/'.$e->foto)!!}">
+                <img class="img-rounded " style="width: 30rem; height: 30rem" src="{{ $e->foto }}">
               @else
                  Foto belum di upload
               @endif
@@ -45,6 +45,7 @@
               </table>
             </div>
 	      </div>
+        
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	      </div>

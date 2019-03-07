@@ -5,9 +5,11 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 class="modal-title">Detail Seluruh Pengaduan</h3>
-        <hr>
-        <table class="table table-striped" id="tblGrid">
-          <thead id="tblHead">
+        </div>
+      <div class="modal-body scrollable">
+        <div class="table-responsive">
+        <table class="table table-striped table-responsive ">
+          <thead>
             <tr>
               <td>Kode</td>
               <td>Pelapor</td>
@@ -15,16 +17,12 @@
               <td>Kategori</td>
               <td>Deskripsi</td>
               <td>Tanggal</td>
-              @if (Auth::user()->hasRole([1,3]))
+              @if (Auth::user()->hasRole([1,3,4]))
               <td>Action</td>
               @endif
             </tr>
           </thead>
-        </table>
-      </div>
-      <div class="modal-body scrollable">
-        <table class="table table-striped" id="tblGrid">
-          <tbody class="scrollable">
+          <tbody>
                 @foreach ($log->duplikats->pengaduans as $el)
                   <tr> 
 
@@ -39,8 +37,14 @@
                 @if (Auth::user()->hasRole([1,3]))
                 <td>
                   {!! Form::open(['url' => route('pengaduan.gabungkan.hapus', $el->id), 'method' => 'delete',  'class'=>'delete form-horizontal']) !!}
-                      <button type="submit" class="btn btn-link"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </button>
+                      <button type="submit" class="btn btn-danger btn-xs"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </button>
+                      <a class="btn btn-primary btn-xs" href="{{ route('pengaduan.lihat', $el->id) }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Unduh Laporan"></span></a>
                   {!! Form::close() !!}
+                </td>
+                @endif
+                @if (Auth::user()->hasRole([4]))
+                <td>
+                  <a class="btn btn-primary btn-xs" href="{{ route('pengaduan.lihat', $el->id) }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Unduh Laporan"></span></a>
                 </td>
                 @endif
               </tr>
@@ -48,6 +52,7 @@
           </tbody>
         </table>
   </div>
+</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>

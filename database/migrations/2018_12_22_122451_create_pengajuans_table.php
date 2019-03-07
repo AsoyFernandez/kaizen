@@ -16,12 +16,12 @@ class CreatePengajuansTable extends Migration
         Schema::create('pengajuans', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->smallInteger('penanganan_id')->unsigned();
-            $table->string('foto', 36)->nullable();
+            $table->string('foto', 86);
             $table->text('deskripsi')->nullable();
             $table->timestamps();
 
             $table->foreign('penanganan_id')->references('id')->on('penanganans')
-            ->onUpdate('cascade')->onDelete('cascade');
+            ->onUpdate('cascade');
         });
     }
 

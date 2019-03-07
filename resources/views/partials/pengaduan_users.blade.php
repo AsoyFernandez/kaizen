@@ -1,5 +1,5 @@
 <div class="modal fade" id="{{ $log->id . 'modal' }}">
-<div class="modal-dialog">
+<div class="modal-dialog"> 
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -32,9 +32,14 @@
                 </td>
                 <td>{{ $el->created_at->format('d/m/Y H:i') }}</td>
                 <td>
+                  @if (Auth::user()->hasRole([1,3]))
                   {!! Form::open(['url' => route('pengaduan.gabungkan.hapus', $el->id), 'method' => 'delete',  'class'=>'delete form-horizontal']) !!}
                       <button type="submit" class="btn btn-link"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </button>
                   {!! Form::close() !!}
+                  @endif
+                  @if (Auth::user()->hasRole([4]))
+                      <a class="btn btn-primary btn-xs" href="{{ route('pengaduan.lihat', $log->id) }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Unduh Laporan"></span></a>
+                  @endif
                 </td>
               </tr>
                 @endforeach

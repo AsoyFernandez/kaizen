@@ -39,11 +39,9 @@
                                     <th>Action</th>
                                     @endif
                                     @if (Request::route()->getName() == 'semua.penanganan')
-                                    @foreach (Auth::user()->roles as $el)
-                                        @if ($el->id == 1)
+                                        @if (Auth::user()->hasRole([1]))
                                         <th>Action</th>
                                         @endif
-                                    @endforeach
                                     @endif
                                 </tr>
                             </thead>
@@ -68,6 +66,10 @@
 
                                     @if(isset(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status) && App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status->status == 0)
                                         <td>Ditolak</td>
+                                    @endif
+
+                                    @if(isset(App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status) && App\Pengajuan::where('penanganan_id',$log->id)->orderBy('created_at', 'desc')->first()->status->status == 2)
+                                        <td>Ditolak oleh pimpinan</td>
                                     @endif
 
 
@@ -148,11 +150,9 @@
                                     <th>Action</th>
                                     @endif
                                     @if (Request::route()->getName() == 'semua.penanganan')
-                                    @foreach (Auth::user()->roles as $el)
-                                        @if ($el->id == 1)
+                                        @if (Auth::user()->hasRole([1]))
                                         <th>Action</th>
                                         @endif
-                                    @endforeach
                                     @endif
                                 </tr>
                             </tfoot>

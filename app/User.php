@@ -127,4 +127,14 @@ class User extends Authenticatable
         $collect = collect($return);
         return ($collect->sum('nilai') / $collect->count());
     }
+    public function areas()
+    {
+        $retur = [];
+        foreach ($this->tempats as $tempat) {
+            foreach ($tempat->child as $area) {
+                array_push($retur, $area);
+            }
+        }
+        return collect($retur);
+    }
 }

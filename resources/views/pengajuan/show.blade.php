@@ -1,5 +1,5 @@
 @extends('vendor.backpack.base.layout')
-
+ 
 @section('content')
 <div class="container-fluid spark-screen">
     <div class="row justify-content-center">

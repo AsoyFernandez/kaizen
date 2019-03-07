@@ -20,12 +20,12 @@ class CreatePenilaiansTable extends Migration
             $table->text('keterangan');
             $table->timestamps();
             $table->foreign('status_id')->references('id')->on('statuses')
-            ->onUpdate('cascade')->onDelete('cascade');
+            ->onUpdate('cascade');
         });
 
         Schema::table('duplikats', function (Blueprint $table) {
             $table->unsignedSmallInteger('nilai_id')->nullable();
-            $table->foreign('nilai_id')->references('id')->on('penilaians')->onUpdate('cascade')->onDelete('cascade');;
+            $table->foreign('nilai_id')->references('id')->on('penilaians')->onUpdate('cascade')->onDelete('set null');;
         });
     }
 

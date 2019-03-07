@@ -60,7 +60,8 @@
                                     <td> <span class="aria-hidden="true" data-toggle="tooltip" title="{{ $log->deskripsi }}">{{ str_limit($log->deskripsi, $limit = 25, $end = '...') }}</span></td>
                                     <td>{{ $log->created_at->format('d/m/Y H:i') }}</td>
                                     <td>{{ $log->status() }}</td>
-                                    <td>@include('pengaduan.action')</td>
+                                    <td>@include('pengaduan.action')
+                                    </td>
                                 </tr>
                               @empty
                               @endforelse
