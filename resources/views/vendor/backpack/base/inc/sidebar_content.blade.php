@@ -11,7 +11,7 @@
                 <li><a href="{{ route('lokasi.index') }}"><i class="fa fa-map-o"></i>{{ trans('Data Lokasi') }}</a></li>
             </ul>
         </li>
-
+ 
         <li class="treeview">
             <a href="#"><i class='fa fa-child'></i> <span>{{ trans('Anggota') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
             <ul class="treeview-menu">

@@ -52,7 +52,7 @@
                                          {{-- expr --}}
                                  <tr>
                                     
-                                     <td>{{ $log->pengaduans->first()->users->name }} <a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}""><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></a></td>
+                                     <td>{{ $log->pengaduans->first()->users->name }} <a data-toggle="modal" data-target="{{ '#' . $log->id . 'modal' }}"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></a></td>
                                      @include('partials.pengaduan_users', ['object' => $log])
 
                                      <td>{{ $log->pengaduans->first()->tempats->nama }}</td>
